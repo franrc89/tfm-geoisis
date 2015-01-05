@@ -25,18 +25,21 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.puntointeres.PuntoInteres;
+import dom.service.puntointeres.PuntosInteres;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @ObjectType("RUTA")
 @Bookmarkable
+@Bounded
 public class Ruta implements Comparable<Ruta> {
 
 	private String nombre;
@@ -70,8 +73,8 @@ public class Ruta implements Comparable<Ruta> {
 	 * @return Propiedad listaPuntoInteres
 	 */
 	@javax.jdo.annotations.Persistent(table = "PuntoInteres_Ruta")
-	@javax.jdo.annotations.Join(column = "puntointeres_id")
-	@javax.jdo.annotations.Element(column = "ruta_id")
+	@javax.jdo.annotations.Element(column = "puntointeres_id")
+	@javax.jdo.annotations.Join(column = "ruta_id")
 	public SortedSet<PuntoInteres> getListaPuntoInteres() {
 		return this.listaPuntoInteres;
 	}
@@ -101,6 +104,29 @@ public class Ruta implements Comparable<Ruta> {
 		this.listaPuntoInteres = listaPuntoInteres;
 	}
 
+	public PuntoInteres addToListaPuntoInteres(final PuntoInteres puntoInteres) {
+		this.getListaPuntoInteres().add(puntoInteres);
+		return puntoInteres;
+	}
+
+	// public void agregarPuntoInteres(final PuntoInteres puntoInteres) {
+	// this.listaPuntoInteres.add(puntoInteres);
+	// }
+	//
+	// // provide a drop-down
+	// public Collection<PuntoInteres> choices0AgregarPuntoInteres() {
+	// return this.puntosInteresService.listar();
+	// }
+	//
+	// public void quitarPuntoInteres(final PuntoInteres puntoInteres) {
+	// this.getListaPuntoInteres().remove(puntoInteres);
+	// }
+	//
+	// // provide a drop-down
+	// public Collection<PuntoInteres> choices0QuitarPuntoInteres() {
+	// return this.getListaPuntoInteres();
+	// }
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -111,5 +137,12 @@ public class Ruta implements Comparable<Ruta> {
 		// TODO Auto-generated method stub
 		return ObjectContracts.compare(this, o, "nombre");
 	}
+
+	// region > injected services
+
+	@javax.inject.Inject
+	PuntosInteres puntosInteresService;
+
+	// endregion
 
 }

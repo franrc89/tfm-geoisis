@@ -22,22 +22,28 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.Render;
+import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.evento.Evento;
 import dom.model.ruta.Ruta;
+import dom.model.rutapersonal.RutaPersonal;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @ObjectType("PUNTOINTERES")
 @Bookmarkable
+@Bounded
 public class PuntoInteres implements Comparable<PuntoInteres> {
 
 	private String nombre;
@@ -46,6 +52,7 @@ public class PuntoInteres implements Comparable<PuntoInteres> {
 	private String direccion;
 	private String accesibilidad;
 	private SortedSet<Ruta> listaRuta = new TreeSet<Ruta>();
+	private SortedSet<RutaPersonal> listaRutaPersonal = new TreeSet<RutaPersonal>();
 	private SortedSet<Evento> listaEvento = new TreeSet<Evento>();
 
 	/**
@@ -149,9 +156,10 @@ public class PuntoInteres implements Comparable<PuntoInteres> {
 	 * Devuelve el valor de la propiedad 'listaRuta'
 	 * @return Propiedad listaRuta
 	 */
-	@javax.jdo.annotations.Column(allowsNull = "true")
-	@Title(sequence = "6")
-	@MemberOrder(sequence = "6")
+	@javax.jdo.annotations.Persistent(table = "PuntoInteres_Ruta")
+	@javax.jdo.annotations.Element(column = "ruta_id")
+	@javax.jdo.annotations.Join(column = "puntointeres_id")
+	@Render(Type.EAGERLY)
 	public SortedSet<Ruta> getListaRuta() {
 		return this.listaRuta;
 	}
@@ -165,12 +173,32 @@ public class PuntoInteres implements Comparable<PuntoInteres> {
 	}
 
 	/**
+	 * Devuelve el valor de la propiedad 'listaRutaPersonal'
+	 * @return Propiedad listaRutaPersonal
+	 */
+	@Join
+	@Render(Type.EAGERLY)
+	public SortedSet<RutaPersonal> getListaRutaPersonal() {
+		return this.listaRutaPersonal;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaRutaPersonal'
+	 * @param listaRutaPersonal valor que se le quiere dar a la propiedad
+	 *            'listaRutaPersonal'
+	 */
+	public void setListaRutaPersonal(final SortedSet<RutaPersonal> listaRutaPersonal) {
+		this.listaRutaPersonal = listaRutaPersonal;
+	}
+
+	/**
 	 * Devuelve el valor de la propiedad 'listaEvento'
 	 * @return Propiedad listaEvento
 	 */
-	@javax.jdo.annotations.Column(allowsNull = "true")
+	@javax.jdo.annotations.Column(name = "puntointeres_id", allowsNull = "true")
 	@Title(sequence = "7")
 	@MemberOrder(sequence = "7")
+	@Render(Type.EAGERLY)
 	public SortedSet<Evento> getListaEvento() {
 		return this.listaEvento;
 	}

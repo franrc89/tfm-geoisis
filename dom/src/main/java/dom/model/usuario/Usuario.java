@@ -25,8 +25,11 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.Render;
+import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
@@ -38,6 +41,7 @@ import dom.model.rutapersonal.RutaPersonal;
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @ObjectType("USUARIO")
 @Bookmarkable
+@Bounded
 public class Usuario implements Comparable<Usuario> {
 
 	private String nombre;
@@ -83,31 +87,16 @@ public class Usuario implements Comparable<Usuario> {
 		this.apellido = apellido;
 	}
 
-	// public void agregarDireccion(final Direccion direccion) {
-	// this.getDirecciones().add(direccion);
-	// }
-	//
-	// // provide a drop-down
-	// public Collection<Direccion> choices0AgregarDireccion() {
-	// return this.direccionesServices.listar();
-	// }
-	//
-	// public void quitarDireccion(final Direccion direccion) {
-	// this.getDirecciones().remove(direccion);
-	// }
-	//
-	// // provide a drop-down
-	// public Collection<Direccion> choices0QuitarDireccion() {
-	// return this.getDirecciones();
-	// }
-
 	/**
 	 * Devuelve el valor de la propiedad 'listaRutaPersonal'
 	 * @return Propiedad listaRutaPersonal
 	 */
-	@javax.jdo.annotations.Column(name = "usuario_id", allowsNull = "false")
+	// @javax.jdo.annotations.Column(name = "usuario_id", allowsNull = "false")
+
 	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
 	public SortedSet<RutaPersonal> getListaRutaPersonal() {
 		return this.listaRutaPersonal;
 	}

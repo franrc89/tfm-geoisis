@@ -19,6 +19,7 @@
 package dom.model.puntointeres;
 
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -29,6 +30,7 @@ import org.apache.isis.applib.util.ObjectContracts;
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, columns = {
 		@javax.jdo.annotations.Column(name = "puntointeres_id"), @javax.jdo.annotations.Column(name = "ruta_id") })
+@javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @ObjectType("PUNTOINTERES_RUTA")
 @Bookmarkable
 public class PuntoInteres_Ruta implements Comparable<PuntoInteres_Ruta> {
