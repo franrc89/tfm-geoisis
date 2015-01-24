@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dom.model.evento;
 
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -39,8 +36,8 @@ public abstract class AbstractEvento {
 	 * @return Propiedad descripcion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "1")
-	@MemberOrder(sequence = "1")
+	@Title(sequence = "2")
+	@MemberOrder(sequence = "2")
 	public String getDescripcion() {
 		return this.descripcion;
 	}

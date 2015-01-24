@@ -110,6 +110,30 @@ public class Usuario implements Comparable<Usuario> {
 		this.listaRutaPersonal = listaRutaPersonal;
 	}
 
+	/***
+	 * Añade la ruta a la lista de rutas personales del usuario
+	 * @param ruta
+	 */
+	public void addToListaRutaPersonal(final RutaPersonal ruta) {
+		if (ruta == null || this.listaRutaPersonal.contains(ruta)) {
+			return;
+		}
+		ruta.setUsuario(this);
+		this.listaRutaPersonal.add(ruta);
+	}
+
+	/**
+	 * Elimina la ruta a la lista de rutas personales del usuario
+	 * @param ruta
+	 */
+	public void removeFromListaRutaPersonal(final RutaPersonal ruta) {
+		if (ruta == null || !this.listaRutaPersonal.contains(ruta)) {
+			return;
+		}
+		ruta.setUsuario(null);
+		this.listaRutaPersonal.remove(ruta);
+	}
+
 	/**
 	 * Devuelve el valor de la propiedad 'listaEvento'
 	 * @return Propiedad listaEvento

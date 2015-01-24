@@ -4,17 +4,18 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.Join;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.Render;
+import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
-import dom.model.puntointeres.Poi;
+import dom.model.puntointeres.PuntoInteres;
 import dom.model.usuario.Usuario;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
@@ -28,7 +29,7 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	private String nombre;
 	private String duracion;
 	private Usuario usuario;
-	private SortedSet<Poi> listaPoi = new TreeSet<Poi>();
+	private SortedSet<PuntoInteres> listaPuntoInteres = new TreeSet<PuntoInteres>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -87,49 +88,64 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 		this.usuario = usuario;
 	}
 
-	/**
-	 * Devuelve el valor de la propiedad 'listaElementoRuta'
-	 * @return Propiedad listaElementoRuta
-	 */
+	public void modifyUsuario(final Usuario usuario) {
+		if (usuario == null || this.usuario == usuario) {
+			return;
+		}
+		if (usuario != null) {
+			this.usuario.removeFromListaRutaPersonal(this);
+		}
+		usuario.addToListaRutaPersonal(this);
+	}
 
-	/**
-	 * Devuelve el valor de la propiedad 'listaPoi'
-	 * @return Propiedad listaPoi
-	 */
-	// @javax.jdo.annotations.Persistent(table = "Poi_RutaPersonal")
-	// @javax.jdo.annotations.Element(column = "Poi_id")
-	// @javax.jdo.annotations.Join(column = "rutapersonal_id")
-	@Join
-	public SortedSet<Poi> getListaPoi() {
-		return this.listaPoi;
+	public void clearUsuario() {
+		if (this.usuario == null) {
+			return;
+		}
+		this.usuario.removeFromListaRutaPersonal(this);
 	}
 
 	/**
-	 * Asigna el valor de la propiedad 'listaPoi'
-	 * @param listaPoi valor que se le quiere dar a la propiedad 'listaPoi'
+	 * Devuelve el valor de la propiedad 'listaPuntoInteres'
+	 * @return Propiedad listaPuntoInteres
 	 */
-	public void setListaPoi(final SortedSet<Poi> listaPoi) {
-		this.listaPoi = listaPoi;
+	@javax.jdo.annotations.Persistent(table = "rutapersonal_puntointeres")
+	@javax.jdo.annotations.Join(column = "rutapersonal_id")
+	@javax.jdo.annotations.Element(column = "puntointeres_id")
+	@Render(Type.EAGERLY)
+	public SortedSet<PuntoInteres> getListaPuntoInteres() {
+		return this.listaPuntoInteres;
 	}
 
-	@MemberOrder(name = "listaPoi", sequence = "4")
-	public RutaPersonal add(final Poi poi) {
-		this.listaPoi.add(poi);
+	/**
+	 * Asigna el valor de la propiedad 'listaPuntoInteres'
+	 * @param listaPuntoInteres valor que se le quiere dar a la propiedad
+	 *            'listaPuntoInteres'
+	 */
+	public void setListaPuntoInteres(final SortedSet<PuntoInteres> listaPuntoInteres) {
+		this.listaPuntoInteres = listaPuntoInteres;
+	}
+
+	@MemberOrder(name = "listaPuntoInteres", sequence = "4")
+	public RutaPersonal add(final PuntoInteres puntoInteres) {
+		this.listaPuntoInteres.add(puntoInteres);
+		puntoInteres.getListaRutaPersonal().add(this);
 		return this;
 	}
 
-	@MemberOrder(name = "listaPoi", sequence = "5")
-	public RutaPersonal remove(final Poi poi) {
-		this.listaPoi.remove(poi);
+	@MemberOrder(name = "listaPuntoInteres", sequence = "5")
+	public RutaPersonal remove(final PuntoInteres puntoInteres) {
+		this.listaPuntoInteres.remove(puntoInteres);
+		puntoInteres.getListaRutaPersonal().remove(this);
 		return this;
 	}
 
-	public String disableRemove(final Poi poi) {
-		return getListaPoi().isEmpty() ? "Función no disponible" : null;
+	public String disableRemove(final PuntoInteres puntoInteres) {
+		return getListaPuntoInteres().isEmpty() ? "Función no disponible" : null;
 	}
 
-	public String validateRemove(final Poi poi) {
-		if (!getListaPoi().contains(poi)) {
+	public String validateRemove(final PuntoInteres puntoInteres) {
+		if (!getListaPuntoInteres().contains(puntoInteres)) {
 			return "No pertenece a la lista";
 		}
 

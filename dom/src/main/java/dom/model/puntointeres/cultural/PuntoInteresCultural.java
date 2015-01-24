@@ -27,7 +27,7 @@ import dom.model.puntointeres.PuntoInteres;
 
 @ObjectType("PUNTOINTERESCULTURAL")
 @Bookmarkable
-public class PuntoInteresCultural extends PuntoInteres {
+public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	private String tipo;
 	private String epoca;

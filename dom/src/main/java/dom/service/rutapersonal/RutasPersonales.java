@@ -19,7 +19,7 @@ public class RutasPersonales {
 	// region > listAll (action)
 
 	@ActionSemantics(Of.SAFE)
-	@MemberOrder(sequence = "1")
+	@MemberOrder(name = "listaRutaPersonal", sequence = "1")
 	public List<RutaPersonal> listar() {
 		return this.container.allInstances(RutaPersonal.class);
 	}

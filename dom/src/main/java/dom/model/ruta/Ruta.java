@@ -28,11 +28,10 @@ import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.Render;
+import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
-
-import dom.model.puntointeres.PuntoInteres;
-import dom.service.puntointeres.PuntosInteres;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
@@ -44,7 +43,7 @@ public class Ruta implements Comparable<Ruta> {
 
 	private String nombre;
 	private String duracion;
-	private SortedSet<PuntoInteres> listaPuntoInteres = new TreeSet<PuntoInteres>();
+	private SortedSet<Ruta_PuntoInteres> listaPuntoInteres = new TreeSet<Ruta_PuntoInteres>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -55,6 +54,14 @@ public class Ruta implements Comparable<Ruta> {
 	@MemberOrder(sequence = "1")
 	public String getNombre() {
 		return this.nombre;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'nombre'
+	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
+	 */
+	public void setNombre(final String nombre) {
+		this.nombre = nombre;
 	}
 
 	/**
@@ -69,25 +76,6 @@ public class Ruta implements Comparable<Ruta> {
 	}
 
 	/**
-	 * Devuelve el valor de la propiedad 'listaPuntoInteres'
-	 * @return Propiedad listaPuntoInteres
-	 */
-	@javax.jdo.annotations.Persistent(table = "PuntoInteres_Ruta")
-	@javax.jdo.annotations.Element(column = "puntointeres_id")
-	@javax.jdo.annotations.Join(column = "ruta_id")
-	public SortedSet<PuntoInteres> getListaPuntoInteres() {
-		return this.listaPuntoInteres;
-	}
-
-	/**
-	 * Asigna el valor de la propiedad 'nombre'
-	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
-	 */
-	public void setNombre(final String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
 	 * Asigna el valor de la propiedad 'duracion'
 	 * @param duracion valor que se le quiere dar a la propiedad 'duracion'
 	 */
@@ -96,36 +84,32 @@ public class Ruta implements Comparable<Ruta> {
 	}
 
 	/**
+	 * Devuelve el valor de la propiedad 'listaPuntoInteres'
+	 * @return Propiedad listaPuntoInteres
+	 */
+	@Title(sequence = "3")
+	@MemberOrder(sequence = "3")
+	@javax.jdo.annotations.Persistent(name = "ruta_id", mappedBy = "ruta", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<Ruta_PuntoInteres> getListaPuntoInteres() {
+		return this.listaPuntoInteres;
+	}
+
+	/**
 	 * Asigna el valor de la propiedad 'listaPuntoInteres'
 	 * @param listaPuntoInteres valor que se le quiere dar a la propiedad
 	 *            'listaPuntoInteres'
 	 */
-	public void setListaPuntoInteres(final SortedSet<PuntoInteres> listaPuntoInteres) {
+	public void setListaPuntoInteres(final SortedSet<Ruta_PuntoInteres> listaPuntoInteres) {
 		this.listaPuntoInteres = listaPuntoInteres;
 	}
 
-	public PuntoInteres addToListaPuntoInteres(final PuntoInteres puntoInteres) {
-		this.getListaPuntoInteres().add(puntoInteres);
-		return puntoInteres;
+	@MemberOrder(name = "listaPuntoInteres", sequence = "4")
+	public Ruta add(final Ruta_PuntoInteres ruta_PuntoInteres) {
+		ruta_PuntoInteres.setRuta(this);
+		this.listaPuntoInteres.add(ruta_PuntoInteres);
+		return this;
 	}
-
-	// public void agregarPuntoInteres(final PuntoInteres puntoInteres) {
-	// this.listaPuntoInteres.add(puntoInteres);
-	// }
-	//
-	// // provide a drop-down
-	// public Collection<PuntoInteres> choices0AgregarPuntoInteres() {
-	// return this.puntosInteresService.listar();
-	// }
-	//
-	// public void quitarPuntoInteres(final PuntoInteres puntoInteres) {
-	// this.getListaPuntoInteres().remove(puntoInteres);
-	// }
-	//
-	// // provide a drop-down
-	// public Collection<PuntoInteres> choices0QuitarPuntoInteres() {
-	// return this.getListaPuntoInteres();
-	// }
 
 	/*
 	 * (non-Javadoc)
@@ -137,12 +121,5 @@ public class Ruta implements Comparable<Ruta> {
 		// TODO Auto-generated method stub
 		return ObjectContracts.compare(this, o, "nombre");
 	}
-
-	// region > injected services
-
-	@javax.inject.Inject
-	PuntosInteres puntosInteresService;
-
-	// endregion
 
 }

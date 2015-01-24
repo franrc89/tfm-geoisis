@@ -1,28 +1,9 @@
-/*
- *  Licensed to the Apache Software Foundation (ASF) under one
- *  or more contributor license agreements.  See the NOTICE file
- *  distributed with this work for additional information
- *  regarding copyright ownership.  The ASF licenses this file
- *  to you under the Apache License, Version 2.0 (the
- *  "License"); you may not use this file except in compliance
- *  with the License.  You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing,
- *  software distributed under the License is distributed on an
- *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- *  KIND, either express or implied.  See the License for the
- *  specific language governing permissions and limitations
- *  under the License.
- */
 package dom.model.puntointeres;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.Join;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
@@ -35,7 +16,7 @@ import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.evento.Evento;
-import dom.model.ruta.Ruta;
+import dom.model.ruta.Ruta_PuntoInteres;
 import dom.model.rutapersonal.RutaPersonal;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
@@ -44,14 +25,15 @@ import dom.model.rutapersonal.RutaPersonal;
 @ObjectType("PUNTOINTERES")
 @Bookmarkable
 @Bounded
-public class PuntoInteres implements Comparable<PuntoInteres> {
+public abstract class PuntoInteres implements Comparable<PuntoInteres> {
 
 	private String nombre;
 	private String descripcion;
 	private String ciudad;
 	private String direccion;
 	private String accesibilidad;
-	private SortedSet<Ruta> listaRuta = new TreeSet<Ruta>();
+	// private SortedSet<Ruta> listaRuta = new TreeSet<Ruta>();
+	private SortedSet<Ruta_PuntoInteres> listaRuta = new TreeSet<Ruta_PuntoInteres>();
 	private SortedSet<RutaPersonal> listaRutaPersonal = new TreeSet<RutaPersonal>();
 	private SortedSet<Evento> listaEvento = new TreeSet<Evento>();
 
@@ -156,11 +138,10 @@ public class PuntoInteres implements Comparable<PuntoInteres> {
 	 * Devuelve el valor de la propiedad 'listaRuta'
 	 * @return Propiedad listaRuta
 	 */
-	@javax.jdo.annotations.Persistent(table = "PuntoInteres_Ruta")
-	@javax.jdo.annotations.Element(column = "ruta_id")
-	@javax.jdo.annotations.Join(column = "puntointeres_id")
-	@Render(Type.EAGERLY)
-	public SortedSet<Ruta> getListaRuta() {
+	@Title(sequence = "3")
+	@MemberOrder(sequence = "3")
+	@javax.jdo.annotations.Persistent(column = "puntointeres_id", mappedBy = "puntoInteres", dependentElement = "false")
+	public SortedSet<Ruta_PuntoInteres> getListaRuta() {
 		return this.listaRuta;
 	}
 
@@ -168,15 +149,24 @@ public class PuntoInteres implements Comparable<PuntoInteres> {
 	 * Asigna el valor de la propiedad 'listaRuta'
 	 * @param listaRuta valor que se le quiere dar a la propiedad 'listaRuta'
 	 */
-	public void setListaRuta(final SortedSet<Ruta> listaRuta) {
+	public void setListaRuta(final SortedSet<Ruta_PuntoInteres> listaRuta) {
 		this.listaRuta = listaRuta;
+	}
+
+	@MemberOrder(name = "listaRuta", sequence = "4")
+	public PuntoInteres add(final Ruta_PuntoInteres ruta_PuntoInteres) {
+		ruta_PuntoInteres.setPuntoInteres(this);
+		this.listaRuta.add(ruta_PuntoInteres);
+		return this;
 	}
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaRutaPersonal'
 	 * @return Propiedad listaRutaPersonal
 	 */
-	@Join
+	@javax.jdo.annotations.Persistent(table = "rutapersonal_puntointeres")
+	@javax.jdo.annotations.Join(column = "puntointeres_id")
+	@javax.jdo.annotations.Element(column = "rutapersonal_id")
 	@Render(Type.EAGERLY)
 	public SortedSet<RutaPersonal> getListaRutaPersonal() {
 		return this.listaRutaPersonal;
