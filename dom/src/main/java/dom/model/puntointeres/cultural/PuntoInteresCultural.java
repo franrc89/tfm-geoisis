@@ -18,6 +18,10 @@
  */
 package dom.model.puntointeres.cultural;
 
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
@@ -25,6 +29,8 @@ import org.apache.isis.applib.annotation.Title;
 
 import dom.model.puntointeres.PuntoInteres;
 
+@PersistenceCapable
+@Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
 @ObjectType("PUNTOINTERESCULTURAL")
 @Bookmarkable
 public abstract class PuntoInteresCultural extends PuntoInteres {

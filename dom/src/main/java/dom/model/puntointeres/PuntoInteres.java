@@ -3,8 +3,11 @@ package dom.model.puntointeres;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.VersionStrategy;
+import javax.jdo.annotations.Discriminator;
+import javax.jdo.annotations.DiscriminatorStrategy;
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.PersistenceCapable;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.Bounded;
@@ -19,13 +22,13 @@ import dom.model.evento.Evento;
 import dom.model.ruta.Ruta_PuntoInteres;
 import dom.model.rutapersonal.RutaPersonal;
 
-@javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
-@javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
-@javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
+@PersistenceCapable
+@Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
+@Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
 @ObjectType("PUNTOINTERES")
 @Bookmarkable
 @Bounded
-public abstract class PuntoInteres implements Comparable<PuntoInteres> {
+public class PuntoInteres implements Comparable<PuntoInteres> {
 
 	private String nombre;
 	private String descripcion;

@@ -21,8 +21,9 @@ package dom.model.ruta;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.VersionStrategy;
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.PersistenceCapable;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.Bounded;
@@ -31,15 +32,15 @@ import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.util.ObjectContracts;
 
-@javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
-@javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
-@javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
+import dom.model.sociable.ClaseSociable;
+
+@PersistenceCapable
+@Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 @ObjectType("RUTA")
 @Bookmarkable
 @Bounded
-public class Ruta implements Comparable<Ruta> {
+public class Ruta extends ClaseSociable {
 
 	private String nombre;
 	private String duracion;
@@ -109,17 +110,6 @@ public class Ruta implements Comparable<Ruta> {
 		ruta_PuntoInteres.setRuta(this);
 		this.listaPuntoInteres.add(ruta_PuntoInteres);
 		return this;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(final Ruta o) {
-		// TODO Auto-generated method stub
-		return ObjectContracts.compare(this, o, "nombre");
 	}
 
 }
