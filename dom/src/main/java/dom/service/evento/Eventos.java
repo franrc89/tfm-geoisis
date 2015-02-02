@@ -12,6 +12,7 @@ import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.annotation.NotInServiceMenu;
 
 import dom.model.evento.Evento;
+import dom.model.puntointeres.PuntoInteres;
 
 @DomainService(menuOrder = "10", repositoryFor = Evento.class)
 public class Eventos {
@@ -28,13 +29,15 @@ public class Eventos {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public Evento crear(final @Named("Nombre") String nombre, final @Named("Descripción") String descripcion,
-			final @Named("Fecha Inicio") Date fechaInicio, final @Named("Fecha Fin") Date fechaFin) {
+	public Evento crear(final @Named("Punto Interes") PuntoInteres poi, final @Named("Nombre") String nombre,
+			final @Named("Descripción") String descripcion, final @Named("Fecha Inicio") Date fechaInicio,
+			final @Named("Fecha Fin") Date fechaFin) {
 		final Evento obj = this.container.newTransientInstance(Evento.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
 		obj.setFechaInicio(fechaInicio);
 		obj.setFechaFin(fechaFin);
+		obj.setPuntoInteres(poi);
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}

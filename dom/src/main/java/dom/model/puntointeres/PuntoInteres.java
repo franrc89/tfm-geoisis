@@ -16,11 +16,11 @@ import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.evento.Evento;
 import dom.model.ruta.Ruta_PuntoInteres;
 import dom.model.rutapersonal.RutaPersonal;
+import dom.model.sociable.ClaseSociable;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
@@ -28,7 +28,7 @@ import dom.model.rutapersonal.RutaPersonal;
 @ObjectType("PUNTOINTERES")
 @Bookmarkable
 @Bounded
-public class PuntoInteres implements Comparable<PuntoInteres> {
+public class PuntoInteres extends ClaseSociable {
 
 	private String nombre;
 	private String descripcion;
@@ -144,6 +144,7 @@ public class PuntoInteres implements Comparable<PuntoInteres> {
 	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(column = "puntointeres_id", mappedBy = "puntoInteres", dependentElement = "false")
+	@Render(Type.EAGERLY)
 	public SortedSet<Ruta_PuntoInteres> getListaRuta() {
 		return this.listaRuta;
 	}
@@ -203,12 +204,6 @@ public class PuntoInteres implements Comparable<PuntoInteres> {
 	 */
 	public void setListaEvento(final SortedSet<Evento> listaEvento) {
 		this.listaEvento = listaEvento;
-	}
-
-	@Override
-	public int compareTo(final PuntoInteres o) {
-		// TODO Auto-generated method stub
-		return ObjectContracts.compare(this, o, "nombre");
 	}
 
 }

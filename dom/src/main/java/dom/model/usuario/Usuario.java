@@ -33,8 +33,8 @@ import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
-import dom.model.evento.Evento;
 import dom.model.rutapersonal.RutaPersonal;
+import dom.model.sociable.Asistencia;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
@@ -47,7 +47,7 @@ public class Usuario implements Comparable<Usuario> {
 	private String nombre;
 	private String apellido;
 	private SortedSet<RutaPersonal> listaRutaPersonal = new TreeSet<RutaPersonal>();
-	private SortedSet<Evento> listaEvento = new TreeSet<Evento>();
+	private SortedSet<Asistencia> listaAsistenciaEventos = new TreeSet<Asistencia>();
 
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	@Title(sequence = "1")
@@ -135,23 +135,24 @@ public class Usuario implements Comparable<Usuario> {
 	}
 
 	/**
-	 * Devuelve el valor de la propiedad 'listaEvento'
-	 * @return Propiedad listaEvento
+	 * Devuelve el valor de la propiedad 'listaAsistenciaEventos'
+	 * @return Propiedad listaAsistenciaEventos
 	 */
-	@javax.jdo.annotations.Persistent(table = "Usuario_Evento")
+	@javax.jdo.annotations.Persistent(table = "asistencia")
 	@javax.jdo.annotations.Join(column = "usuario_id")
 	@javax.jdo.annotations.Element(column = "evento_id")
-	public SortedSet<Evento> getListaEvento() {
-		return this.listaEvento;
+	@Render(Type.EAGERLY)
+	public SortedSet<Asistencia> getListaAsistenciaEventos() {
+		return this.listaAsistenciaEventos;
 	}
 
 	/**
-	 * Asigna el valor de la propiedad 'listaEvento'
-	 * @param listaEvento valor que se le quiere dar a la propiedad
-	 *            'listaEvento'
+	 * Asigna el valor de la propiedad 'listaAsistenciaEventos'
+	 * @param listaAsistenciaEventos valor que se le quiere dar a la propiedad
+	 *            'listaAsistenciaEventos'
 	 */
-	public void setListaEvento(final SortedSet<Evento> listaEvento) {
-		this.listaEvento = listaEvento;
+	public void setListaAsistenciaEventos(final SortedSet<Asistencia> listaAsistenciaEventos) {
+		this.listaAsistenciaEventos = listaAsistenciaEventos;
 	}
 
 	/*

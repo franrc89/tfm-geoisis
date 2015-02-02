@@ -1,13 +1,26 @@
 package dom.model.evento;
 
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+
+import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Title;
+
+import dom.model.sociable.ClaseSociable;
 
 /**
  * @author fran
  * 
  */
-public abstract class AbstractEvento {
+
+@PersistenceCapable
+@Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
+@Bookmarkable
+@Bounded
+public abstract class AbstractEvento extends ClaseSociable {
 
 	private String nombre;
 	private String descripcion;

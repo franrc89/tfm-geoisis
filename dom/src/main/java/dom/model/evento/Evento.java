@@ -11,13 +11,15 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.Render;
+import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.puntointeres.PuntoInteres;
-import dom.model.usuario.Usuario;
+import dom.model.sociable.Asistencia;
 
 /**
  * @author fran
@@ -29,12 +31,54 @@ import dom.model.usuario.Usuario;
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @ObjectType("EVENTO")
 @Bookmarkable
-public class Evento extends AbstractEvento implements Comparable<Evento> {
+@Bounded
+public class Evento {
 
+	private String nombre;
+	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private PuntoInteres puntoInteres;
-	private SortedSet<Usuario> listaUsuario = new TreeSet<Usuario>();
+	private SortedSet<Asistencia> listaAsistencia = new TreeSet<Asistencia>();
+
+	/**
+	 * Devuelve el valor de la propiedad 'nombre'
+	 * @return Propiedad nombre
+	 */
+	@javax.jdo.annotations.Column(allowsNull = "false")
+	@Title(sequence = "1")
+	@MemberOrder(sequence = "1")
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'nombre'
+	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
+	 */
+	public void setNombre(final String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'descripcion'
+	 * @return Propiedad descripcion
+	 */
+	@javax.jdo.annotations.Column(allowsNull = "false")
+	@Title(sequence = "2")
+	@MemberOrder(sequence = "2")
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'descripcion'
+	 * @param descripcion valor que se le quiere dar a la propiedad
+	 *            'descripcion'
+	 */
+	public void setDescripcion(final String descripcion) {
+		this.descripcion = descripcion;
+	}
 
 	/**
 	 * Devuelve el valor de la propiedad 'fechaInicio'
@@ -79,7 +123,7 @@ public class Evento extends AbstractEvento implements Comparable<Evento> {
 	 * Devuelve el valor de la propiedad 'puntoInteres'
 	 * @return Propiedad puntoInteres
 	 */
-	@javax.jdo.annotations.Column(name = "puntointeres_id", allowsNull = "false")
+	@javax.jdo.annotations.Column(allowsNull = "false")
 	@Title(sequence = "5")
 	@MemberOrder(sequence = "5")
 	public PuntoInteres getPuntoInteres() {
@@ -96,28 +140,24 @@ public class Evento extends AbstractEvento implements Comparable<Evento> {
 	}
 
 	/**
-	 * Devuelve el valor de la propiedad 'listaUsuario'
-	 * @return Propiedad listaUsuario
+	 * Devuelve el valor de la propiedad 'listaAsistencia'
+	 * @return Propiedad listaAsistencia
 	 */
-	@javax.jdo.annotations.Persistent(table = "Usuario_Evento")
-	@javax.jdo.annotations.Join(column = "usuario_id")
-	@javax.jdo.annotations.Element(column = "evento_id")
-	public SortedSet<Usuario> getListaUsuario() {
-		return this.listaUsuario;
+	@javax.jdo.annotations.Persistent(table = "asistencia")
+	@javax.jdo.annotations.Join(column = "evento_id")
+	@javax.jdo.annotations.Element(column = "usuario_id")
+	@Render(Type.EAGERLY)
+	public SortedSet<Asistencia> getListaAsistencia() {
+		return this.listaAsistencia;
 	}
 
 	/**
-	 * Asigna el valor de la propiedad 'listaUsuario'
-	 * @param listaUsuario valor que se le quiere dar a la propiedad
-	 *            'listaUsuario'
+	 * Asigna el valor de la propiedad 'listaAsistencia'
+	 * @param listaAsistencia valor que se le quiere dar a la propiedad
+	 *            'listaAsistencia'
 	 */
-	public void setListaUsuario(final SortedSet<Usuario> listaUsuario) {
-		this.listaUsuario = listaUsuario;
+	public void setListaAsistencia(final SortedSet<Asistencia> listaAsistencia) {
+		this.listaAsistencia = listaAsistencia;
 	}
 
-	@Override
-	public int compareTo(final Evento o) {
-		// TODO Auto-generated method stub
-		return ObjectContracts.compare(this, o, "nombre");
-	}
 }
