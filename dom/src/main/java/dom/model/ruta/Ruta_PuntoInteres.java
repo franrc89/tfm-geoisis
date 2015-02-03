@@ -42,13 +42,13 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 	// @javax.jdo.annotations.PrimaryKey
 	// @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY, column =
 	// "ruta_id")
-	@javax.jdo.annotations.PrimaryKey(name = "id_ruta")
+	@javax.jdo.annotations.PrimaryKey(name = "ruta_id")
 	private Ruta ruta;
 
 	// @javax.jdo.annotations.PrimaryKey
 	// @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY, column =
 	// "puntointeres_id")
-	@javax.jdo.annotations.PrimaryKey(name = "id_puntointeres")
+	@javax.jdo.annotations.PrimaryKey(name = "puntointeres_id")
 	private PuntoInteres puntoInteres;
 
 	private Integer orden;

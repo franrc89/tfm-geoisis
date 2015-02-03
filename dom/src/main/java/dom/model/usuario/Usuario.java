@@ -35,6 +35,12 @@ import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.rutapersonal.RutaPersonal;
 import dom.model.sociable.Asistencia;
+import dom.model.sociable.Comentario;
+import dom.model.sociable.Favorito;
+import dom.model.sociable.PuntoInteresVisitado;
+import dom.model.sociable.RutaPersonalRealizada;
+import dom.model.sociable.RutaRealizada;
+import dom.model.sociable.Valoracion;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
@@ -48,6 +54,12 @@ public class Usuario implements Comparable<Usuario> {
 	private String apellido;
 	private SortedSet<RutaPersonal> listaRutaPersonal = new TreeSet<RutaPersonal>();
 	private SortedSet<Asistencia> listaAsistenciaEventos = new TreeSet<Asistencia>();
+	private SortedSet<Comentario> listaComentarios = new TreeSet<Comentario>();
+	private SortedSet<Valoracion> listaValoraciones = new TreeSet<Valoracion>();
+	private SortedSet<Favorito> listaFavoritos = new TreeSet<Favorito>();
+	private SortedSet<RutaRealizada> listaRutasRealizadas = new TreeSet<RutaRealizada>();
+	private SortedSet<RutaPersonalRealizada> listaRutasPersonalesRealizadas = new TreeSet<RutaPersonalRealizada>();
+	private SortedSet<PuntoInteresVisitado> listaPuntosInteresVisitados = new TreeSet<PuntoInteresVisitado>();
 
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	@Title(sequence = "1")
@@ -138,9 +150,9 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaAsistenciaEventos'
 	 * @return Propiedad listaAsistenciaEventos
 	 */
-	@javax.jdo.annotations.Persistent(table = "asistencia")
-	@javax.jdo.annotations.Join(column = "usuario_id")
-	@javax.jdo.annotations.Element(column = "evento_id")
+	@Title(sequence = "4")
+	@MemberOrder(sequence = "4")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
 	public SortedSet<Asistencia> getListaAsistenciaEventos() {
 		return this.listaAsistenciaEventos;
@@ -153,6 +165,132 @@ public class Usuario implements Comparable<Usuario> {
 	 */
 	public void setListaAsistenciaEventos(final SortedSet<Asistencia> listaAsistenciaEventos) {
 		this.listaAsistenciaEventos = listaAsistenciaEventos;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaComentarios'
+	 * @return Propiedad listaComentarios
+	 */
+	@Title(sequence = "4")
+	@MemberOrder(sequence = "4")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<Comentario> getListaComentarios() {
+		return this.listaComentarios;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaComentarios'
+	 * @param listaComentarios valor que se le quiere dar a la propiedad
+	 *            'listaComentarios'
+	 */
+	public void setListaComentarios(final SortedSet<Comentario> listaComentarios) {
+		this.listaComentarios = listaComentarios;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaValoraciones'
+	 * @return Propiedad listaValoraciones
+	 */
+	@Title(sequence = "5")
+	@MemberOrder(sequence = "5")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<Valoracion> getListaValoraciones() {
+		return this.listaValoraciones;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaValoraciones'
+	 * @param listaValoraciones valor que se le quiere dar a la propiedad
+	 *            'listaValoraciones'
+	 */
+	public void setListaValoraciones(final SortedSet<Valoracion> listaValoraciones) {
+		this.listaValoraciones = listaValoraciones;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaFavoritos'
+	 * @return Propiedad listaFavoritos
+	 */
+	@Title(sequence = "6")
+	@MemberOrder(sequence = "6")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<Favorito> getListaFavoritos() {
+		return this.listaFavoritos;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaFavoritos'
+	 * @param listaFavoritos valor que se le quiere dar a la propiedad
+	 *            'listaFavoritos'
+	 */
+	public void setListaFavoritos(final SortedSet<Favorito> listaFavoritos) {
+		this.listaFavoritos = listaFavoritos;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaRutasRealizadas'
+	 * @return Propiedad listaRutasRealizadas
+	 */
+	@Title(sequence = "7")
+	@MemberOrder(sequence = "7")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<RutaRealizada> getListaRutasRealizadas() {
+		return this.listaRutasRealizadas;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaRutasRealizadas'
+	 * @param listaRutasRealizadas valor que se le quiere dar a la propiedad
+	 *            'listaRutasRealizadas'
+	 */
+	public void setListaRutasRealizadas(final SortedSet<RutaRealizada> listaRutasRealizadas) {
+		this.listaRutasRealizadas = listaRutasRealizadas;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaRutasPersonalesRealizadas'
+	 * @return Propiedad listaRutasPersonalesRealizadas
+	 */
+	@Title(sequence = "8")
+	@MemberOrder(sequence = "8")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<RutaPersonalRealizada> getListaRutasPersonalesRealizadas() {
+		return this.listaRutasPersonalesRealizadas;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaRutasPersonalesRealizadas'
+	 * @param listaRutasPersonalesRealizadas valor que se le quiere dar a la
+	 *            propiedad 'listaRutasPersonalesRealizadas'
+	 */
+	public void setListaRutasPersonalesRealizadas(final SortedSet<RutaPersonalRealizada> listaRutasPersonalesRealizadas) {
+		this.listaRutasPersonalesRealizadas = listaRutasPersonalesRealizadas;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaPuntosInteresVisitados'
+	 * @return Propiedad listaPuntosInteresVisitados
+	 */
+	@Title(sequence = "9")
+	@MemberOrder(sequence = "9")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<PuntoInteresVisitado> getListaPuntosInteresVisitados() {
+		return this.listaPuntosInteresVisitados;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaPuntosInteresVisitados'
+	 * @param listaPuntosInteresVisitados valor que se le quiere dar a la
+	 *            propiedad 'listaPuntosInteresVisitados'
+	 */
+	public void setListaPuntosInteresVisitados(final SortedSet<PuntoInteresVisitado> listaPuntosInteresVisitados) {
+		this.listaPuntosInteresVisitados = listaPuntosInteresVisitados;
 	}
 
 	/*

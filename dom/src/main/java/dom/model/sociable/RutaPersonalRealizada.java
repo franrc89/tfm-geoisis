@@ -3,6 +3,8 @@
  */
 package dom.model.sociable;
 
+import java.util.Date;
+
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
@@ -11,9 +13,8 @@ import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.util.ObjectContracts;
 
-import dom.model.evento.Evento;
+import dom.model.rutapersonal.RutaPersonal;
 import dom.model.usuario.Usuario;
 
 /**
@@ -24,32 +25,32 @@ import dom.model.usuario.Usuario;
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@ObjectType("ASISTENCIA")
+@ObjectType("RUTAPERSONALREALIZADA")
 @Bookmarkable
 @Bounded
-public class Asistencia implements Comparable<Asistencia> {
+public class RutaPersonalRealizada {
 
+	private Date fecha;
 	private Usuario usuario;
-	private Evento evento;
-	private Intencion intencion;
+	private RutaPersonal rutaPersonal;
 
 	/**
-	 * Devuelve el valor de la propiedad 'intencion'
-	 * @return Propiedad intencion
+	 * Devuelve el valor de la propiedad 'fecha'
+	 * @return Propiedad fecha
 	 */
 	@Title(sequence = "1")
 	@MemberOrder(sequence = "1")
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	public Intencion getIntencion() {
-		return this.intencion;
+	public Date getFecha() {
+		return this.fecha;
 	}
 
 	/**
-	 * Asigna el valor de la propiedad 'intencion'
-	 * @param intencion valor que se le quiere dar a la propiedad 'intencion'
+	 * Asigna el valor de la propiedad 'fecha'
+	 * @param fecha valor que se le quiere dar a la propiedad 'fecha'
 	 */
-	public void setIntencion(final Intencion intencion) {
-		this.intencion = intencion;
+	public void setFecha(final Date fecha) {
+		this.fecha = fecha;
 	}
 
 	/**
@@ -72,33 +73,23 @@ public class Asistencia implements Comparable<Asistencia> {
 	}
 
 	/**
-	 * Devuelve el valor de la propiedad 'evento'
-	 * @return Propiedad evento
+	 * Devuelve el valor de la propiedad 'rutaPersonal'
+	 * @return Propiedad rutaPersonal
 	 */
 	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
-	@javax.jdo.annotations.Column(name = "evento_id", allowsNull = "false")
-	public Evento getEvento() {
-		return this.evento;
+	@javax.jdo.annotations.Column(name = "rutapersonal_id", allowsNull = "false")
+	public RutaPersonal getRutaPersonal() {
+		return this.rutaPersonal;
 	}
 
 	/**
-	 * Asigna el valor de la propiedad 'evento'
-	 * @param evento valor que se le quiere dar a la propiedad 'evento'
+	 * Asigna el valor de la propiedad 'rutaPersonal'
+	 * @param rutaPersonal valor que se le quiere dar a la propiedad
+	 *            'rutaPersonal'
 	 */
-	public void setEvento(final Evento evento) {
-		this.evento = evento;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(final Asistencia o) {
-		// TODO Auto-generated method stub
-		return ObjectContracts.compare(this, o, "usuario");
+	public void setRutaPersonal(final RutaPersonal rutaPersonal) {
+		this.rutaPersonal = rutaPersonal;
 	}
 
 }

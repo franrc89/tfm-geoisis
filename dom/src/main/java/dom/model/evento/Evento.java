@@ -143,9 +143,9 @@ public class Evento {
 	 * Devuelve el valor de la propiedad 'listaAsistencia'
 	 * @return Propiedad listaAsistencia
 	 */
-	@javax.jdo.annotations.Persistent(table = "asistencia")
-	@javax.jdo.annotations.Join(column = "evento_id")
-	@javax.jdo.annotations.Element(column = "usuario_id")
+	@Title(sequence = "6")
+	@MemberOrder(sequence = "6")
+	@javax.jdo.annotations.Persistent(column = "evento_id", mappedBy = "evento", dependentElement = "false")
 	@Render(Type.EAGERLY)
 	public SortedSet<Asistencia> getListaAsistencia() {
 		return this.listaAsistencia;

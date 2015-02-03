@@ -21,6 +21,7 @@ import dom.model.evento.Evento;
 import dom.model.ruta.Ruta_PuntoInteres;
 import dom.model.rutapersonal.RutaPersonal;
 import dom.model.sociable.ClaseSociable;
+import dom.model.sociable.PuntoInteresVisitado;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
@@ -39,6 +40,7 @@ public class PuntoInteres extends ClaseSociable {
 	private SortedSet<Ruta_PuntoInteres> listaRuta = new TreeSet<Ruta_PuntoInteres>();
 	private SortedSet<RutaPersonal> listaRutaPersonal = new TreeSet<RutaPersonal>();
 	private SortedSet<Evento> listaEvento = new TreeSet<Evento>();
+	private SortedSet<PuntoInteresVisitado> listaVisitas = new TreeSet<PuntoInteresVisitado>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -189,9 +191,9 @@ public class PuntoInteres extends ClaseSociable {
 	 * Devuelve el valor de la propiedad 'listaEvento'
 	 * @return Propiedad listaEvento
 	 */
-	@javax.jdo.annotations.Column(name = "puntointeres_id", allowsNull = "true")
 	@Title(sequence = "7")
 	@MemberOrder(sequence = "7")
+	@javax.jdo.annotations.Persistent(mappedBy = "puntoInteres", dependentElement = "false")
 	@Render(Type.EAGERLY)
 	public SortedSet<Evento> getListaEvento() {
 		return this.listaEvento;
@@ -204,6 +206,27 @@ public class PuntoInteres extends ClaseSociable {
 	 */
 	public void setListaEvento(final SortedSet<Evento> listaEvento) {
 		this.listaEvento = listaEvento;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaVisitas'
+	 * @return Propiedad listaVisitas
+	 */
+	@Title(sequence = "8")
+	@MemberOrder(sequence = "8")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<PuntoInteresVisitado> getListaVisitas() {
+		return this.listaVisitas;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaVisitas'
+	 * @param listaVisitas valor que se le quiere dar a la propiedad
+	 *            'listaVisitas'
+	 */
+	public void setListaVisitas(final SortedSet<PuntoInteresVisitado> listaVisitas) {
+		this.listaVisitas = listaVisitas;
 	}
 
 }
