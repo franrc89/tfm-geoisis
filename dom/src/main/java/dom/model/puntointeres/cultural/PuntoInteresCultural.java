@@ -45,7 +45,6 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 	 * @return Propiedad tipo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "1")
 	@MemberOrder(sequence = "1")
 	public String getTipo() {
 		return this.tipo;
@@ -64,7 +63,6 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 	 * @return Propiedad epoca
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	public String getEpoca() {
 		return this.epoca;
@@ -83,7 +81,6 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 	 * @return Propiedad visitable
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	public String getVisitable() {
 		return this.visitable;
@@ -102,7 +99,6 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 	 * @return Propiedad estado
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "4")
 	@MemberOrder(sequence = "4")
 	public String getEstado() {
 		return this.estado;

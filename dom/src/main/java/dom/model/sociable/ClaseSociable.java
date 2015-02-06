@@ -15,7 +15,6 @@ import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Render.Type;
-import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
 /**
@@ -37,19 +36,11 @@ public abstract class ClaseSociable implements Comparable<ClaseSociable> {
 	 * Devuelve el valor de la propiedad 'listaComentario'
 	 * @return Propiedad listaComentario
 	 */
-	@Title(sequence = "1")
 	@MemberOrder(sequence = "1")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
 	public SortedSet<Comentario> getListaComentario() {
 		return this.listaComentario;
-	}
-
-	@MemberOrder(name = "listaComentario", sequence = "1")
-	public ClaseSociable add(final Comentario comentario) {
-		comentario.setClaseSociable(this);
-		this.listaComentario.add(comentario);
-		return this;
 	}
 
 	/**
@@ -65,7 +56,6 @@ public abstract class ClaseSociable implements Comparable<ClaseSociable> {
 	 * Devuelve el valor de la propiedad 'listaFavorito'
 	 * @return Propiedad listaFavorito
 	 */
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -86,7 +76,6 @@ public abstract class ClaseSociable implements Comparable<ClaseSociable> {
 	 * Devuelve el valor de la propiedad 'listaValoracion'
 	 * @return Propiedad listaValoracion
 	 */
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)

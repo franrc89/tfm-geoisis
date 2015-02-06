@@ -16,6 +16,7 @@ import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.puntointeres.PuntoInteres;
+import dom.model.sociable.RutaPersonalRealizada;
 import dom.model.usuario.Usuario;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
@@ -30,6 +31,7 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	private String duracion;
 	private Usuario usuario;
 	private SortedSet<PuntoInteres> listaPuntoInteres = new TreeSet<PuntoInteres>();
+	private SortedSet<RutaPersonalRealizada> listaRutasPersonalesCompletadas = new TreeSet<RutaPersonalRealizada>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -54,7 +56,6 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	 * Devuelve el valor de la propiedad 'duracion'
 	 * @return Propiedad duracion
 	 */
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	public String getDuracion() {
@@ -73,7 +74,6 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	 * Devuelve el valor de la propiedad 'usuario'
 	 * @return Propiedad usuario
 	 */
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	public Usuario getUsuario() {
@@ -150,6 +150,27 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'listaRutasPersonalesCompletadas'
+	 * @return Propiedad listaRutasPersonalesCompletadas
+	 */
+	public SortedSet<RutaPersonalRealizada> getListaRutasPersonalesCompletadas() {
+		return this.listaRutasPersonalesCompletadas;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaRutasPersonalesCompletadas'
+	 * @param listaRutasPersonalesCompletadas valor que se le quiere dar a la
+	 *            propiedad 'listaRutasPersonalesCompletadas'
+	 */
+	@MemberOrder(sequence = "5")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public void setListaRutasPersonalesCompletadas(
+			final SortedSet<RutaPersonalRealizada> listaRutasPersonalesCompletadas) {
+		this.listaRutasPersonalesCompletadas = listaRutasPersonalesCompletadas;
 	}
 
 	/*

@@ -36,7 +36,6 @@ public class PuntoInteres extends ClaseSociable {
 	private String ciudad;
 	private String direccion;
 	private String accesibilidad;
-	// private SortedSet<Ruta> listaRuta = new TreeSet<Ruta>();
 	private SortedSet<Ruta_PuntoInteres> listaRuta = new TreeSet<Ruta_PuntoInteres>();
 	private SortedSet<RutaPersonal> listaRutaPersonal = new TreeSet<RutaPersonal>();
 	private SortedSet<Evento> listaEvento = new TreeSet<Evento>();
@@ -66,7 +65,6 @@ public class PuntoInteres extends ClaseSociable {
 	 * @return Propiedad descripcion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	public String getDescripcion() {
 		return this.descripcion;
@@ -105,7 +103,6 @@ public class PuntoInteres extends ClaseSociable {
 	 * @return Propiedad direccion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "4")
 	@MemberOrder(sequence = "4")
 	public String getDireccion() {
 		return this.direccion;
@@ -124,7 +121,6 @@ public class PuntoInteres extends ClaseSociable {
 	 * @return Propiedad accesibilidad
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "5")
 	@MemberOrder(sequence = "5")
 	public String getAccesibilidad() {
 		return this.accesibilidad;
@@ -143,7 +139,6 @@ public class PuntoInteres extends ClaseSociable {
 	 * Devuelve el valor de la propiedad 'listaRuta'
 	 * @return Propiedad listaRuta
 	 */
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(column = "puntointeres_id", mappedBy = "puntoInteres", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -191,7 +186,6 @@ public class PuntoInteres extends ClaseSociable {
 	 * Devuelve el valor de la propiedad 'listaEvento'
 	 * @return Propiedad listaEvento
 	 */
-	@Title(sequence = "7")
 	@MemberOrder(sequence = "7")
 	@javax.jdo.annotations.Persistent(mappedBy = "puntoInteres", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -212,7 +206,6 @@ public class PuntoInteres extends ClaseSociable {
 	 * Devuelve el valor de la propiedad 'listaVisitas'
 	 * @return Propiedad listaVisitas
 	 */
-	@Title(sequence = "8")
 	@MemberOrder(sequence = "8")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)

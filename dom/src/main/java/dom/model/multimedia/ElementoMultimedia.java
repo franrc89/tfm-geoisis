@@ -65,7 +65,6 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 	 * @return Propiedad uri
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	public String getUri() {
 		return this.uri;

@@ -34,6 +34,7 @@ import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
 
 import dom.model.sociable.ClaseSociable;
+import dom.model.sociable.RutaRealizada;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
@@ -45,6 +46,7 @@ public class Ruta extends ClaseSociable {
 	private String nombre;
 	private String duracion;
 	private SortedSet<Ruta_PuntoInteres> listaPuntoInteres = new TreeSet<Ruta_PuntoInteres>();
+	private SortedSet<RutaRealizada> listaRutasCompletadas = new TreeSet<RutaRealizada>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -70,7 +72,6 @@ public class Ruta extends ClaseSociable {
 	 * @return Propiedad duracion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	public String getDuracion() {
 		return this.duracion;
@@ -88,7 +89,6 @@ public class Ruta extends ClaseSociable {
 	 * Devuelve el valor de la propiedad 'listaPuntoInteres'
 	 * @return Propiedad listaPuntoInteres
 	 */
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(name = "ruta_id", mappedBy = "ruta", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -105,11 +105,24 @@ public class Ruta extends ClaseSociable {
 		this.listaPuntoInteres = listaPuntoInteres;
 	}
 
-	@MemberOrder(name = "listaPuntoInteres", sequence = "4")
-	public Ruta add(final Ruta_PuntoInteres ruta_PuntoInteres) {
-		ruta_PuntoInteres.setRuta(this);
-		this.listaPuntoInteres.add(ruta_PuntoInteres);
-		return this;
+	/**
+	 * Devuelve el valor de la propiedad 'listaRutasCompletadas'
+	 * @return Propiedad listaRutasCompletadas
+	 */
+	@MemberOrder(sequence = "4")
+	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
+	@Render(Type.EAGERLY)
+	public SortedSet<RutaRealizada> getListaRutasCompletadas() {
+		return this.listaRutasCompletadas;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'listaRutasCompletadas'
+	 * @param listaRutasCompletadas valor que se le quiere dar a la propiedad
+	 *            'listaRutasCompletadas'
+	 */
+	public void setListaRutasCompletadas(final SortedSet<RutaRealizada> listaRutasCompletadas) {
+		this.listaRutasCompletadas = listaRutasCompletadas;
 	}
 
 }

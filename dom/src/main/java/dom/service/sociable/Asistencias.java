@@ -29,6 +29,7 @@ public class Asistencias {
 
 	@ActionSemantics(Of.SAFE)
 	@MemberOrder(sequence = "1")
+	@NotInServiceMenu
 	public List<Asistencia> listar() {
 		return this.container.allInstances(Asistencia.class);
 	}
@@ -36,7 +37,8 @@ public class Asistencias {
 	// endregion
 
 	// region > create (action)
-	@MemberOrder(sequence = "2")
+	@NotInServiceMenu
+	@MemberOrder(name = "listaAsistenciaEventos", sequence = "2")
 	public Asistencia crear(final @Named("Usuario") Usuario usuario, final @Named("Evento") Evento evento,
 			final @Named("Intención") Intencion intencion) {
 		final Asistencia obj = this.container.newTransientInstance(Asistencia.class);

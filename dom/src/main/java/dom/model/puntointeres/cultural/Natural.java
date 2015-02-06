@@ -64,7 +64,6 @@ public class Natural extends PuntoInteresCultural {
 	 */
 	@Override
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	public String getEpoca() {
 		return this.epoca;
@@ -84,7 +83,6 @@ public class Natural extends PuntoInteresCultural {
 	 * @return Propiedad protegido
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	public String getProtegido() {
 		return this.protegido;

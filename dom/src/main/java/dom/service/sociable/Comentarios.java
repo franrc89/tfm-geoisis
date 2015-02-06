@@ -36,7 +36,7 @@ public class Comentarios {
 	// endregion
 
 	// region > create (action)
-	@MemberOrder(sequence = "2")
+	@MemberOrder(name = "listaComentarios", sequence = "2")
 	public Comentario crear(final @Named("Usuario") Usuario usuario,
 			final @Named("Objecto a comentar") ClaseSociable clase, final @Named("Comentario") String texto) {
 		final Comentario obj = this.container.newTransientInstance(Comentario.class);

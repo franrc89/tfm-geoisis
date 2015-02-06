@@ -13,6 +13,7 @@ import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.puntointeres.PuntoInteres;
 import dom.model.usuario.Usuario;
@@ -28,7 +29,7 @@ import dom.model.usuario.Usuario;
 @ObjectType("PUNTOINTERESVISITADO")
 @Bookmarkable
 @Bounded
-public class PuntoInteresVisitado {
+public class PuntoInteresVisitado implements Comparable<PuntoInteresVisitado> {
 
 	private Date fecha;
 	private Usuario usuario;
@@ -90,6 +91,17 @@ public class PuntoInteresVisitado {
 	 */
 	public void setPuntoInteres(final PuntoInteres puntoInteres) {
 		this.puntoInteres = puntoInteres;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(final PuntoInteresVisitado o) {
+		// TODO Auto-generated method stub
+		return ObjectContracts.compare(this, o, "fecha");
 	}
 
 }

@@ -66,7 +66,6 @@ public class Playa extends PuntoInteresCultural {
 	 * @return Propiedad longitud
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	public Float getLongitud() {
 		return this.longitud;
@@ -85,7 +84,6 @@ public class Playa extends PuntoInteresCultural {
 	 * @return Propiedad ocupacion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	public String getOcupacion() {
 		return this.ocupacion;
@@ -104,7 +102,6 @@ public class Playa extends PuntoInteresCultural {
 	 * @return Propiedad bazul
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "4")
 	@MemberOrder(sequence = "4")
 	public String getBazul() {
 		return this.bazul;
@@ -123,7 +120,6 @@ public class Playa extends PuntoInteresCultural {
 	 * @return Propiedad parking
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "5")
 	@MemberOrder(sequence = "5")
 	public String getParking() {
 		return this.parking;
@@ -142,7 +138,6 @@ public class Playa extends PuntoInteresCultural {
 	 * @return Propiedad socorrismo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "6")
 	@MemberOrder(sequence = "6")
 	public String getSocorrismo() {
 		return this.socorrismo;

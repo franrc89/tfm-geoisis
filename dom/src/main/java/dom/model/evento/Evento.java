@@ -65,7 +65,6 @@ public class Evento {
 	 * @return Propiedad descripcion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
 	public String getDescripcion() {
 		return this.descripcion;
@@ -85,7 +84,6 @@ public class Evento {
 	 * @return Propiedad fechaInicio
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	public Date getFechaInicio() {
 		return this.fechaInicio;
@@ -105,7 +103,6 @@ public class Evento {
 	 * @return Propiedad fechaFin
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "4")
 	@MemberOrder(sequence = "4")
 	public Date getFechaFin() {
 		return this.fechaFin;
@@ -124,7 +121,7 @@ public class Evento {
 	 * @return Propiedad puntoInteres
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "5")
+	@Title(sequence = "2")
 	@MemberOrder(sequence = "5")
 	public PuntoInteres getPuntoInteres() {
 		return this.puntoInteres;
@@ -143,7 +140,6 @@ public class Evento {
 	 * Devuelve el valor de la propiedad 'listaAsistencia'
 	 * @return Propiedad listaAsistencia
 	 */
-	@Title(sequence = "6")
 	@MemberOrder(sequence = "6")
 	@javax.jdo.annotations.Persistent(column = "evento_id", mappedBy = "evento", dependentElement = "false")
 	@Render(Type.EAGERLY)

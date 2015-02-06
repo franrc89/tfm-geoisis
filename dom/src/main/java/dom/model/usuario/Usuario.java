@@ -105,7 +105,6 @@ public class Usuario implements Comparable<Usuario> {
 	 */
 	// @javax.jdo.annotations.Column(name = "usuario_id", allowsNull = "false")
 
-	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -150,7 +149,6 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaAsistenciaEventos'
 	 * @return Propiedad listaAsistenciaEventos
 	 */
-	@Title(sequence = "4")
 	@MemberOrder(sequence = "4")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -171,7 +169,6 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaComentarios'
 	 * @return Propiedad listaComentarios
 	 */
-	@Title(sequence = "4")
 	@MemberOrder(sequence = "4")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -192,7 +189,6 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaValoraciones'
 	 * @return Propiedad listaValoraciones
 	 */
-	@Title(sequence = "5")
 	@MemberOrder(sequence = "5")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -213,7 +209,6 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaFavoritos'
 	 * @return Propiedad listaFavoritos
 	 */
-	@Title(sequence = "6")
 	@MemberOrder(sequence = "6")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -234,7 +229,6 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaRutasRealizadas'
 	 * @return Propiedad listaRutasRealizadas
 	 */
-	@Title(sequence = "7")
 	@MemberOrder(sequence = "7")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -255,7 +249,6 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaRutasPersonalesRealizadas'
 	 * @return Propiedad listaRutasPersonalesRealizadas
 	 */
-	@Title(sequence = "8")
 	@MemberOrder(sequence = "8")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)
@@ -276,7 +269,6 @@ public class Usuario implements Comparable<Usuario> {
 	 * Devuelve el valor de la propiedad 'listaPuntosInteresVisitados'
 	 * @return Propiedad listaPuntosInteresVisitados
 	 */
-	@Title(sequence = "9")
 	@MemberOrder(sequence = "9")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@Render(Type.EAGERLY)

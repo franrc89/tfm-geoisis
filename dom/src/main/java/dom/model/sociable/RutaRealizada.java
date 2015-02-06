@@ -13,6 +13,7 @@ import org.apache.isis.applib.annotation.Bounded;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.ruta.Ruta;
 import dom.model.usuario.Usuario;
@@ -28,7 +29,7 @@ import dom.model.usuario.Usuario;
 @ObjectType("RUTAREALIZADA")
 @Bookmarkable
 @Bounded
-public class RutaRealizada {
+public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	private Date fecha;
 	private Usuario usuario;
@@ -89,6 +90,17 @@ public class RutaRealizada {
 	 */
 	public void setRuta(final Ruta ruta) {
 		this.ruta = ruta;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(final RutaRealizada o) {
+		// TODO Auto-generated method stub
+		return ObjectContracts.compare(this, o, "fecha");
 	}
 
 }
