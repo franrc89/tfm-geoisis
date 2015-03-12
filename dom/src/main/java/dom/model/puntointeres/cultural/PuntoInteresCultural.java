@@ -25,7 +25,6 @@ import javax.jdo.annotations.PersistenceCapable;
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
-import org.apache.isis.applib.annotation.Title;
 
 import dom.model.puntointeres.PuntoInteres;
 
