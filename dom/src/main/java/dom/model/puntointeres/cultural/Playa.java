@@ -22,15 +22,15 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("PLAYA")
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "Playa")
+@DomainObjectLayout
 public class Playa extends PuntoInteresCultural {
 
 	private String tipo;
@@ -42,6 +42,7 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'tipo'
+	 * 
 	 * @return Propiedad tipo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -54,7 +55,9 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'tipo'
-	 * @param tipo valor que se le quiere dar a la propiedad 'tipo'
+	 * 
+	 * @param tipo
+	 *            valor que se le quiere dar a la propiedad 'tipo'
 	 */
 	@Override
 	public void setTipo(final String tipo) {
@@ -63,6 +66,7 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'longitud'
+	 * 
 	 * @return Propiedad longitud
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -73,7 +77,9 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'longitud'
-	 * @param longitud valor que se le quiere dar a la propiedad 'longitud'
+	 * 
+	 * @param longitud
+	 *            valor que se le quiere dar a la propiedad 'longitud'
 	 */
 	public void setLongitud(final Float longitud) {
 		this.longitud = longitud;
@@ -81,6 +87,7 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'ocupacion'
+	 * 
 	 * @return Propiedad ocupacion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -91,7 +98,9 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'ocupacion'
-	 * @param ocupacion valor que se le quiere dar a la propiedad 'ocupacion'
+	 * 
+	 * @param ocupacion
+	 *            valor que se le quiere dar a la propiedad 'ocupacion'
 	 */
 	public void setOcupacion(final String ocupacion) {
 		this.ocupacion = ocupacion;
@@ -99,6 +108,7 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'bazul'
+	 * 
 	 * @return Propiedad bazul
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -109,7 +119,9 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'bazul'
-	 * @param bazul valor que se le quiere dar a la propiedad 'bazul'
+	 * 
+	 * @param bazul
+	 *            valor que se le quiere dar a la propiedad 'bazul'
 	 */
 	public void setBazul(final String bazul) {
 		this.bazul = bazul;
@@ -117,6 +129,7 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'parking'
+	 * 
 	 * @return Propiedad parking
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -127,7 +140,9 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'parking'
-	 * @param parking valor que se le quiere dar a la propiedad 'parking'
+	 * 
+	 * @param parking
+	 *            valor que se le quiere dar a la propiedad 'parking'
 	 */
 	public void setParking(final String parking) {
 		this.parking = parking;
@@ -135,6 +150,7 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'socorrismo'
+	 * 
 	 * @return Propiedad socorrismo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -145,7 +161,9 @@ public class Playa extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'socorrismo'
-	 * @param socorrismo valor que se le quiere dar a la propiedad 'socorrismo'
+	 * 
+	 * @param socorrismo
+	 *            valor que se le quiere dar a la propiedad 'socorrismo'
 	 */
 	public void setSocorrismo(final String socorrismo) {
 		this.socorrismo = socorrismo;

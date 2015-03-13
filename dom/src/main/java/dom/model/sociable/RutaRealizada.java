@@ -8,10 +8,9 @@ import java.util.Date;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
@@ -26,9 +25,8 @@ import dom.model.usuario.Usuario;
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@ObjectType("RUTAREALIZADA")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "RutaRealizada")
+@DomainObjectLayout
 public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	private Date fecha;
@@ -37,6 +35,7 @@ public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'fecha'
+	 * 
 	 * @return Propiedad fecha
 	 */
 	@Title(sequence = "1")
@@ -48,7 +47,9 @@ public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	/**
 	 * Asigna el valor de la propiedad 'fecha'
-	 * @param fecha valor que se le quiere dar a la propiedad 'fecha'
+	 * 
+	 * @param fecha
+	 *            valor que se le quiere dar a la propiedad 'fecha'
 	 */
 	public void setFecha(final Date fecha) {
 		this.fecha = fecha;
@@ -56,6 +57,7 @@ public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'usuario'
+	 * 
 	 * @return Propiedad usuario
 	 */
 	@Title(sequence = "2")
@@ -67,7 +69,9 @@ public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	/**
 	 * Asigna el valor de la propiedad 'usuario'
-	 * @param usuario valor que se le quiere dar a la propiedad 'usuario'
+	 * 
+	 * @param usuario
+	 *            valor que se le quiere dar a la propiedad 'usuario'
 	 */
 	public void setUsuario(final Usuario usuario) {
 		this.usuario = usuario;
@@ -75,6 +79,7 @@ public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'ruta'
+	 * 
 	 * @return Propiedad ruta
 	 */
 	@Title(sequence = "3")
@@ -86,7 +91,9 @@ public class RutaRealizada implements Comparable<RutaRealizada> {
 
 	/**
 	 * Asigna el valor de la propiedad 'ruta'
-	 * @param ruta valor que se le quiere dar a la propiedad 'ruta'
+	 * 
+	 * @param ruta
+	 *            valor que se le quiere dar a la propiedad 'ruta'
 	 */
 	public void setRuta(final Ruta ruta) {
 		this.ruta = ruta;

@@ -22,21 +22,22 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("MUSEO")
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "Museo")
+@DomainObjectLayout
 public class Museo extends PuntoInteresCultural {
 
 	private String contenido;
 
 	/**
 	 * Devuelve el valor de la propiedad 'contenido'
+	 * 
 	 * @return Propiedad contenido
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -48,7 +49,9 @@ public class Museo extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'contenido'
-	 * @param contenido valor que se le quiere dar a la propiedad 'contenido'
+	 * 
+	 * @param contenido
+	 *            valor que se le quiere dar a la propiedad 'contenido'
 	 */
 	public void setContenido(final String contenido) {
 		this.contenido = contenido;

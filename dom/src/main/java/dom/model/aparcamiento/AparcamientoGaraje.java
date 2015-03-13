@@ -4,10 +4,9 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 /**
@@ -17,9 +16,8 @@ import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("APARCAMIENTOGARAGE")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "AparcamientoGaraje")
+@DomainObjectLayout
 public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	private float horasAbierto;
@@ -31,6 +29,7 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'horasAbierto'
+	 * 
 	 * @return Propiedad horasAbierto
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -42,8 +41,9 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Asigna el valor de la propiedad 'horasAbierto'
-	 * @param horasAbierto valor que se le quiere dar a la propiedad
-	 *            'horasAbierto'
+	 * 
+	 * @param horasAbierto
+	 *            valor que se le quiere dar a la propiedad 'horasAbierto'
 	 */
 	public void setHorasAbierto(final float horasAbierto) {
 		this.horasAbierto = horasAbierto;
@@ -51,6 +51,7 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'cuota'
+	 * 
 	 * @return Propiedad cuota
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -62,7 +63,9 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Asigna el valor de la propiedad 'cuota'
-	 * @param cuota valor que se le quiere dar a la propiedad 'cuota'
+	 * 
+	 * @param cuota
+	 *            valor que se le quiere dar a la propiedad 'cuota'
 	 */
 	public void setCuota(final float cuota) {
 		this.cuota = cuota;
@@ -70,6 +73,7 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'plazasTotales'
+	 * 
 	 * @return Propiedad plazasTotales
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -81,8 +85,9 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Asigna el valor de la propiedad 'plazasTotales'
-	 * @param plazasTotales valor que se le quiere dar a la propiedad
-	 *            'plazasTotales'
+	 * 
+	 * @param plazasTotales
+	 *            valor que se le quiere dar a la propiedad 'plazasTotales'
 	 */
 	public void setPlazasTotales(final Integer plazasTotales) {
 		this.plazasTotales = plazasTotales;
@@ -90,6 +95,7 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'plazasNoDisponibles'
+	 * 
 	 * @return Propiedad plazasNoDisponibles
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -101,7 +107,9 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Asigna el valor de la propiedad 'plazasNoDisponibles'
-	 * @param plazasNoDisponibles valor que se le quiere dar a la propiedad
+	 * 
+	 * @param plazasNoDisponibles
+	 *            valor que se le quiere dar a la propiedad
 	 *            'plazasNoDisponibles'
 	 */
 	public void setPlazasNoDisponibles(final Integer plazasNoDisponibles) {
@@ -110,6 +118,7 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'plazasDisponibles'
+	 * 
 	 * @return Propiedad plazasDisponibles
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -121,8 +130,9 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Asigna el valor de la propiedad 'plazasDisponibles'
-	 * @param plazasDisponibles valor que se le quiere dar a la propiedad
-	 *            'plazasDisponibles'
+	 * 
+	 * @param plazasDisponibles
+	 *            valor que se le quiere dar a la propiedad 'plazasDisponibles'
 	 */
 	public void setPlazasDisponibles(final Integer plazasDisponibles) {
 		this.plazasDisponibles = plazasDisponibles;
@@ -130,6 +140,7 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'vigilancia'
+	 * 
 	 * @return Propiedad vigilancia
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -141,7 +152,9 @@ public class AparcamientoGaraje extends AbstractAparcamiento {
 
 	/**
 	 * Asigna el valor de la propiedad 'vigilancia'
-	 * @param vigilancia valor que se le quiere dar a la propiedad 'vigilancia'
+	 * 
+	 * @param vigilancia
+	 *            valor que se le quiere dar a la propiedad 'vigilancia'
 	 */
 	public void setVigilancia(final boolean vigilancia) {
 		this.vigilancia = vigilancia;

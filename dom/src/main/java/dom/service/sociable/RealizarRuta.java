@@ -7,12 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.ruta.Ruta;
 import dom.model.sociable.RutaRealizada;
@@ -27,7 +26,7 @@ public class RealizarRuta {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	public List<RutaRealizada> listar() {
 		return this.container.allInstances(RutaRealizada.class);
@@ -37,8 +36,11 @@ public class RealizarRuta {
 
 	// region > create (action)
 	@MemberOrder(name = "listaRutasRealizadas", sequence = "2")
-	public RutaRealizada crear(final @Named("Ruta") Ruta ruta, final @Named("Usuario") Usuario usuario) {
-		final RutaRealizada obj = this.container.newTransientInstance(RutaRealizada.class);
+	public RutaRealizada crear(
+			final @ParameterLayout(named = "Ruta") Ruta ruta,
+			final @ParameterLayout(named = "Usuario") Usuario usuario) {
+		final RutaRealizada obj = this.container
+				.newTransientInstance(RutaRealizada.class);
 		obj.setRuta(ruta);
 		obj.setFecha(new Date());
 		obj.setUsuario(usuario);
@@ -47,8 +49,9 @@ public class RealizarRuta {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") RutaRealizada objeto) {
+	// @NotInServiceMenu
+	public void borrar(
+			final @ParameterLayout(named = "Objeto") RutaRealizada objeto) {
 		this.container.remove(objeto);
 	}
 

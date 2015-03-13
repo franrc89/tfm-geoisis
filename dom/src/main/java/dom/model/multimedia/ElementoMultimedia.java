@@ -3,19 +3,17 @@ package dom.model.multimedia;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@ObjectType("ELEMENTOMULTIMEDIA")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "ElementoMultimedia")
+@DomainObjectLayout
 public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	private MimeType tipo;
@@ -24,6 +22,7 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'tipo'
+	 * 
 	 * @return Propiedad tipo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -35,7 +34,9 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	/**
 	 * Asigna el valor de la propiedad 'tipo'
-	 * @param tipo valor que se le quiere dar a la propiedad 'tipo'
+	 * 
+	 * @param tipo
+	 *            valor que se le quiere dar a la propiedad 'tipo'
 	 */
 	public void setTipo(final MimeType tipo) {
 		this.tipo = tipo;
@@ -43,6 +44,7 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'interno'
+	 * 
 	 * @return Propiedad interno
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -54,7 +56,9 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	/**
 	 * Asigna el valor de la propiedad 'interno'
-	 * @param interno valor que se le quiere dar a la propiedad 'interno'
+	 * 
+	 * @param interno
+	 *            valor que se le quiere dar a la propiedad 'interno'
 	 */
 	public void setInterno(final boolean interno) {
 		this.interno = interno;
@@ -62,6 +66,7 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'uri'
+	 * 
 	 * @return Propiedad uri
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -72,7 +77,9 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	/**
 	 * Asigna el valor de la propiedad 'uri'
-	 * @param uri valor que se le quiere dar a la propiedad 'uri'
+	 * 
+	 * @param uri
+	 *            valor que se le quiere dar a la propiedad 'uri'
 	 */
 	public void setUri(final String uri) {
 		this.uri = uri;

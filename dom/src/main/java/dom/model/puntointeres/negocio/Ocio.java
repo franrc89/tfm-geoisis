@@ -22,21 +22,22 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("OCIO")
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "Ocio")
+@DomainObjectLayout
 public class Ocio extends PuntoInteresNegocio {
 
 	private String precio;
 
 	/**
 	 * Devuelve el valor de la propiedad 'precio'
+	 * 
 	 * @return Propiedad precio
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -48,7 +49,9 @@ public class Ocio extends PuntoInteresNegocio {
 
 	/**
 	 * Asigna el valor de la propiedad 'precio'
-	 * @param precio valor que se le quiere dar a la propiedad 'precio'
+	 * 
+	 * @param precio
+	 *            valor que se le quiere dar a la propiedad 'precio'
 	 */
 	public void setPrecio(final String precio) {
 		this.precio = precio;

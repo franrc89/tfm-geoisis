@@ -22,21 +22,22 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("RELIGIOSO")
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "Religioso")
+@DomainObjectLayout
 public class Religioso extends PuntoInteresCultural {
 
 	private String estilo;
 
 	/**
 	 * Devuelve el valor de la propiedad 'estilo'
+	 * 
 	 * @return Propiedad estilo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -48,7 +49,9 @@ public class Religioso extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'estilo'
-	 * @param estilo valor que se le quiere dar a la propiedad 'estilo'
+	 * 
+	 * @param estilo
+	 *            valor que se le quiere dar a la propiedad 'estilo'
 	 */
 	public void setEstilo(final String estilo) {
 		this.estilo = estilo;

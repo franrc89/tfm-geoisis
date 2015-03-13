@@ -21,9 +21,9 @@ package dom.model.rutapersonal;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
@@ -32,14 +32,16 @@ import org.apache.isis.applib.util.ObjectContracts;
 		@javax.jdo.annotations.Column(name = "puntointeres_id"),
 		@javax.jdo.annotations.Column(name = "rutapersonal_id") })
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@ObjectType("RUTAPERSONAL_PUNTOINTERES")
-@Bookmarkable
-public class RutaPersonal_PuntoInteres implements Comparable<RutaPersonal_PuntoInteres> {
+@DomainObject(bounded = true, objectType = "RutaPersonal_PuntoInteres")
+@DomainObjectLayout
+public class RutaPersonal_PuntoInteres implements
+		Comparable<RutaPersonal_PuntoInteres> {
 
 	private Integer orden;
 
 	/**
 	 * Devuelve el valor de la propiedad 'orden'
+	 * 
 	 * @return Propiedad orden
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -51,7 +53,9 @@ public class RutaPersonal_PuntoInteres implements Comparable<RutaPersonal_PuntoI
 
 	/**
 	 * Asigna el valor de la propiedad 'orden'
-	 * @param orden valor que se le quiere dar a la propiedad 'orden'
+	 * 
+	 * @param orden
+	 *            valor que se le quiere dar a la propiedad 'orden'
 	 */
 	public void setOrden(final Integer orden) {
 		this.orden = orden;

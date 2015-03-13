@@ -18,43 +18,37 @@
  */
 package dom.model.ruta;
 
-import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
 import dom.model.puntointeres.PuntoInteres;
 
-@PersistenceCapable
-// @javax.jdo.annotations.DatastoreIdentity(strategy =
-// javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
+@javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
+@javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, columns = {
+		@javax.jdo.annotations.Column(name = "puntointeres_id"),
+		@javax.jdo.annotations.Column(name = "ruta_id") })
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@ObjectType("RUTA_PUNTOINTERES")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "Ruta_PuntoInteres")
+@DomainObjectLayout
 public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 
-	// @javax.jdo.annotations.PrimaryKey
-	// @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY, column =
-	// "ruta_id")
-	@javax.jdo.annotations.PrimaryKey(name = "ruta_id")
+	// @javax.jdo.annotations.PrimaryKey(name = "ruta_id")
 	private Ruta ruta;
 
-	// @javax.jdo.annotations.PrimaryKey
-	// @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY, column =
-	// "puntointeres_id")
-	@javax.jdo.annotations.PrimaryKey(name = "puntointeres_id")
+	// @javax.jdo.annotations.PrimaryKey(name = "puntointeres_id")
 	private PuntoInteres puntoInteres;
 
 	private Integer orden;
 
 	/**
 	 * Devuelve el valor de la propiedad 'orden'
+	 * 
 	 * @return Propiedad orden
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -66,7 +60,9 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 
 	/**
 	 * Asigna el valor de la propiedad 'orden'
-	 * @param orden valor que se le quiere dar a la propiedad 'orden'
+	 * 
+	 * @param orden
+	 *            valor que se le quiere dar a la propiedad 'orden'
 	 */
 	public void setOrden(final Integer orden) {
 		this.orden = orden;
@@ -74,6 +70,7 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'ruta'
+	 * 
 	 * @return Propiedad ruta
 	 */
 	@Title(sequence = "2")
@@ -85,7 +82,9 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 
 	/**
 	 * Asigna el valor de la propiedad 'ruta'
-	 * @param ruta valor que se le quiere dar a la propiedad 'ruta'
+	 * 
+	 * @param ruta
+	 *            valor que se le quiere dar a la propiedad 'ruta'
 	 */
 	public void setRuta(final Ruta ruta) {
 		this.ruta = ruta;
@@ -93,6 +92,7 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'puntoInteres'
+	 * 
 	 * @return Propiedad puntoInteres
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -104,8 +104,9 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 
 	/**
 	 * Asigna el valor de la propiedad 'puntoInteres'
-	 * @param puntoInteres valor que se le quiere dar a la propiedad
-	 *            'puntoInteres'
+	 * 
+	 * @param puntoInteres
+	 *            valor que se le quiere dar a la propiedad 'puntoInteres'
 	 */
 	public void setPuntoInteres(final PuntoInteres puntoInteres) {
 		this.puntoInteres = puntoInteres;

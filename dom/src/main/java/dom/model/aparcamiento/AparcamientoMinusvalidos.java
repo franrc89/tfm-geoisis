@@ -4,10 +4,9 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 /**
@@ -17,15 +16,15 @@ import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("APARCAMIENTOMINUSVALIDOS")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "AparcamientoMinusvalidos")
+@DomainObjectLayout
 public class AparcamientoMinusvalidos extends AbstractAparcamiento {
 
 	private boolean gratis;
 
 	/**
 	 * Devuelve el valor de la propiedad 'gratis'
+	 * 
 	 * @return Propiedad gratis
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -37,7 +36,9 @@ public class AparcamientoMinusvalidos extends AbstractAparcamiento {
 
 	/**
 	 * Asigna el valor de la propiedad 'gratis'
-	 * @param gratis valor que se le quiere dar a la propiedad 'gratis'
+	 * 
+	 * @param gratis
+	 *            valor que se le quiere dar a la propiedad 'gratis'
 	 */
 	public void setGratis(final boolean gratis) {
 		this.gratis = gratis;

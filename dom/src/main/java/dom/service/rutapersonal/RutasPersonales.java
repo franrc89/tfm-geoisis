@@ -3,12 +3,11 @@ package dom.service.rutapersonal;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.rutapersonal.RutaPersonal;
 import dom.model.usuario.Usuario;
@@ -18,7 +17,7 @@ public class RutasPersonales {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(name = "listaRutaPersonal", sequence = "1")
 	public List<RutaPersonal> listar() {
 		return this.container.allInstances(RutaPersonal.class);
@@ -28,9 +27,12 @@ public class RutasPersonales {
 
 	// region > create (action)
 	@MemberOrder(name = "listaRutaPersonal", sequence = "2")
-	public RutaPersonal crear(final @Named("Nombre") String nombre, final @Named("Duración") String duracion,
-			final @Named("Usuario") Usuario usuario) {
-		final RutaPersonal obj = this.container.newTransientInstance(RutaPersonal.class);
+	public RutaPersonal crear(
+			final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Duración") String duracion,
+			final @ParameterLayout(named = "Usuario") Usuario usuario) {
+		final RutaPersonal obj = this.container
+				.newTransientInstance(RutaPersonal.class);
 		obj.setNombre(nombre);
 		obj.setDuracion(duracion);
 		obj.setUsuario(usuario);
@@ -39,8 +41,9 @@ public class RutasPersonales {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") RutaPersonal objeto) {
+	// @NotInServiceMenu
+	public void borrar(
+			final @ParameterLayout(named = "Objeto") RutaPersonal objeto) {
 		this.container.remove(objeto);
 	}
 

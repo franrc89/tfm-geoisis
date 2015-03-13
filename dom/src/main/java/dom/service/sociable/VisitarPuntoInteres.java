@@ -7,12 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.puntointeres.PuntoInteres;
 import dom.model.sociable.PuntoInteresVisitado;
@@ -27,7 +26,7 @@ public class VisitarPuntoInteres {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	public List<PuntoInteresVisitado> listar() {
 		return this.container.allInstances(PuntoInteresVisitado.class);
@@ -37,9 +36,11 @@ public class VisitarPuntoInteres {
 
 	// region > create (action)
 	@MemberOrder(name = "listaPuntosInteresVisitados", sequence = "2")
-	public PuntoInteresVisitado crear(final @Named("Punto Interes") PuntoInteres puntoInteres,
-			final @Named("Usuario") Usuario usuario) {
-		final PuntoInteresVisitado obj = this.container.newTransientInstance(PuntoInteresVisitado.class);
+	public PuntoInteresVisitado crear(
+			final @ParameterLayout(named = "Punto Interes") PuntoInteres puntoInteres,
+			final @ParameterLayout(named = "Usuario") Usuario usuario) {
+		final PuntoInteresVisitado obj = this.container
+				.newTransientInstance(PuntoInteresVisitado.class);
 		obj.setPuntoInteres(puntoInteres);
 		obj.setFecha(new Date());
 		obj.setUsuario(usuario);
@@ -48,8 +49,9 @@ public class VisitarPuntoInteres {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") PuntoInteresVisitado objeto) {
+	// @NotInServiceMenu
+	public void borrar(
+			final @ParameterLayout(named = "Objeto") PuntoInteresVisitado objeto) {
 		this.container.remove(objeto);
 	}
 

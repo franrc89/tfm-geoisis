@@ -10,12 +10,11 @@ import java.util.TreeSet;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.CollectionLayout;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
-import org.apache.isis.applib.annotation.Render;
-import org.apache.isis.applib.annotation.Render.Type;
+import org.apache.isis.applib.annotation.RenderType;
 import org.apache.isis.applib.annotation.Title;
 
 import dom.model.puntointeres.PuntoInteres;
@@ -29,9 +28,8 @@ import dom.model.sociable.Asistencia;
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@ObjectType("EVENTO")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "Evento")
+@DomainObjectLayout
 public class Evento {
 
 	private String nombre;
@@ -43,6 +41,7 @@ public class Evento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
+	 * 
 	 * @return Propiedad nombre
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -54,7 +53,9 @@ public class Evento {
 
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
-	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
+	 * 
+	 * @param nombre
+	 *            valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
@@ -62,6 +63,7 @@ public class Evento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'descripcion'
+	 * 
 	 * @return Propiedad descripcion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -72,8 +74,9 @@ public class Evento {
 
 	/**
 	 * Asigna el valor de la propiedad 'descripcion'
-	 * @param descripcion valor que se le quiere dar a la propiedad
-	 *            'descripcion'
+	 * 
+	 * @param descripcion
+	 *            valor que se le quiere dar a la propiedad 'descripcion'
 	 */
 	public void setDescripcion(final String descripcion) {
 		this.descripcion = descripcion;
@@ -81,6 +84,7 @@ public class Evento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'fechaInicio'
+	 * 
 	 * @return Propiedad fechaInicio
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -91,8 +95,9 @@ public class Evento {
 
 	/**
 	 * Asigna el valor de la propiedad 'fechaInicio'
-	 * @param fechaInicio valor que se le quiere dar a la propiedad
-	 *            'fechaInicio'
+	 * 
+	 * @param fechaInicio
+	 *            valor que se le quiere dar a la propiedad 'fechaInicio'
 	 */
 	public void setFechaInicio(final Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
@@ -100,6 +105,7 @@ public class Evento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'fechaFin'
+	 * 
 	 * @return Propiedad fechaFin
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -110,7 +116,9 @@ public class Evento {
 
 	/**
 	 * Asigna el valor de la propiedad 'fechaFin'
-	 * @param fechaFin valor que se le quiere dar a la propiedad 'fechaFin'
+	 * 
+	 * @param fechaFin
+	 *            valor que se le quiere dar a la propiedad 'fechaFin'
 	 */
 	public void setFechaFin(final Date fechaFin) {
 		this.fechaFin = fechaFin;
@@ -118,6 +126,7 @@ public class Evento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'puntoInteres'
+	 * 
 	 * @return Propiedad puntoInteres
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -129,8 +138,9 @@ public class Evento {
 
 	/**
 	 * Asigna el valor de la propiedad 'puntoInteres'
-	 * @param puntoInteres valor que se le quiere dar a la propiedad
-	 *            'puntoInteres'
+	 * 
+	 * @param puntoInteres
+	 *            valor que se le quiere dar a la propiedad 'puntoInteres'
 	 */
 	public void setPuntoInteres(final PuntoInteres puntoInteres) {
 		this.puntoInteres = puntoInteres;
@@ -138,19 +148,21 @@ public class Evento {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaAsistencia'
+	 * 
 	 * @return Propiedad listaAsistencia
 	 */
 	@MemberOrder(sequence = "6")
 	@javax.jdo.annotations.Persistent(column = "evento_id", mappedBy = "evento", dependentElement = "false")
-	@Render(Type.EAGERLY)
+	@CollectionLayout(render = RenderType.EAGERLY)
 	public SortedSet<Asistencia> getListaAsistencia() {
 		return this.listaAsistencia;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaAsistencia'
-	 * @param listaAsistencia valor que se le quiere dar a la propiedad
-	 *            'listaAsistencia'
+	 * 
+	 * @param listaAsistencia
+	 *            valor que se le quiere dar a la propiedad 'listaAsistencia'
 	 */
 	public void setListaAsistencia(final SortedSet<Asistencia> listaAsistencia) {
 		this.listaAsistencia = listaAsistencia;

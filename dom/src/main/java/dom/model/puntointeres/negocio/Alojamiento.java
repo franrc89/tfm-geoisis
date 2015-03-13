@@ -22,21 +22,22 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("ALOJAMIENTO")
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "Alojamiento")
+@DomainObjectLayout
 public class Alojamiento extends PuntoInteresNegocio {
 
 	private String clasificacion;
 
 	/**
 	 * Devuelve el valor de la propiedad 'clasificacion'
+	 * 
 	 * @return Propiedad clasificacion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -48,8 +49,9 @@ public class Alojamiento extends PuntoInteresNegocio {
 
 	/**
 	 * Asigna el valor de la propiedad 'clasificacion'
-	 * @param clasificacion valor que se le quiere dar a la propiedad
-	 *            'clasificacion'
+	 * 
+	 * @param clasificacion
+	 *            valor que se le quiere dar a la propiedad 'clasificacion'
 	 */
 	public void setClasificacion(final String clasificacion) {
 		this.clasificacion = clasificacion;

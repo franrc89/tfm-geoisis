@@ -3,12 +3,11 @@ package dom.service.puntointeres.cultural;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.puntointeres.cultural.Playa;
 
@@ -17,7 +16,7 @@ public class Playas {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	public List<Playa> listar() {
 		return this.container.allInstances(Playa.class);
@@ -27,13 +26,20 @@ public class Playas {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public Playa crear(final @Named("Nombre") String nombre, final @Named("Descripción") String descripcion,
-			final @Named("Cuidad") String ciudad, final @Named("Dirección") String direccion,
-			final @Named("Accesibilidad") String accesibilidad, final @Named("Tipo") String tipo,
-			final @Named("Epoca") String epoca, final @Named("Protegido") String protegido,
-			final @Named("Longitud") Float longitud, final @Named("Ocupación") String ocupacion,
-			final @Named("Bandera Azul") String bazul, final @Named("Parking") String parking,
-			final @Named("Socorrismo") String socorrismo) {
+	public Playa crear(
+			final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Descripción") String descripcion,
+			final @ParameterLayout(named = "Cuidad") String ciudad,
+			final @ParameterLayout(named = "Dirección") String direccion,
+			final @ParameterLayout(named = "Accesibilidad") String accesibilidad,
+			final @ParameterLayout(named = "Tipo") String tipo,
+			final @ParameterLayout(named = "Epoca") String epoca,
+			final @ParameterLayout(named = "Protegido") String protegido,
+			final @ParameterLayout(named = "Longitud") Float longitud,
+			final @ParameterLayout(named = "Ocupación") String ocupacion,
+			final @ParameterLayout(named = "Bandera Azul") String bazul,
+			final @ParameterLayout(named = "Parking") String parking,
+			final @ParameterLayout(named = "Socorrismo") String socorrismo) {
 		final Playa obj = this.container.newTransientInstance(Playa.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
@@ -51,8 +57,8 @@ public class Playas {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") Playa objeto) {
+	// @NotInServiceMenu
+	public void borrar(final @ParameterLayout(named = "Objeto") Playa objeto) {
 		this.container.remove(objeto);
 	}
 

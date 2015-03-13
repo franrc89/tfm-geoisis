@@ -3,12 +3,11 @@ package dom.service.puntointeres.negocio;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.puntointeres.negocio.Alojamiento;
 
@@ -17,7 +16,7 @@ public class Alojamientos {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	public List<Alojamiento> listar() {
 		return this.container.allInstances(Alojamiento.class);
@@ -27,10 +26,15 @@ public class Alojamientos {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public Alojamiento crear(final @Named("Nombre") String nombre, final @Named("Descripción") String descripcion,
-			final @Named("Cuidad") String ciudad, final @Named("Dirección") String direccion,
-			final @Named("Accesibilidad") String accesibilidad, final @Named("Clasificación") String clasificacion) {
-		final Alojamiento obj = this.container.newTransientInstance(Alojamiento.class);
+	public Alojamiento crear(
+			final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Descripción") String descripcion,
+			final @ParameterLayout(named = "Cuidad") String ciudad,
+			final @ParameterLayout(named = "Dirección") String direccion,
+			final @ParameterLayout(named = "Accesibilidad") String accesibilidad,
+			final @ParameterLayout(named = "Clasificación") String clasificacion) {
+		final Alojamiento obj = this.container
+				.newTransientInstance(Alojamiento.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
 		obj.setCiudad(ciudad);
@@ -42,8 +46,9 @@ public class Alojamientos {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") Alojamiento objeto) {
+	// @NotInServiceMenu
+	public void borrar(
+			final @ParameterLayout(named = "Objeto") Alojamiento objeto) {
 		this.container.remove(objeto);
 	}
 

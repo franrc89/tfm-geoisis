@@ -6,10 +6,10 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
+
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
+
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
@@ -21,9 +21,9 @@ import org.apache.isis.applib.util.ObjectContracts;
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 @Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
-@ObjectType("APARCAMIENTO")
-@Bookmarkable
-@Bounded
+
+@DomainObjectLayout
+
 public abstract class AbstractAparcamiento implements Comparable<AbstractAparcamiento> {
 
 	private String nombre;

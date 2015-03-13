@@ -22,16 +22,16 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 
 import dom.model.puntointeres.PuntoInteres;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("PUNTOINTERESCULTURAL")
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "PuntoInteresCultural")
+@DomainObjectLayout
 public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	private String tipo;
@@ -41,6 +41,7 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'tipo'
+	 * 
 	 * @return Propiedad tipo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -51,7 +52,9 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'tipo'
-	 * @param tipo valor que se le quiere dar a la propiedad 'tipo'
+	 * 
+	 * @param tipo
+	 *            valor que se le quiere dar a la propiedad 'tipo'
 	 */
 	public void setTipo(final String tipo) {
 		this.tipo = tipo;
@@ -59,6 +62,7 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'epoca'
+	 * 
 	 * @return Propiedad epoca
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -69,7 +73,9 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'epoca'
-	 * @param epoca valor que se le quiere dar a la propiedad 'epoca'
+	 * 
+	 * @param epoca
+	 *            valor que se le quiere dar a la propiedad 'epoca'
 	 */
 	public void setEpoca(final String epoca) {
 		this.epoca = epoca;
@@ -77,6 +83,7 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'visitable'
+	 * 
 	 * @return Propiedad visitable
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -87,7 +94,9 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'visitable'
-	 * @param visitable valor que se le quiere dar a la propiedad 'visitable'
+	 * 
+	 * @param visitable
+	 *            valor que se le quiere dar a la propiedad 'visitable'
 	 */
 	public void setVisitable(final String visitable) {
 		this.visitable = visitable;
@@ -95,6 +104,7 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'estado'
+	 * 
 	 * @return Propiedad estado
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -105,7 +115,9 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'estado'
-	 * @param estado valor que se le quiere dar a la propiedad 'estado'
+	 * 
+	 * @param estado
+	 *            valor que se le quiere dar a la propiedad 'estado'
 	 */
 	public void setEstado(final String estado) {
 		this.estado = estado;

@@ -9,12 +9,11 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.CollectionLayout;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
-import org.apache.isis.applib.annotation.Render;
-import org.apache.isis.applib.annotation.Render.Type;
+import org.apache.isis.applib.annotation.RenderType;
 import org.apache.isis.applib.annotation.Title;
 
 import dom.model.evento.Evento;
@@ -26,9 +25,8 @@ import dom.model.sociable.PuntoInteresVisitado;
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 @Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
-@ObjectType("PUNTOINTERES")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "PuntoInteres")
+@DomainObjectLayout
 public class PuntoInteres extends ClaseSociable {
 
 	private String nombre;
@@ -43,6 +41,7 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
+	 * 
 	 * @return Propiedad nombre
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -54,7 +53,9 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
-	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
+	 * 
+	 * @param nombre
+	 *            valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
@@ -62,6 +63,7 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'descripcion'
+	 * 
 	 * @return Propiedad descripcion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -72,8 +74,9 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Asigna el valor de la propiedad 'descripcion'
-	 * @param descripcion valor que se le quiere dar a la propiedad
-	 *            'descripcion'
+	 * 
+	 * @param descripcion
+	 *            valor que se le quiere dar a la propiedad 'descripcion'
 	 */
 	public void setDescripcion(final String descripcion) {
 		this.descripcion = descripcion;
@@ -81,6 +84,7 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'ciudad'
+	 * 
 	 * @return Propiedad ciudad
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -92,7 +96,9 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Asigna el valor de la propiedad 'ciudad'
-	 * @param ciudad valor que se le quiere dar a la propiedad 'ciudad'
+	 * 
+	 * @param ciudad
+	 *            valor que se le quiere dar a la propiedad 'ciudad'
 	 */
 	public void setCiudad(final String ciudad) {
 		this.ciudad = ciudad;
@@ -100,6 +106,7 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'direccion'
+	 * 
 	 * @return Propiedad direccion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -110,7 +117,9 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Asigna el valor de la propiedad 'direccion'
-	 * @param direccion valor que se le quiere dar a la propiedad 'direccion'
+	 * 
+	 * @param direccion
+	 *            valor que se le quiere dar a la propiedad 'direccion'
 	 */
 	public void setDireccion(final String direccion) {
 		this.direccion = direccion;
@@ -118,6 +127,7 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'accesibilidad'
+	 * 
 	 * @return Propiedad accesibilidad
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -128,8 +138,9 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Asigna el valor de la propiedad 'accesibilidad'
-	 * @param accesibilidad valor que se le quiere dar a la propiedad
-	 *            'accesibilidad'
+	 * 
+	 * @param accesibilidad
+	 *            valor que se le quiere dar a la propiedad 'accesibilidad'
 	 */
 	public void setAccesibilidad(final String accesibilidad) {
 		this.accesibilidad = accesibilidad;
@@ -137,18 +148,21 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaRuta'
+	 * 
 	 * @return Propiedad listaRuta
 	 */
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(column = "puntointeres_id", mappedBy = "puntoInteres", dependentElement = "false")
-	@Render(Type.EAGERLY)
+	@CollectionLayout(render = RenderType.EAGERLY)
 	public SortedSet<Ruta_PuntoInteres> getListaRuta() {
 		return this.listaRuta;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaRuta'
-	 * @param listaRuta valor que se le quiere dar a la propiedad 'listaRuta'
+	 * 
+	 * @param listaRuta
+	 *            valor que se le quiere dar a la propiedad 'listaRuta'
 	 */
 	public void setListaRuta(final SortedSet<Ruta_PuntoInteres> listaRuta) {
 		this.listaRuta = listaRuta;
@@ -163,40 +177,45 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaRutaPersonal'
+	 * 
 	 * @return Propiedad listaRutaPersonal
 	 */
 	@javax.jdo.annotations.Persistent(table = "rutapersonal_puntointeres")
 	@javax.jdo.annotations.Join(column = "puntointeres_id")
 	@javax.jdo.annotations.Element(column = "rutapersonal_id")
-	@Render(Type.EAGERLY)
+	@CollectionLayout(render = RenderType.EAGERLY)
 	public SortedSet<RutaPersonal> getListaRutaPersonal() {
 		return this.listaRutaPersonal;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaRutaPersonal'
-	 * @param listaRutaPersonal valor que se le quiere dar a la propiedad
-	 *            'listaRutaPersonal'
+	 * 
+	 * @param listaRutaPersonal
+	 *            valor que se le quiere dar a la propiedad 'listaRutaPersonal'
 	 */
-	public void setListaRutaPersonal(final SortedSet<RutaPersonal> listaRutaPersonal) {
+	public void setListaRutaPersonal(
+			final SortedSet<RutaPersonal> listaRutaPersonal) {
 		this.listaRutaPersonal = listaRutaPersonal;
 	}
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaEvento'
+	 * 
 	 * @return Propiedad listaEvento
 	 */
 	@MemberOrder(sequence = "7")
 	@javax.jdo.annotations.Persistent(mappedBy = "puntoInteres", dependentElement = "false")
-	@Render(Type.EAGERLY)
+	@CollectionLayout(render = RenderType.EAGERLY)
 	public SortedSet<Evento> getListaEvento() {
 		return this.listaEvento;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaEvento'
-	 * @param listaEvento valor que se le quiere dar a la propiedad
-	 *            'listaEvento'
+	 * 
+	 * @param listaEvento
+	 *            valor que se le quiere dar a la propiedad 'listaEvento'
 	 */
 	public void setListaEvento(final SortedSet<Evento> listaEvento) {
 		this.listaEvento = listaEvento;
@@ -204,21 +223,24 @@ public class PuntoInteres extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaVisitas'
+	 * 
 	 * @return Propiedad listaVisitas
 	 */
 	@MemberOrder(sequence = "8")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
-	@Render(Type.EAGERLY)
+	@CollectionLayout(render = RenderType.EAGERLY)
 	public SortedSet<PuntoInteresVisitado> getListaVisitas() {
 		return this.listaVisitas;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaVisitas'
-	 * @param listaVisitas valor que se le quiere dar a la propiedad
-	 *            'listaVisitas'
+	 * 
+	 * @param listaVisitas
+	 *            valor que se le quiere dar a la propiedad 'listaVisitas'
 	 */
-	public void setListaVisitas(final SortedSet<PuntoInteresVisitado> listaVisitas) {
+	public void setListaVisitas(
+			final SortedSet<PuntoInteresVisitado> listaVisitas) {
 		this.listaVisitas = listaVisitas;
 	}
 

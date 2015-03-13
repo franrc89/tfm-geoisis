@@ -22,7 +22,8 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Title;
 
@@ -30,7 +31,8 @@ import dom.model.puntointeres.PuntoInteres;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "PuntoInteresNegocio")
+@DomainObjectLayout
 public class PuntoInteresNegocio extends PuntoInteres {
 
 	private String mail;
@@ -40,6 +42,7 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'mail'
+	 * 
 	 * @return Propiedad mail
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -51,7 +54,9 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'mail'
-	 * @param mail valor que se le quiere dar a la propiedad 'mail'
+	 * 
+	 * @param mail
+	 *            valor que se le quiere dar a la propiedad 'mail'
 	 */
 	public void setMail(final String mail) {
 		this.mail = mail;
@@ -59,6 +64,7 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'web'
+	 * 
 	 * @return Propiedad web
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -70,7 +76,9 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'web'
-	 * @param web valor que se le quiere dar a la propiedad 'web'
+	 * 
+	 * @param web
+	 *            valor que se le quiere dar a la propiedad 'web'
 	 */
 	public void setWeb(final String web) {
 		this.web = web;
@@ -78,6 +86,7 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'telefono'
+	 * 
 	 * @return Propiedad telefono
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -89,7 +98,9 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'telefono'
-	 * @param telefono valor que se le quiere dar a la propiedad 'telefono'
+	 * 
+	 * @param telefono
+	 *            valor que se le quiere dar a la propiedad 'telefono'
 	 */
 	public void setTelefono(final String telefono) {
 		this.telefono = telefono;
@@ -97,6 +108,7 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'tipo'
+	 * 
 	 * @return Propiedad tipo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -108,7 +120,9 @@ public class PuntoInteresNegocio extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'tipo'
-	 * @param tipo valor que se le quiere dar a la propiedad 'tipo'
+	 * 
+	 * @param tipo
+	 *            valor que se le quiere dar a la propiedad 'tipo'
 	 */
 	public void setTipo(final String tipo) {
 		this.tipo = tipo;

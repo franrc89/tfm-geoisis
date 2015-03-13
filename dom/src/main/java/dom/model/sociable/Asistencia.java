@@ -6,10 +6,9 @@ package dom.model.sociable;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
@@ -24,9 +23,8 @@ import dom.model.usuario.Usuario;
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@ObjectType("ASISTENCIA")
-@Bookmarkable
-@Bounded
+@DomainObject(bounded = true, objectType = "Asistencia")
+@DomainObjectLayout
 public class Asistencia implements Comparable<Asistencia> {
 
 	private Usuario usuario;
@@ -35,6 +33,7 @@ public class Asistencia implements Comparable<Asistencia> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'intencion'
+	 * 
 	 * @return Propiedad intencion
 	 */
 	@Title(sequence = "1")
@@ -46,7 +45,9 @@ public class Asistencia implements Comparable<Asistencia> {
 
 	/**
 	 * Asigna el valor de la propiedad 'intencion'
-	 * @param intencion valor que se le quiere dar a la propiedad 'intencion'
+	 * 
+	 * @param intencion
+	 *            valor que se le quiere dar a la propiedad 'intencion'
 	 */
 	public void setIntencion(final Intencion intencion) {
 		this.intencion = intencion;
@@ -54,6 +55,7 @@ public class Asistencia implements Comparable<Asistencia> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'usuario'
+	 * 
 	 * @return Propiedad usuario
 	 */
 	@Title(sequence = "2")
@@ -65,7 +67,9 @@ public class Asistencia implements Comparable<Asistencia> {
 
 	/**
 	 * Asigna el valor de la propiedad 'usuario'
-	 * @param usuario valor que se le quiere dar a la propiedad 'usuario'
+	 * 
+	 * @param usuario
+	 *            valor que se le quiere dar a la propiedad 'usuario'
 	 */
 	public void setUsuario(final Usuario usuario) {
 		this.usuario = usuario;
@@ -73,6 +77,7 @@ public class Asistencia implements Comparable<Asistencia> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'evento'
+	 * 
 	 * @return Propiedad evento
 	 */
 	@Title(sequence = "3")
@@ -84,7 +89,9 @@ public class Asistencia implements Comparable<Asistencia> {
 
 	/**
 	 * Asigna el valor de la propiedad 'evento'
-	 * @param evento valor que se le quiere dar a la propiedad 'evento'
+	 * 
+	 * @param evento
+	 *            valor que se le quiere dar a la propiedad 'evento'
 	 */
 	public void setEvento(final Evento evento) {
 		this.evento = evento;

@@ -6,12 +6,12 @@ package dom.service.aparcamiento;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.aparcamiento.AparcamientoCargaDescarga;
 
@@ -19,12 +19,14 @@ import dom.model.aparcamiento.AparcamientoCargaDescarga;
  * @author fran
  * 
  */
-@DomainService(menuOrder = "10", repositoryFor = AparcamientoCargaDescarga.class)
+
+@DomainServiceLayout(named = "Aparcamientos", menuOrder = "10")
+@DomainService(repositoryFor = AparcamientoCargaDescarga.class)
 public class AparcamientosCargaDescarga {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	public List<AparcamientoCargaDescarga> listar() {
 		return this.container.allInstances(AparcamientoCargaDescarga.class);
@@ -34,9 +36,12 @@ public class AparcamientosCargaDescarga {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public AparcamientoCargaDescarga crear(final @Named("Nombre") String nombre,
-			final @Named("Dirección") String direccion, final @Named("Gratuito") boolean gratuito) {
-		final AparcamientoCargaDescarga obj = this.container.newTransientInstance(AparcamientoCargaDescarga.class);
+	public AparcamientoCargaDescarga crear(
+			final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Dirección") String direccion,
+			final @ParameterLayout(named = "Gratuito") boolean gratuito) {
+		final AparcamientoCargaDescarga obj = this.container
+				.newTransientInstance(AparcamientoCargaDescarga.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
 		obj.setGratis(gratuito);
@@ -45,8 +50,8 @@ public class AparcamientosCargaDescarga {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") AparcamientoCargaDescarga objeto) {
+	public void borrar(
+			final @ParameterLayout(named = "Objeto") AparcamientoCargaDescarga objeto) {
 		this.container.remove(objeto);
 	}
 

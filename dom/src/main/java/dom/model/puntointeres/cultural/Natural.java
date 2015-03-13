@@ -22,15 +22,15 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
-@ObjectType("NATURAL")
-@Bookmarkable
+@DomainObject(bounded = true, objectType = "Natural")
+@DomainObjectLayout
 public class Natural extends PuntoInteresCultural {
 
 	private String tipo;
@@ -39,6 +39,7 @@ public class Natural extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'tipo'
+	 * 
 	 * @return Propiedad tipo
 	 */
 	@Override
@@ -51,7 +52,9 @@ public class Natural extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'tipo'
-	 * @param tipo valor que se le quiere dar a la propiedad 'tipo'
+	 * 
+	 * @param tipo
+	 *            valor que se le quiere dar a la propiedad 'tipo'
 	 */
 	@Override
 	public void setTipo(final String tipo) {
@@ -60,6 +63,7 @@ public class Natural extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'epoca'
+	 * 
 	 * @return Propiedad epoca
 	 */
 	@Override
@@ -71,7 +75,9 @@ public class Natural extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'epoca'
-	 * @param epoca valor que se le quiere dar a la propiedad 'epoca'
+	 * 
+	 * @param epoca
+	 *            valor que se le quiere dar a la propiedad 'epoca'
 	 */
 	@Override
 	public void setEpoca(final String epoca) {
@@ -80,6 +86,7 @@ public class Natural extends PuntoInteresCultural {
 
 	/**
 	 * Devuelve el valor de la propiedad 'protegido'
+	 * 
 	 * @return Propiedad protegido
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -90,7 +97,9 @@ public class Natural extends PuntoInteresCultural {
 
 	/**
 	 * Asigna el valor de la propiedad 'protegido'
-	 * @param protegido valor que se le quiere dar a la propiedad 'protegido'
+	 * 
+	 * @param protegido
+	 *            valor que se le quiere dar a la propiedad 'protegido'
 	 */
 	public void setProtegido(final String protegido) {
 		this.protegido = protegido;

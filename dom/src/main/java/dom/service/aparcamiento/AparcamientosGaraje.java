@@ -6,12 +6,11 @@ package dom.service.aparcamiento;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.aparcamiento.AparcamientoGaraje;
 
@@ -24,7 +23,7 @@ public class AparcamientosGaraje {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	public List<AparcamientoGaraje> listar() {
 		return this.container.allInstances(AparcamientoGaraje.class);
@@ -34,13 +33,17 @@ public class AparcamientosGaraje {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public AparcamientoGaraje crear(final @Named("Nombre") String nombre, final @Named("Dirección") String direccion,
-			final @Named("Cuota") float cuota, final @Named("Horas abierto") float horasAbierto,
-			final @Named("Plazas totales") Integer plazasTotales,
-			final @Named("Plazas disponibles") Integer plazasDisponibles,
-			final @Named("Plazas NO disponibles") Integer plazasNoDisponibles,
-			final @Named("Vigilancia") boolean vigilancia) {
-		final AparcamientoGaraje obj = this.container.newTransientInstance(AparcamientoGaraje.class);
+	public AparcamientoGaraje crear(
+			final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Dirección") String direccion,
+			final @ParameterLayout(named = "Cuota") float cuota,
+			final @ParameterLayout(named = "Horas abierto") float horasAbierto,
+			final @ParameterLayout(named = "Plazas totales") Integer plazasTotales,
+			final @ParameterLayout(named = "Plazas disponibles") Integer plazasDisponibles,
+			final @ParameterLayout(named = "Plazas NO disponibles") Integer plazasNoDisponibles,
+			final @ParameterLayout(named = "Vigilancia") boolean vigilancia) {
+		final AparcamientoGaraje obj = this.container
+				.newTransientInstance(AparcamientoGaraje.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
 		obj.setCuota(cuota);
@@ -55,8 +58,9 @@ public class AparcamientosGaraje {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") AparcamientoGaraje objeto) {
+	// @NotInServiceMenu
+	public void borrar(
+			final @ParameterLayout(named = "Objeto") AparcamientoGaraje objeto) {
 		this.container.remove(objeto);
 	}
 

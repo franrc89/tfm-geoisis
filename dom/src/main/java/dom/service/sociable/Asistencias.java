@@ -6,12 +6,11 @@ package dom.service.sociable;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Named;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
+import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.evento.Evento;
 import dom.model.sociable.Asistencia;
@@ -27,9 +26,9 @@ public class Asistencias {
 
 	// region > listAll (action)
 
-	@ActionSemantics(Of.SAFE)
+	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
-	@NotInServiceMenu
+	// @NotInServiceMenu
 	public List<Asistencia> listar() {
 		return this.container.allInstances(Asistencia.class);
 	}
@@ -37,11 +36,14 @@ public class Asistencias {
 	// endregion
 
 	// region > create (action)
-	@NotInServiceMenu
+	// @NotInServiceMenu
 	@MemberOrder(name = "listaAsistenciaEventos", sequence = "2")
-	public Asistencia crear(final @Named("Usuario") Usuario usuario, final @Named("Evento") Evento evento,
-			final @Named("Intención") Intencion intencion) {
-		final Asistencia obj = this.container.newTransientInstance(Asistencia.class);
+	public Asistencia crear(
+			final @ParameterLayout(named = "Usuario") Usuario usuario,
+			final @ParameterLayout(named = "Evento") Evento evento,
+			final @ParameterLayout(named = "Intención") Intencion intencion) {
+		final Asistencia obj = this.container
+				.newTransientInstance(Asistencia.class);
 		obj.setEvento(evento);
 		obj.setUsuario(usuario);
 		obj.setIntencion(intencion);
@@ -50,8 +52,9 @@ public class Asistencias {
 	}
 
 	// @MemberOrder(sequence = "3")
-	@NotInServiceMenu
-	public void borrar(final @Named("Objeto") Asistencia objeto) {
+	// @NotInServiceMenu
+	public void borrar(
+			final @ParameterLayout(named = "Objeto") Asistencia objeto) {
 		this.container.remove(objeto);
 	}
 
