@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
@@ -21,13 +23,15 @@ import dom.model.usuario.Usuario;
  * @author fran
  * 
  */
-@DomainService(menuOrder = "10", repositoryFor = RutaPersonalRealizada.class)
+@DomainServiceLayout(named = "Acciones", menuOrder = "10")
+@DomainService(repositoryFor = RutaPersonalRealizada.class)
 public class RealizarRutaPersonal {
 
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Listar Rutas Personales Realizadas")
 	public List<RutaPersonalRealizada> listar() {
 		return this.container.allInstances(RutaPersonalRealizada.class);
 	}
@@ -35,12 +39,12 @@ public class RealizarRutaPersonal {
 	// endregion
 
 	// region > create (action)
-	@MemberOrder(name = "listaRutasPersonalesRealizadas", sequence = "2")
-	public RutaPersonalRealizada crear(
+	@MemberOrder(sequence = "2")
+	@ActionLayout(named = "Nueva Ruta Personal Realizada")
+	public RutaPersonalRealizada newRutaPersonalRealizada(
 			final @ParameterLayout(named = "Ruta Personal") RutaPersonal rutaPersonal,
 			final @ParameterLayout(named = "Usuario") Usuario usuario) {
-		final RutaPersonalRealizada obj = this.container
-				.newTransientInstance(RutaPersonalRealizada.class);
+		final RutaPersonalRealizada obj = this.container.newTransientInstance(RutaPersonalRealizada.class);
 		obj.setRutaPersonal(rutaPersonal);
 		obj.setFecha(new Date());
 		obj.setUsuario(usuario);
@@ -48,10 +52,9 @@ public class RealizarRutaPersonal {
 		return obj;
 	}
 
-	// @MemberOrder(sequence = "3")
-	// @NotInServiceMenu
-	public void borrar(
-			final @ParameterLayout(named = "Objeto") RutaPersonalRealizada objeto) {
+	@MemberOrder(sequence = "3")
+	@ActionLayout(named = "Borrar Ruta Personal Realizada")
+	public void removeRutaPersonalRealizada(final @ParameterLayout(named = "Objeto") RutaPersonalRealizada objeto) {
 		this.container.remove(objeto);
 	}
 

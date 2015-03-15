@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
@@ -21,13 +23,15 @@ import dom.model.usuario.Usuario;
  * @author fran
  * 
  */
-@DomainService(menuOrder = "10", repositoryFor = Valoracion.class)
+@DomainServiceLayout(named = "Acciones", menuOrder = "10")
+@DomainService(repositoryFor = Valoracion.class)
 public class Valoraciones {
 
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Listar Valoraciones")
 	public List<Valoracion> listar() {
 		return this.container.allInstances(Valoracion.class);
 	}
@@ -35,13 +39,13 @@ public class Valoraciones {
 	// endregion
 
 	// region > create (action)
-	@MemberOrder(name = "listaValoraciones", sequence = "2")
-	public Valoracion crear(
-			final @ParameterLayout(named = "Objecto a valorar") ClaseSociable claseSociable,
+	// @MemberOrder(name = "listaValoraciones", sequence = "2")
+	@MemberOrder(sequence = "2")
+	@ActionLayout(named = "Nueva Valoración")
+	public Valoracion newValoracion(final @ParameterLayout(named = "Objecto a valorar") ClaseSociable claseSociable,
 			final @ParameterLayout(named = "Usuario") Usuario usuario,
 			final @ParameterLayout(named = "Valoración") String puntuacion) {
-		final Valoracion obj = this.container
-				.newTransientInstance(Valoracion.class);
+		final Valoracion obj = this.container.newTransientInstance(Valoracion.class);
 		obj.setClaseSociable(claseSociable);
 		obj.setPuntuacion(puntuacion);
 		obj.setFecha(new Date());
@@ -50,10 +54,9 @@ public class Valoraciones {
 		return obj;
 	}
 
-	// @MemberOrder(sequence = "3")
-	// @NotInServiceMenu
-	public void borrar(
-			final @ParameterLayout(named = "Objeto") Valoracion objeto) {
+	@MemberOrder(sequence = "3")
+	@ActionLayout(named = "Borrar Valoración")
+	public void removeValoracion(final @ParameterLayout(named = "Objeto") Valoracion objeto) {
 		this.container.remove(objeto);
 	}
 

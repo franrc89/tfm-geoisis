@@ -27,7 +27,7 @@ import dom.model.sociable.PuntoInteresVisitado;
 @Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
 @DomainObject(bounded = true, objectType = "PuntoInteres")
 @DomainObjectLayout
-public class PuntoInteres extends ClaseSociable {
+public abstract class PuntoInteres extends ClaseSociable {
 
 	private String nombre;
 	private String descripcion;
@@ -54,8 +54,7 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
 	 * 
-	 * @param nombre
-	 *            valor que se le quiere dar a la propiedad 'nombre'
+	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
@@ -75,8 +74,8 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'descripcion'
 	 * 
-	 * @param descripcion
-	 *            valor que se le quiere dar a la propiedad 'descripcion'
+	 * @param descripcion valor que se le quiere dar a la propiedad
+	 *            'descripcion'
 	 */
 	public void setDescripcion(final String descripcion) {
 		this.descripcion = descripcion;
@@ -97,8 +96,7 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'ciudad'
 	 * 
-	 * @param ciudad
-	 *            valor que se le quiere dar a la propiedad 'ciudad'
+	 * @param ciudad valor que se le quiere dar a la propiedad 'ciudad'
 	 */
 	public void setCiudad(final String ciudad) {
 		this.ciudad = ciudad;
@@ -118,8 +116,7 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'direccion'
 	 * 
-	 * @param direccion
-	 *            valor que se le quiere dar a la propiedad 'direccion'
+	 * @param direccion valor que se le quiere dar a la propiedad 'direccion'
 	 */
 	public void setDireccion(final String direccion) {
 		this.direccion = direccion;
@@ -139,8 +136,8 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'accesibilidad'
 	 * 
-	 * @param accesibilidad
-	 *            valor que se le quiere dar a la propiedad 'accesibilidad'
+	 * @param accesibilidad valor que se le quiere dar a la propiedad
+	 *            'accesibilidad'
 	 */
 	public void setAccesibilidad(final String accesibilidad) {
 		this.accesibilidad = accesibilidad;
@@ -161,8 +158,7 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'listaRuta'
 	 * 
-	 * @param listaRuta
-	 *            valor que se le quiere dar a la propiedad 'listaRuta'
+	 * @param listaRuta valor que se le quiere dar a la propiedad 'listaRuta'
 	 */
 	public void setListaRuta(final SortedSet<Ruta_PuntoInteres> listaRuta) {
 		this.listaRuta = listaRuta;
@@ -191,11 +187,10 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'listaRutaPersonal'
 	 * 
-	 * @param listaRutaPersonal
-	 *            valor que se le quiere dar a la propiedad 'listaRutaPersonal'
+	 * @param listaRutaPersonal valor que se le quiere dar a la propiedad
+	 *            'listaRutaPersonal'
 	 */
-	public void setListaRutaPersonal(
-			final SortedSet<RutaPersonal> listaRutaPersonal) {
+	public void setListaRutaPersonal(final SortedSet<RutaPersonal> listaRutaPersonal) {
 		this.listaRutaPersonal = listaRutaPersonal;
 	}
 
@@ -214,8 +209,8 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'listaEvento'
 	 * 
-	 * @param listaEvento
-	 *            valor que se le quiere dar a la propiedad 'listaEvento'
+	 * @param listaEvento valor que se le quiere dar a la propiedad
+	 *            'listaEvento'
 	 */
 	public void setListaEvento(final SortedSet<Evento> listaEvento) {
 		this.listaEvento = listaEvento;
@@ -236,11 +231,10 @@ public class PuntoInteres extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'listaVisitas'
 	 * 
-	 * @param listaVisitas
-	 *            valor que se le quiere dar a la propiedad 'listaVisitas'
+	 * @param listaVisitas valor que se le quiere dar a la propiedad
+	 *            'listaVisitas'
 	 */
-	public void setListaVisitas(
-			final SortedSet<PuntoInteresVisitado> listaVisitas) {
+	public void setListaVisitas(final SortedSet<PuntoInteresVisitado> listaVisitas) {
 		this.listaVisitas = listaVisitas;
 	}
 

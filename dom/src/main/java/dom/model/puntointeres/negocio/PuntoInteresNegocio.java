@@ -33,7 +33,7 @@ import dom.model.puntointeres.PuntoInteres;
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
 @DomainObject(bounded = true, objectType = "PuntoInteresNegocio")
 @DomainObjectLayout
-public class PuntoInteresNegocio extends PuntoInteres {
+public abstract class PuntoInteresNegocio extends PuntoInteres {
 
 	private String mail;
 	private String web;

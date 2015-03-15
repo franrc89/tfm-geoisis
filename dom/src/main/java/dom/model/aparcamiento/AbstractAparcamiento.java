@@ -7,9 +7,7 @@ import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
 import org.apache.isis.applib.annotation.DomainObjectLayout;
-
 import org.apache.isis.applib.annotation.MemberOrder;
-
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
@@ -21,9 +19,7 @@ import org.apache.isis.applib.util.ObjectContracts;
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 @Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
-
 @DomainObjectLayout
-
 public abstract class AbstractAparcamiento implements Comparable<AbstractAparcamiento> {
 
 	private String nombre;

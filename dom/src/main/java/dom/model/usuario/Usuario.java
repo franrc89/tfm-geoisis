@@ -84,8 +84,7 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
 	 * 
-	 * @param nombre
-	 *            valor que se le quiere dar a la propiedad 'nombre'
+	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
@@ -94,8 +93,7 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'apellido'
 	 * 
-	 * @param apellido
-	 *            valor que se le quiere dar a la propiedad 'apellido'
+	 * @param apellido valor que se le quiere dar a la propiedad 'apellido'
 	 */
 	public void setApellido(final String apellido) {
 		this.apellido = apellido;
@@ -118,11 +116,10 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaRutaPersonal'
 	 * 
-	 * @param listaRutaPersonal
-	 *            valor que se le quiere dar a la propiedad 'listaRutaPersonal'
+	 * @param listaRutaPersonal valor que se le quiere dar a la propiedad
+	 *            'listaRutaPersonal'
 	 */
-	public void setListaRutaPersonal(
-			final SortedSet<RutaPersonal> listaRutaPersonal) {
+	public void setListaRutaPersonal(final SortedSet<RutaPersonal> listaRutaPersonal) {
 		this.listaRutaPersonal = listaRutaPersonal;
 	}
 
@@ -167,12 +164,10 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaAsistenciaEventos'
 	 * 
-	 * @param listaAsistenciaEventos
-	 *            valor que se le quiere dar a la propiedad
+	 * @param listaAsistenciaEventos valor que se le quiere dar a la propiedad
 	 *            'listaAsistenciaEventos'
 	 */
-	public void setListaAsistenciaEventos(
-			final SortedSet<Asistencia> listaAsistenciaEventos) {
+	public void setListaAsistenciaEventos(final SortedSet<Asistencia> listaAsistenciaEventos) {
 		this.listaAsistenciaEventos = listaAsistenciaEventos;
 	}
 
@@ -191,8 +186,8 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaComentarios'
 	 * 
-	 * @param listaComentarios
-	 *            valor que se le quiere dar a la propiedad 'listaComentarios'
+	 * @param listaComentarios valor que se le quiere dar a la propiedad
+	 *            'listaComentarios'
 	 */
 	public void setListaComentarios(final SortedSet<Comentario> listaComentarios) {
 		this.listaComentarios = listaComentarios;
@@ -213,11 +208,10 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaValoraciones'
 	 * 
-	 * @param listaValoraciones
-	 *            valor que se le quiere dar a la propiedad 'listaValoraciones'
+	 * @param listaValoraciones valor que se le quiere dar a la propiedad
+	 *            'listaValoraciones'
 	 */
-	public void setListaValoraciones(
-			final SortedSet<Valoracion> listaValoraciones) {
+	public void setListaValoraciones(final SortedSet<Valoracion> listaValoraciones) {
 		this.listaValoraciones = listaValoraciones;
 	}
 
@@ -236,8 +230,8 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaFavoritos'
 	 * 
-	 * @param listaFavoritos
-	 *            valor que se le quiere dar a la propiedad 'listaFavoritos'
+	 * @param listaFavoritos valor que se le quiere dar a la propiedad
+	 *            'listaFavoritos'
 	 */
 	public void setListaFavoritos(final SortedSet<Favorito> listaFavoritos) {
 		this.listaFavoritos = listaFavoritos;
@@ -258,12 +252,10 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaRutasRealizadas'
 	 * 
-	 * @param listaRutasRealizadas
-	 *            valor que se le quiere dar a la propiedad
+	 * @param listaRutasRealizadas valor que se le quiere dar a la propiedad
 	 *            'listaRutasRealizadas'
 	 */
-	public void setListaRutasRealizadas(
-			final SortedSet<RutaRealizada> listaRutasRealizadas) {
+	public void setListaRutasRealizadas(final SortedSet<RutaRealizada> listaRutasRealizadas) {
 		this.listaRutasRealizadas = listaRutasRealizadas;
 	}
 
@@ -282,12 +274,10 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaRutasPersonalesRealizadas'
 	 * 
-	 * @param listaRutasPersonalesRealizadas
-	 *            valor que se le quiere dar a la propiedad
-	 *            'listaRutasPersonalesRealizadas'
+	 * @param listaRutasPersonalesRealizadas valor que se le quiere dar a la
+	 *            propiedad 'listaRutasPersonalesRealizadas'
 	 */
-	public void setListaRutasPersonalesRealizadas(
-			final SortedSet<RutaPersonalRealizada> listaRutasPersonalesRealizadas) {
+	public void setListaRutasPersonalesRealizadas(final SortedSet<RutaPersonalRealizada> listaRutasPersonalesRealizadas) {
 		this.listaRutasPersonalesRealizadas = listaRutasPersonalesRealizadas;
 	}
 
@@ -306,12 +296,10 @@ public class Usuario implements Comparable<Usuario> {
 	/**
 	 * Asigna el valor de la propiedad 'listaPuntosInteresVisitados'
 	 * 
-	 * @param listaPuntosInteresVisitados
-	 *            valor que se le quiere dar a la propiedad
-	 *            'listaPuntosInteresVisitados'
+	 * @param listaPuntosInteresVisitados valor que se le quiere dar a la
+	 *            propiedad 'listaPuntosInteresVisitados'
 	 */
-	public void setListaPuntosInteresVisitados(
-			final SortedSet<PuntoInteresVisitado> listaPuntosInteresVisitados) {
+	public void setListaPuntosInteresVisitados(final SortedSet<PuntoInteresVisitado> listaPuntosInteresVisitados) {
 		this.listaPuntosInteresVisitados = listaPuntosInteresVisitados;
 	}
 

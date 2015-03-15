@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -28,6 +29,7 @@ public class AparcamientosCargaDescarga {
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Listar Aparcamiento Carga Descarga")
 	public List<AparcamientoCargaDescarga> listar() {
 		return this.container.allInstances(AparcamientoCargaDescarga.class);
 	}
@@ -36,12 +38,12 @@ public class AparcamientosCargaDescarga {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public AparcamientoCargaDescarga crear(
+	@ActionLayout(named = "Nuevo Aparcamiento Carga Descarga")
+	public AparcamientoCargaDescarga newAparcamientoCargaDescarga(
 			final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Dirección") String direccion,
 			final @ParameterLayout(named = "Gratuito") boolean gratuito) {
-		final AparcamientoCargaDescarga obj = this.container
-				.newTransientInstance(AparcamientoCargaDescarga.class);
+		final AparcamientoCargaDescarga obj = this.container.newTransientInstance(AparcamientoCargaDescarga.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
 		obj.setGratis(gratuito);
@@ -49,8 +51,9 @@ public class AparcamientosCargaDescarga {
 		return obj;
 	}
 
-	// @MemberOrder(sequence = "3")
-	public void borrar(
+	@MemberOrder(sequence = "3")
+	@ActionLayout(named = "Borrar Aparcamiento Carga Descarga")
+	public void removeAparcamientoCargaDescarga(
 			final @ParameterLayout(named = "Objeto") AparcamientoCargaDescarga objeto) {
 		this.container.remove(objeto);
 	}

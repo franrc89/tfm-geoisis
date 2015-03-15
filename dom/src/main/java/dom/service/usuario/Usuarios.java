@@ -22,20 +22,24 @@ import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.usuario.Usuario;
 
-@DomainService(menuOrder = "10", repositoryFor = Usuario.class)
+@DomainServiceLayout(named = "Usuarios", menuOrder = "10")
+@DomainService(repositoryFor = Usuario.class)
 public class Usuarios {
 
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Listar Usuarios")
 	public List<Usuario> listar() {
 		return this.container.allInstances(Usuario.class);
 	}
@@ -44,8 +48,8 @@ public class Usuarios {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public Usuario crear(
-			final @ParameterLayout(named = "Nombre") String nombre,
+	@ActionLayout(named = "Nuevo Usuario")
+	public Usuario newUsuario(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Apellido") String apellido) {
 		final Usuario obj = this.container.newTransientInstance(Usuario.class);
 		obj.setNombre(nombre);
@@ -54,9 +58,9 @@ public class Usuarios {
 		return obj;
 	}
 
-	// @MemberOrder(sequence = "3")
-	// @NotInServiceMenu
-	public void borrar(final @ParameterLayout(named = "Objeto") Usuario objeto) {
+	@MemberOrder(sequence = "3")
+	@ActionLayout(named = "Borrar Usuario")
+	public void removeUsuario(final @ParameterLayout(named = "Objeto") Usuario objeto) {
 		// final Usuario obj =
 		// this.container.newTransientInstance(Usuario.class);
 		this.container.remove(objeto);

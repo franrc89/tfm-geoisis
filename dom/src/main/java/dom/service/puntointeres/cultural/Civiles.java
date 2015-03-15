@@ -4,20 +4,24 @@ import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.puntointeres.cultural.Civil;
 
-@DomainService(menuOrder = "10", repositoryFor = Civil.class)
+@DomainServiceLayout(named = "POIs Civiles", menuOrder = "10")
+@DomainService(repositoryFor = Civil.class)
 public class Civiles {
 
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Listar Civiles")
 	public List<Civil> listar() {
 		return this.container.allInstances(Civil.class);
 	}
@@ -26,8 +30,8 @@ public class Civiles {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public Civil crear(
-			final @ParameterLayout(named = "Nombre") String nombre,
+	@ActionLayout(named = "Nuevo Civil")
+	public Civil newCivil(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Descripción") String descripcion,
 			final @ParameterLayout(named = "Cuidad") String ciudad,
 			final @ParameterLayout(named = "Dirección") String direccion,
@@ -44,9 +48,9 @@ public class Civiles {
 		return obj;
 	}
 
-	// @MemberOrder(sequence = "3")
-	// @NotInServiceMenu
-	public void borrar(final @ParameterLayout(named = "Objeto") Civil objeto) {
+	@MemberOrder(sequence = "3")
+	@ActionLayout(named = "Borrar Civil")
+	public void removeCivil(final @ParameterLayout(named = "Objeto") Civil objeto) {
 		this.container.remove(objeto);
 	}
 

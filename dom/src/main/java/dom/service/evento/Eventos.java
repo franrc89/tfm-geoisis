@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
@@ -13,13 +15,15 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import dom.model.evento.Evento;
 import dom.model.puntointeres.PuntoInteres;
 
-@DomainService(menuOrder = "10", repositoryFor = Evento.class)
+@DomainServiceLayout(named = "Eventos", menuOrder = "10")
+@DomainService(repositoryFor = Evento.class)
 public class Eventos {
 
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Listar Eventos")
 	public List<Evento> listar() {
 		return this.container.allInstances(Evento.class);
 	}
@@ -28,8 +32,8 @@ public class Eventos {
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	public Evento crear(
-			final @ParameterLayout(named = "Punto Interes") PuntoInteres poi,
+	@ActionLayout(named = "Nuevo Evento")
+	public Evento newEvento(final @ParameterLayout(named = "Punto Interes") PuntoInteres poi,
 			final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Descripción") String descripcion,
 			final @ParameterLayout(named = "Fecha Inicio") Date fechaInicio,
@@ -44,9 +48,9 @@ public class Eventos {
 		return obj;
 	}
 
-	// @MemberOrder(sequence = "3")
-	// @NotInServiceMenu
-	public void borrar(final @ParameterLayout(named = "Objeto") Evento objeto) {
+	@MemberOrder(sequence = "3")
+	@ActionLayout(named = "Borrar Evento")
+	public void removeEvento(final @ParameterLayout(named = "Objeto") Evento objeto) {
 		this.container.remove(objeto);
 	}
 
