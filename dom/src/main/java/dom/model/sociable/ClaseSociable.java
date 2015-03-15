@@ -28,9 +28,9 @@ import org.apache.isis.applib.util.ObjectContracts;
 @DomainObjectLayout
 public abstract class ClaseSociable implements Comparable<ClaseSociable> {
 
-	private SortedSet<Comentario> listaComentario = new TreeSet<Comentario>();
-	private SortedSet<Favorito> listaFavorito = new TreeSet<Favorito>();
-	private SortedSet<Valoracion> listaValoracion = new TreeSet<Valoracion>();
+	private SortedSet<Comentario> comentarios = new TreeSet<Comentario>();
+	private SortedSet<Favorito> favoritos = new TreeSet<Favorito>();
+	private SortedSet<Valoracion> valoraciones = new TreeSet<Valoracion>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaComentario'
@@ -40,18 +40,18 @@ public abstract class ClaseSociable implements Comparable<ClaseSociable> {
 	@MemberOrder(sequence = "1")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<Comentario> getListaComentario() {
-		return this.listaComentario;
+	public SortedSet<Comentario> getComentarios() {
+		return this.comentarios;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaComentario'
 	 * 
-	 * @param listaComentario
-	 *            valor que se le quiere dar a la propiedad 'listaComentario'
+	 * @param listaComentario valor que se le quiere dar a la propiedad
+	 *            'listaComentario'
 	 */
-	public void setListaComentario(final SortedSet<Comentario> listaComentario) {
-		this.listaComentario = listaComentario;
+	public void setComentarios(final SortedSet<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 
 	/**
@@ -62,18 +62,18 @@ public abstract class ClaseSociable implements Comparable<ClaseSociable> {
 	@MemberOrder(sequence = "2")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<Favorito> getListaFavorito() {
-		return this.listaFavorito;
+	public SortedSet<Favorito> getFavoritos() {
+		return this.favoritos;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaFavorito'
 	 * 
-	 * @param listaFavorito
-	 *            valor que se le quiere dar a la propiedad 'listaFavorito'
+	 * @param listaFavorito valor que se le quiere dar a la propiedad
+	 *            'listaFavorito'
 	 */
-	public void setListaFavorito(final SortedSet<Favorito> listaFavorito) {
-		this.listaFavorito = listaFavorito;
+	public void setFavoritos(final SortedSet<Favorito> favoritos) {
+		this.favoritos = favoritos;
 	}
 
 	/**
@@ -84,18 +84,18 @@ public abstract class ClaseSociable implements Comparable<ClaseSociable> {
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<Valoracion> getListaValoracion() {
-		return this.listaValoracion;
+	public SortedSet<Valoracion> getValoraciones() {
+		return this.valoraciones;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaValoracion'
 	 * 
-	 * @param listaValoracion
-	 *            valor que se le quiere dar a la propiedad 'listaValoracion'
+	 * @param listaValoracion valor que se le quiere dar a la propiedad
+	 *            'listaValoracion'
 	 */
-	public void setListaValoracion(final SortedSet<Valoracion> listaValoracion) {
-		this.listaValoracion = listaValoracion;
+	public void setValoraciones(final SortedSet<Valoracion> valoraciones) {
+		this.valoraciones = valoraciones;
 	}
 
 	/*

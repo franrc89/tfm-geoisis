@@ -46,8 +46,7 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
 	 * 
-	 * @param nombre
-	 *            valor que se le quiere dar a la propiedad 'nombre'
+	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
@@ -67,8 +66,7 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	/**
 	 * Asigna el valor de la propiedad 'duracion'
 	 * 
-	 * @param duracion
-	 *            valor que se le quiere dar a la propiedad 'duracion'
+	 * @param duracion valor que se le quiere dar a la propiedad 'duracion'
 	 */
 	public void setDuracion(final String duracion) {
 		this.duracion = duracion;
@@ -88,8 +86,7 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	/**
 	 * Asigna el valor de la propiedad 'usuario'
 	 * 
-	 * @param usuario
-	 *            valor que se le quiere dar a la propiedad 'usuario'
+	 * @param usuario valor que se le quiere dar a la propiedad 'usuario'
 	 */
 	public void setUsuario(final Usuario usuario) {
 		this.usuario = usuario;
@@ -100,16 +97,16 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 			return;
 		}
 		if (usuario != null) {
-			this.usuario.removeFromListaRutaPersonal(this);
+			this.usuario.removeFromRutasPersonales(this);
 		}
-		usuario.addToListaRutaPersonal(this);
+		usuario.addToRutasPersonales(this);
 	}
 
 	public void clearUsuario() {
 		if (this.usuario == null) {
 			return;
 		}
-		this.usuario.removeFromListaRutaPersonal(this);
+		this.usuario.removeFromRutasPersonales(this);
 	}
 
 	/**
@@ -128,11 +125,10 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	/**
 	 * Asigna el valor de la propiedad 'listaPuntoInteres'
 	 * 
-	 * @param listaPuntoInteres
-	 *            valor que se le quiere dar a la propiedad 'listaPuntoInteres'
+	 * @param listaPuntoInteres valor que se le quiere dar a la propiedad
+	 *            'listaPuntoInteres'
 	 */
-	public void setListaPuntoInteres(
-			final SortedSet<PuntoInteres> listaPuntoInteres) {
+	public void setListaPuntoInteres(final SortedSet<PuntoInteres> listaPuntoInteres) {
 		this.listaPuntoInteres = listaPuntoInteres;
 	}
 
@@ -151,8 +147,7 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	}
 
 	public String disableRemove(final PuntoInteres puntoInteres) {
-		return getListaPuntoInteres().isEmpty() ? "Función no disponible"
-				: null;
+		return getListaPuntoInteres().isEmpty() ? "Función no disponible" : null;
 	}
 
 	public String validateRemove(final PuntoInteres puntoInteres) {
@@ -175,9 +170,8 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	/**
 	 * Asigna el valor de la propiedad 'listaRutasPersonalesCompletadas'
 	 * 
-	 * @param listaRutasPersonalesCompletadas
-	 *            valor que se le quiere dar a la propiedad
-	 *            'listaRutasPersonalesCompletadas'
+	 * @param listaRutasPersonalesCompletadas valor que se le quiere dar a la
+	 *            propiedad 'listaRutasPersonalesCompletadas'
 	 */
 	@MemberOrder(sequence = "5")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")

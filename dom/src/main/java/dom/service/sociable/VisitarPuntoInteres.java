@@ -12,6 +12,7 @@ import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
@@ -24,7 +25,7 @@ import dom.model.usuario.Usuario;
  * 
  */
 @DomainServiceLayout(named = "Acciones", menuOrder = "10")
-@DomainService(repositoryFor = PuntoInteresVisitado.class)
+@DomainService(nature = NatureOfService.VIEW_MENU_ONLY, repositoryFor = PuntoInteresVisitado.class)
 public class VisitarPuntoInteres {
 
 	// region > listAll (action)
