@@ -14,7 +14,6 @@ import org.apache.isis.applib.annotation.RenderType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
-import dom.model.puntointeres.PuntoInteres;
 import dom.model.sociable.RutaPersonalRealizada;
 import dom.model.usuario.Usuario;
 
@@ -28,8 +27,8 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	private String nombre;
 	private String duracion;
 	private Usuario usuario;
-	private SortedSet<PuntoInteres> listaPuntoInteres = new TreeSet<PuntoInteres>();
-	private SortedSet<RutaPersonalRealizada> listaRutasPersonalesCompletadas = new TreeSet<RutaPersonalRealizada>();
+	private SortedSet<RutaPersonal_PuntoInteres> puntosInteresRutaPersonal = new TreeSet<RutaPersonal_PuntoInteres>();
+	private SortedSet<RutaPersonalRealizada> rutasPersonalesRealizadas = new TreeSet<RutaPersonalRealizada>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -92,34 +91,16 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 		this.usuario = usuario;
 	}
 
-	public void modifyUsuario(final Usuario usuario) {
-		if (usuario == null || this.usuario == usuario) {
-			return;
-		}
-		if (usuario != null) {
-			this.usuario.removeFromRutasPersonales(this);
-		}
-		usuario.addToRutasPersonales(this);
-	}
-
-	public void clearUsuario() {
-		if (this.usuario == null) {
-			return;
-		}
-		this.usuario.removeFromRutasPersonales(this);
-	}
-
 	/**
 	 * Devuelve el valor de la propiedad 'listaPuntoInteres'
 	 * 
 	 * @return Propiedad listaPuntoInteres
 	 */
-	@javax.jdo.annotations.Persistent(table = "rutapersonal_puntointeres")
-	@javax.jdo.annotations.Join(column = "rutapersonal_id")
-	@javax.jdo.annotations.Element(column = "puntointeres_id")
+	@MemberOrder(sequence = "3")
+	@javax.jdo.annotations.Persistent(name = "rutapersonal_id", mappedBy = "rutaPersonal", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<PuntoInteres> getListaPuntoInteres() {
-		return this.listaPuntoInteres;
+	public SortedSet<RutaPersonal_PuntoInteres> getPuntosInteresRutaPersonal() {
+		return this.puntosInteresRutaPersonal;
 	}
 
 	/**
@@ -128,34 +109,8 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	 * @param listaPuntoInteres valor que se le quiere dar a la propiedad
 	 *            'listaPuntoInteres'
 	 */
-	public void setListaPuntoInteres(final SortedSet<PuntoInteres> listaPuntoInteres) {
-		this.listaPuntoInteres = listaPuntoInteres;
-	}
-
-	@MemberOrder(name = "listaPuntoInteres", sequence = "4")
-	public RutaPersonal add(final PuntoInteres puntoInteres) {
-		this.listaPuntoInteres.add(puntoInteres);
-		puntoInteres.getListaRutaPersonal().add(this);
-		return this;
-	}
-
-	@MemberOrder(name = "listaPuntoInteres", sequence = "5")
-	public RutaPersonal remove(final PuntoInteres puntoInteres) {
-		this.listaPuntoInteres.remove(puntoInteres);
-		puntoInteres.getListaRutaPersonal().remove(this);
-		return this;
-	}
-
-	public String disableRemove(final PuntoInteres puntoInteres) {
-		return getListaPuntoInteres().isEmpty() ? "Función no disponible" : null;
-	}
-
-	public String validateRemove(final PuntoInteres puntoInteres) {
-		if (!getListaPuntoInteres().contains(puntoInteres)) {
-			return "No pertenece a la lista";
-		}
-
-		return null;
+	public void setPuntosInteresRutaPersonal(final SortedSet<RutaPersonal_PuntoInteres> puntosInteresRutaPersonal) {
+		this.puntosInteresRutaPersonal = puntosInteresRutaPersonal;
 	}
 
 	/**
@@ -163,8 +118,8 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	 * 
 	 * @return Propiedad listaRutasPersonalesCompletadas
 	 */
-	public SortedSet<RutaPersonalRealizada> getListaRutasPersonalesCompletadas() {
-		return this.listaRutasPersonalesCompletadas;
+	public SortedSet<RutaPersonalRealizada> getRutasPersonalesRealizadas() {
+		return this.rutasPersonalesRealizadas;
 	}
 
 	/**
@@ -176,9 +131,8 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	@MemberOrder(sequence = "5")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public void setListaRutasPersonalesCompletadas(
-			final SortedSet<RutaPersonalRealizada> listaRutasPersonalesCompletadas) {
-		this.listaRutasPersonalesCompletadas = listaRutasPersonalesCompletadas;
+	public void setRutasPersonalesRealizadas(final SortedSet<RutaPersonalRealizada> rutasPersonalesRealizadas) {
+		this.rutasPersonalesRealizadas = rutasPersonalesRealizadas;
 	}
 
 	/*

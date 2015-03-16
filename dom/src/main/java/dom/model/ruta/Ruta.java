@@ -43,8 +43,8 @@ public class Ruta extends ClaseSociable {
 
 	private String nombre;
 	private String duracion;
-	private SortedSet<Ruta_PuntoInteres> listaPuntoInteres = new TreeSet<Ruta_PuntoInteres>();
-	private SortedSet<RutaRealizada> listaRutasCompletadas = new TreeSet<RutaRealizada>();
+	private SortedSet<Ruta_PuntoInteres> puntosInteresRuta = new TreeSet<Ruta_PuntoInteres>();
+	private SortedSet<RutaRealizada> rutasRealizadas = new TreeSet<RutaRealizada>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -61,8 +61,7 @@ public class Ruta extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
 	 * 
-	 * @param nombre
-	 *            valor que se le quiere dar a la propiedad 'nombre'
+	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
@@ -82,8 +81,7 @@ public class Ruta extends ClaseSociable {
 	/**
 	 * Asigna el valor de la propiedad 'duracion'
 	 * 
-	 * @param duracion
-	 *            valor que se le quiere dar a la propiedad 'duracion'
+	 * @param duracion valor que se le quiere dar a la propiedad 'duracion'
 	 */
 	public void setDuracion(final String duracion) {
 		this.duracion = duracion;
@@ -97,19 +95,18 @@ public class Ruta extends ClaseSociable {
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(name = "ruta_id", mappedBy = "ruta", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<Ruta_PuntoInteres> getListaPuntoInteres() {
-		return this.listaPuntoInteres;
+	public SortedSet<Ruta_PuntoInteres> getPuntosInteresRuta() {
+		return this.puntosInteresRuta;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaPuntoInteres'
 	 * 
-	 * @param listaPuntoInteres
-	 *            valor que se le quiere dar a la propiedad 'listaPuntoInteres'
+	 * @param listaPuntoInteres valor que se le quiere dar a la propiedad
+	 *            'listaPuntoInteres'
 	 */
-	public void setListaPuntoInteres(
-			final SortedSet<Ruta_PuntoInteres> listaPuntoInteres) {
-		this.listaPuntoInteres = listaPuntoInteres;
+	public void setPuntosInteresRuta(final SortedSet<Ruta_PuntoInteres> puntosInteresRuta) {
+		this.puntosInteresRuta = puntosInteresRuta;
 	}
 
 	/**
@@ -120,20 +117,18 @@ public class Ruta extends ClaseSociable {
 	@MemberOrder(sequence = "4")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<RutaRealizada> getListaRutasCompletadas() {
-		return this.listaRutasCompletadas;
+	public SortedSet<RutaRealizada> getRutasRealizadas() {
+		return this.rutasRealizadas;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'listaRutasCompletadas'
 	 * 
-	 * @param listaRutasCompletadas
-	 *            valor que se le quiere dar a la propiedad
+	 * @param listaRutasCompletadas valor que se le quiere dar a la propiedad
 	 *            'listaRutasCompletadas'
 	 */
-	public void setListaRutasCompletadas(
-			final SortedSet<RutaRealizada> listaRutasCompletadas) {
-		this.listaRutasCompletadas = listaRutasCompletadas;
+	public void setRutasRealizadas(final SortedSet<RutaRealizada> rutasRealizadas) {
+		this.rutasRealizadas = rutasRealizadas;
 	}
 
 }

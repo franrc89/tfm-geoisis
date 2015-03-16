@@ -18,7 +18,7 @@ import org.apache.isis.applib.annotation.Title;
 
 import dom.model.evento.Evento;
 import dom.model.ruta.Ruta_PuntoInteres;
-import dom.model.rutapersonal.RutaPersonal;
+import dom.model.rutapersonal.RutaPersonal_PuntoInteres;
 import dom.model.sociable.ClaseSociable;
 import dom.model.sociable.PuntoInteresVisitado;
 
@@ -34,10 +34,10 @@ public abstract class PuntoInteres extends ClaseSociable {
 	private String ciudad;
 	private String direccion;
 	private String accesibilidad;
-	private SortedSet<Ruta_PuntoInteres> listaRuta = new TreeSet<Ruta_PuntoInteres>();
-	private SortedSet<RutaPersonal> listaRutaPersonal = new TreeSet<RutaPersonal>();
-	private SortedSet<Evento> listaEvento = new TreeSet<Evento>();
-	private SortedSet<PuntoInteresVisitado> listaVisitas = new TreeSet<PuntoInteresVisitado>();
+	private SortedSet<Ruta_PuntoInteres> puntosInteres = new TreeSet<Ruta_PuntoInteres>();
+	private SortedSet<RutaPersonal_PuntoInteres> rutasPersonales = new TreeSet<RutaPersonal_PuntoInteres>();
+	private SortedSet<Evento> eventos = new TreeSet<Evento>();
+	private SortedSet<PuntoInteresVisitado> puntosInteresVisitados = new TreeSet<PuntoInteresVisitado>();
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -151,8 +151,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(column = "puntointeres_id", mappedBy = "puntoInteres", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<Ruta_PuntoInteres> getListaRuta() {
-		return this.listaRuta;
+	public SortedSet<Ruta_PuntoInteres> getPuntosInteres() {
+		return this.puntosInteres;
 	}
 
 	/**
@@ -160,15 +160,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	 * 
 	 * @param listaRuta valor que se le quiere dar a la propiedad 'listaRuta'
 	 */
-	public void setListaRuta(final SortedSet<Ruta_PuntoInteres> listaRuta) {
-		this.listaRuta = listaRuta;
-	}
-
-	@MemberOrder(name = "listaRuta", sequence = "4")
-	public PuntoInteres add(final Ruta_PuntoInteres ruta_PuntoInteres) {
-		ruta_PuntoInteres.setPuntoInteres(this);
-		this.listaRuta.add(ruta_PuntoInteres);
-		return this;
+	public void setPuntosInteres(final SortedSet<Ruta_PuntoInteres> puntosInteres) {
+		this.puntosInteres = puntosInteres;
 	}
 
 	/**
@@ -180,8 +173,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	@javax.jdo.annotations.Join(column = "puntointeres_id")
 	@javax.jdo.annotations.Element(column = "rutapersonal_id")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<RutaPersonal> getListaRutaPersonal() {
-		return this.listaRutaPersonal;
+	public SortedSet<RutaPersonal_PuntoInteres> getRutasPersonales() {
+		return this.rutasPersonales;
 	}
 
 	/**
@@ -190,8 +183,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	 * @param listaRutaPersonal valor que se le quiere dar a la propiedad
 	 *            'listaRutaPersonal'
 	 */
-	public void setListaRutaPersonal(final SortedSet<RutaPersonal> listaRutaPersonal) {
-		this.listaRutaPersonal = listaRutaPersonal;
+	public void setRutasPersonales(final SortedSet<RutaPersonal_PuntoInteres> rutasPersonales) {
+		this.rutasPersonales = rutasPersonales;
 	}
 
 	/**
@@ -202,8 +195,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	@MemberOrder(sequence = "7")
 	@javax.jdo.annotations.Persistent(mappedBy = "puntoInteres", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<Evento> getListaEvento() {
-		return this.listaEvento;
+	public SortedSet<Evento> getEventos() {
+		return this.eventos;
 	}
 
 	/**
@@ -212,8 +205,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	 * @param listaEvento valor que se le quiere dar a la propiedad
 	 *            'listaEvento'
 	 */
-	public void setListaEvento(final SortedSet<Evento> listaEvento) {
-		this.listaEvento = listaEvento;
+	public void setEventos(final SortedSet<Evento> eventos) {
+		this.eventos = eventos;
 	}
 
 	/**
@@ -224,8 +217,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	@MemberOrder(sequence = "8")
 	@javax.jdo.annotations.Persistent(mappedBy = "usuario", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<PuntoInteresVisitado> getListaVisitas() {
-		return this.listaVisitas;
+	public SortedSet<PuntoInteresVisitado> getPuntosInteresVisitados() {
+		return this.puntosInteresVisitados;
 	}
 
 	/**
@@ -234,8 +227,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	 * @param listaVisitas valor que se le quiere dar a la propiedad
 	 *            'listaVisitas'
 	 */
-	public void setListaVisitas(final SortedSet<PuntoInteresVisitado> listaVisitas) {
-		this.listaVisitas = listaVisitas;
+	public void setPuntosInteresVisitados(final SortedSet<PuntoInteresVisitado> puntosInteresVisitados) {
+		this.puntosInteresVisitados = puntosInteresVisitados;
 	}
 
 }

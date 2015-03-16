@@ -8,13 +8,14 @@ import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.ruta.Ruta;
 
 @DomainServiceLayout(named = "Rutas", menuOrder = "10")
-@DomainService(repositoryFor = Ruta.class)
+@DomainService(nature = NatureOfService.VIEW_MENU_ONLY, repositoryFor = Ruta.class)
 public class Rutas {
 
 	// region > listAll (action)

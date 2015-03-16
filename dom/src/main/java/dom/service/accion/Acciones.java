@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package dom.service.usuario;
+package dom.service.accion;
 
 import java.util.Date;
 
@@ -31,7 +31,9 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import dom.model.evento.Evento;
 import dom.model.puntointeres.PuntoInteres;
 import dom.model.ruta.Ruta;
+import dom.model.ruta.Ruta_PuntoInteres;
 import dom.model.rutapersonal.RutaPersonal;
+import dom.model.rutapersonal.RutaPersonal_PuntoInteres;
 import dom.model.sociable.Asistencia;
 import dom.model.sociable.ClaseSociable;
 import dom.model.sociable.Comentario;
@@ -45,13 +47,11 @@ import dom.model.usuario.Usuario;
 
 @DomainServiceLayout(named = "Usuarios", menuOrder = "10")
 @DomainService(nature = NatureOfService.VIEW_CONTRIBUTIONS_ONLY, repositoryFor = Usuario.class)
-public class UsuariosAcciones {
+public class Acciones {
 
 	@MemberOrder(name = "General", sequence = "3")
 	@ActionLayout(named = "Borrar Usuario")
 	public void removeUsuario(final @ParameterLayout(named = "Objeto") Usuario objeto) {
-		// final Usuario obj =
-		// this.container.newTransientInstance(Usuario.class);
 		this.container.remove(objeto);
 	}
 
@@ -100,6 +100,60 @@ public class UsuariosAcciones {
 	}
 
 	// region > create (action)
+	@MemberOrder(name = "Rutas", sequence = "2")
+	@ActionLayout(named = "Nueva Ruta")
+	public Ruta newRuta(final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Duración") String duracion) {
+		final Ruta obj = this.container.newTransientInstance(Ruta.class);
+		obj.setNombre(nombre);
+		obj.setDuracion(duracion);
+		this.container.persistIfNotAlready(obj);
+		return obj;
+	}
+
+	@MemberOrder(name = "RutasPersonales", sequence = "2")
+	@ActionLayout(named = "Nueva Ruta Personal")
+	public RutaPersonal newRutaPersonal(final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Duración") String duracion,
+			final @ParameterLayout(named = "Usuario") Usuario usuario) {
+		final RutaPersonal obj = this.container.newTransientInstance(RutaPersonal.class);
+		obj.setNombre(nombre);
+		obj.setDuracion(duracion);
+		obj.setUsuario(usuario);
+		this.container.persistIfNotAlready(obj);
+		return obj;
+	}
+
+	// region > create (action)
+	@MemberOrder(name = "PuntosInteresRuta", sequence = "2")
+	@ActionLayout(named = "Nuevo Punto en Ruta")
+	public Ruta_PuntoInteres newRuta_PuntoInteres(final @ParameterLayout(named = "Orden") Integer orden,
+			final @ParameterLayout(named = "Ruta") Ruta ruta,
+			final @ParameterLayout(named = "PuntoInteres") PuntoInteres poi) {
+		final Ruta_PuntoInteres obj = this.container.newTransientInstance(Ruta_PuntoInteres.class);
+		obj.setOrden(orden);
+		obj.setRuta(ruta);
+		obj.setPuntoInteres(poi);
+		this.container.persistIfNotAlready(obj);
+		return obj;
+	}
+
+	// region > create (action)
+	@MemberOrder(name = "PuntosInteresRutaPersonal", sequence = "2")
+	@ActionLayout(named = "Nuevo Punto en Ruta Personal")
+	public RutaPersonal_PuntoInteres newRutaPersonal_PuntoInteres(
+			final @ParameterLayout(named = "Orden") Integer orden,
+			final @ParameterLayout(named = "Ruta Personal") RutaPersonal rutaPersonal,
+			final @ParameterLayout(named = "PuntoInteres") PuntoInteres poi) {
+		final RutaPersonal_PuntoInteres obj = this.container.newTransientInstance(RutaPersonal_PuntoInteres.class);
+		obj.setOrden(orden);
+		obj.setRutaPersonal(rutaPersonal);
+		obj.setPuntoInteres(poi);
+		this.container.persistIfNotAlready(obj);
+		return obj;
+	}
+
+	// region > create (action)
 	@MemberOrder(name = "RutasRealizadas", sequence = "2")
 	@ActionLayout(named = "Nueva Ruta Realizada")
 	public RutaRealizada newRutaRealizada(final @ParameterLayout(named = "Ruta") Ruta ruta,
@@ -121,19 +175,6 @@ public class UsuariosAcciones {
 		final RutaPersonalRealizada obj = this.container.newTransientInstance(RutaPersonalRealizada.class);
 		obj.setRutaPersonal(rutaPersonal);
 		obj.setFecha(new Date());
-		obj.setUsuario(usuario);
-		this.container.persistIfNotAlready(obj);
-		return obj;
-	}
-
-	@MemberOrder(name = "RutasPersonales", sequence = "2")
-	@ActionLayout(named = "Nueva Ruta Personal")
-	public RutaPersonal newRutaPersonal(final @ParameterLayout(named = "Nombre") String nombre,
-			final @ParameterLayout(named = "Duración") String duracion,
-			final @ParameterLayout(named = "Usuario") Usuario usuario) {
-		final RutaPersonal obj = this.container.newTransientInstance(RutaPersonal.class);
-		obj.setNombre(nombre);
-		obj.setDuracion(duracion);
 		obj.setUsuario(usuario);
 		this.container.persistIfNotAlready(obj);
 		return obj;
@@ -165,6 +206,24 @@ public class UsuariosAcciones {
 		obj.setPuntoInteres(puntoInteres);
 		obj.setFecha(new Date());
 		obj.setUsuario(usuario);
+		this.container.persistIfNotAlready(obj);
+		return obj;
+	}
+
+	// region > create (action)
+	@MemberOrder(name = "Eventos", sequence = "2")
+	@ActionLayout(named = "Nuevo Evento")
+	public Evento newEvento(final @ParameterLayout(named = "Punto Interes") PuntoInteres poi,
+			final @ParameterLayout(named = "Nombre") String nombre,
+			final @ParameterLayout(named = "Descripción") String descripcion,
+			final @ParameterLayout(named = "Fecha Inicio") Date fechaInicio,
+			final @ParameterLayout(named = "Fecha Fin") Date fechaFin) {
+		final Evento obj = this.container.newTransientInstance(Evento.class);
+		obj.setNombre(nombre);
+		obj.setDescripcion(descripcion);
+		obj.setFechaInicio(fechaInicio);
+		obj.setFechaFin(fechaFin);
+		obj.setPuntoInteres(poi);
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}

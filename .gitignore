@@ -4,3 +4,5 @@
 bin
 target
 target-ide
+datanucleus.log
+dom/datanucleus.log

@@ -1,4 +1,4 @@
-package dom.service.ruta;
+package dom.service.rutapersonal;
 
 import java.util.List;
 
@@ -13,41 +13,43 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 import dom.model.puntointeres.PuntoInteres;
-import dom.model.ruta.Ruta;
-import dom.model.ruta.Ruta_PuntoInteres;
+import dom.model.rutapersonal.RutaPersonal;
+import dom.model.rutapersonal.RutaPersonal_PuntoInteres;
 
 @DomainServiceLayout(named = "Rutas", menuOrder = "10")
-@DomainService(nature = NatureOfService.VIEW_MENU_ONLY, repositoryFor = Ruta_PuntoInteres.class)
-public class RutasPuntos {
+@DomainService(nature = NatureOfService.VIEW_MENU_ONLY, repositoryFor = RutaPersonal_PuntoInteres.class)
+public class RutasPersonalesPuntos {
 
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
-	@ActionLayout(named = "Listar Puntos en Ruta")
-	public List<Ruta_PuntoInteres> listar() {
-		return this.container.allInstances(Ruta_PuntoInteres.class);
+	@ActionLayout(named = "Listar Puntos en Ruta Personal")
+	public List<RutaPersonal_PuntoInteres> listar() {
+		return this.container.allInstances(RutaPersonal_PuntoInteres.class);
 	}
 
 	// endregion
 
 	// region > create (action)
 	@MemberOrder(sequence = "2")
-	@ActionLayout(named = "Nuevo Punto en Ruta")
-	public Ruta_PuntoInteres newRuta_PuntoInteres(final @ParameterLayout(named = "Orden") Integer orden,
-			final @ParameterLayout(named = "Ruta") Ruta ruta,
+	@ActionLayout(named = "Nuevo Punto en Ruta Personal")
+	public RutaPersonal_PuntoInteres newRutaPersonal_PuntoInteres(
+			final @ParameterLayout(named = "Orden") Integer orden,
+			final @ParameterLayout(named = "Ruta Personal") RutaPersonal rutaPersonal,
 			final @ParameterLayout(named = "PuntoInteres") PuntoInteres poi) {
-		final Ruta_PuntoInteres obj = this.container.newTransientInstance(Ruta_PuntoInteres.class);
+		final RutaPersonal_PuntoInteres obj = this.container.newTransientInstance(RutaPersonal_PuntoInteres.class);
 		obj.setOrden(orden);
-		obj.setRuta(ruta);
+		obj.setRutaPersonal(rutaPersonal);
 		obj.setPuntoInteres(poi);
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
 
 	@MemberOrder(sequence = "3")
-	@ActionLayout(named = "Borrar Punto en Ruta")
-	public void removeRuta_PuntoInteres(final @ParameterLayout(named = "Objeto") Ruta_PuntoInteres objeto) {
+	@ActionLayout(named = "Borrar Punto en Ruta Personal")
+	public void removeRutaPersonal_PuntoInteres(
+			final @ParameterLayout(named = "Objeto") RutaPersonal_PuntoInteres objeto) {
 		this.container.remove(objeto);
 	}
 

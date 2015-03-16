@@ -27,6 +27,8 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
 
+import dom.model.puntointeres.PuntoInteres;
+
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, columns = {
 		@javax.jdo.annotations.Column(name = "puntointeres_id"),
@@ -34,10 +36,56 @@ import org.apache.isis.applib.util.ObjectContracts;
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @DomainObject(bounded = true, objectType = "RutaPersonal_PuntoInteres")
 @DomainObjectLayout
-public class RutaPersonal_PuntoInteres implements
-		Comparable<RutaPersonal_PuntoInteres> {
+public class RutaPersonal_PuntoInteres implements Comparable<RutaPersonal_PuntoInteres> {
+
+	private RutaPersonal rutaPersonal;
+
+	private PuntoInteres puntoInteres;
 
 	private Integer orden;
+
+	/**
+	 * Devuelve el valor de la propiedad 'ruta'
+	 * 
+	 * @return Propiedad ruta
+	 */
+	@Title(sequence = "2")
+	@MemberOrder(sequence = "2")
+	@javax.jdo.annotations.Column(allowsNull = "false")
+	public RutaPersonal getRutaPersonal() {
+		return this.rutaPersonal;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'ruta'
+	 * 
+	 * @param ruta valor que se le quiere dar a la propiedad 'ruta'
+	 */
+	public void setRutaPersonal(final RutaPersonal rutaPersonal) {
+		this.rutaPersonal = rutaPersonal;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'puntoInteres'
+	 * 
+	 * @return Propiedad puntoInteres
+	 */
+	@javax.jdo.annotations.Column(allowsNull = "false")
+	@Title(sequence = "3")
+	@MemberOrder(sequence = "3")
+	public PuntoInteres getPuntoInteres() {
+		return this.puntoInteres;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'puntoInteres'
+	 * 
+	 * @param puntoInteres valor que se le quiere dar a la propiedad
+	 *            'puntoInteres'
+	 */
+	public void setPuntoInteres(final PuntoInteres puntoInteres) {
+		this.puntoInteres = puntoInteres;
+	}
 
 	/**
 	 * Devuelve el valor de la propiedad 'orden'
@@ -54,8 +102,7 @@ public class RutaPersonal_PuntoInteres implements
 	/**
 	 * Asigna el valor de la propiedad 'orden'
 	 * 
-	 * @param orden
-	 *            valor que se le quiere dar a la propiedad 'orden'
+	 * @param orden valor que se le quiere dar a la propiedad 'orden'
 	 */
 	public void setOrden(final Integer orden) {
 		this.orden = orden;
