@@ -24,25 +24,31 @@ import javax.jdo.annotations.VersionStrategy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
+import org.isisaddons.wicket.gmap3.cpt.applib.Locatable;
+import org.isisaddons.wicket.gmap3.cpt.applib.Location;
 
 import dom.model.puntointeres.PuntoInteres;
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, columns = {
-		@javax.jdo.annotations.Column(name = "puntointeres_id"),
-		@javax.jdo.annotations.Column(name = "ruta_id") })
+		@javax.jdo.annotations.Column(name = "puntointeres_id"), @javax.jdo.annotations.Column(name = "ruta_id") })
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @DomainObject(bounded = true, objectType = "Ruta_PuntoInteres")
 @DomainObjectLayout
-public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
+public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres>, Locatable {
 
 	// @javax.jdo.annotations.PrimaryKey(name = "ruta_id")
 	private Ruta ruta;
 
 	// @javax.jdo.annotations.PrimaryKey(name = "puntointeres_id")
 	private PuntoInteres puntoInteres;
+
+	@javax.jdo.annotations.Persistent
+	private Location location;
 
 	private Integer orden;
 
@@ -61,8 +67,7 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 	/**
 	 * Asigna el valor de la propiedad 'orden'
 	 * 
-	 * @param orden
-	 *            valor que se le quiere dar a la propiedad 'orden'
+	 * @param orden valor que se le quiere dar a la propiedad 'orden'
 	 */
 	public void setOrden(final Integer orden) {
 		this.orden = orden;
@@ -83,8 +88,7 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 	/**
 	 * Asigna el valor de la propiedad 'ruta'
 	 * 
-	 * @param ruta
-	 *            valor que se le quiere dar a la propiedad 'ruta'
+	 * @param ruta valor que se le quiere dar a la propiedad 'ruta'
 	 */
 	public void setRuta(final Ruta ruta) {
 		this.ruta = ruta;
@@ -105,11 +109,30 @@ public class Ruta_PuntoInteres implements Comparable<Ruta_PuntoInteres> {
 	/**
 	 * Asigna el valor de la propiedad 'puntoInteres'
 	 * 
-	 * @param puntoInteres
-	 *            valor que se le quiere dar a la propiedad 'puntoInteres'
+	 * @param puntoInteres valor que se le quiere dar a la propiedad
+	 *            'puntoInteres'
 	 */
 	public void setPuntoInteres(final PuntoInteres puntoInteres) {
 		this.puntoInteres = puntoInteres;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'location'
+	 * @return Propiedad location
+	 */
+	@Override
+	@MemberOrder(name = "Detail", sequence = "10")
+	@Property(optionality = Optionality.OPTIONAL)
+	public Location getLocation() {
+		return this.location;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'location'
+	 * @param location valor que se le quiere dar a la propiedad 'location'
+	 */
+	public void setLocation(final Location location) {
+		this.location = location;
 	}
 
 	@Override

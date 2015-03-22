@@ -40,6 +40,7 @@ public class RutasPuntos {
 		final Ruta_PuntoInteres obj = this.container.newTransientInstance(Ruta_PuntoInteres.class);
 		obj.setOrden(orden);
 		obj.setRuta(ruta);
+		obj.setLocation(poi.getLocation());
 		obj.setPuntoInteres(poi);
 		this.container.persistIfNotAlready(obj);
 		return obj;

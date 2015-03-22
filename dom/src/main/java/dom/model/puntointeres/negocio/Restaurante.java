@@ -50,8 +50,8 @@ public class Restaurante extends PuntoInteresNegocio {
 	/**
 	 * Asigna el valor de la propiedad 'clasificacion'
 	 * 
-	 * @param clasificacion
-	 *            valor que se le quiere dar a la propiedad 'clasificacion'
+	 * @param clasificacion valor que se le quiere dar a la propiedad
+	 *            'clasificacion'
 	 */
 	public void setClasificacion(final String clasificacion) {
 		this.clasificacion = clasificacion;

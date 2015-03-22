@@ -118,6 +118,9 @@ public class RutaPersonal implements Comparable<RutaPersonal> {
 	 * 
 	 * @return Propiedad listaRutasPersonalesCompletadas
 	 */
+	@MemberOrder(sequence = "4")
+	@javax.jdo.annotations.Persistent(name = "rutapersonal_id", mappedBy = "rutaPersonal", dependentElement = "false")
+	@CollectionLayout(render = RenderType.EAGERLY)
 	public SortedSet<RutaPersonalRealizada> getRutasPersonalesRealizadas() {
 		return this.rutasPersonalesRealizadas;
 	}

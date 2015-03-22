@@ -13,8 +13,12 @@ import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.RenderType;
 import org.apache.isis.applib.annotation.Title;
+import org.isisaddons.wicket.gmap3.cpt.applib.Locatable;
+import org.isisaddons.wicket.gmap3.cpt.applib.Location;
 
 import dom.model.evento.Evento;
 import dom.model.ruta.Ruta_PuntoInteres;
@@ -27,17 +31,20 @@ import dom.model.sociable.PuntoInteresVisitado;
 @Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
 @DomainObject(bounded = true, objectType = "PuntoInteres")
 @DomainObjectLayout
-public abstract class PuntoInteres extends ClaseSociable {
+public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	private String nombre;
 	private String descripcion;
 	private String ciudad;
 	private String direccion;
 	private String accesibilidad;
-	private SortedSet<Ruta_PuntoInteres> puntosInteres = new TreeSet<Ruta_PuntoInteres>();
-	private SortedSet<RutaPersonal_PuntoInteres> rutasPersonales = new TreeSet<RutaPersonal_PuntoInteres>();
+	private SortedSet<Ruta_PuntoInteres> puntosInteresRuta = new TreeSet<Ruta_PuntoInteres>();
+	private SortedSet<RutaPersonal_PuntoInteres> puntosInteresRutaPersonal = new TreeSet<RutaPersonal_PuntoInteres>();
 	private SortedSet<Evento> eventos = new TreeSet<Evento>();
 	private SortedSet<PuntoInteresVisitado> puntosInteresVisitados = new TreeSet<PuntoInteresVisitado>();
+
+	@javax.jdo.annotations.Persistent
+	private Location location;
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -151,8 +158,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	@MemberOrder(sequence = "3")
 	@javax.jdo.annotations.Persistent(column = "puntointeres_id", mappedBy = "puntoInteres", dependentElement = "false")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<Ruta_PuntoInteres> getPuntosInteres() {
-		return this.puntosInteres;
+	public SortedSet<Ruta_PuntoInteres> getPuntosInteresRuta() {
+		return this.puntosInteresRuta;
 	}
 
 	/**
@@ -160,8 +167,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	 * 
 	 * @param listaRuta valor que se le quiere dar a la propiedad 'listaRuta'
 	 */
-	public void setPuntosInteres(final SortedSet<Ruta_PuntoInteres> puntosInteres) {
-		this.puntosInteres = puntosInteres;
+	public void setPuntosInteresRuta(final SortedSet<Ruta_PuntoInteres> puntosInteresRuta) {
+		this.puntosInteresRuta = puntosInteresRuta;
 	}
 
 	/**
@@ -173,8 +180,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	@javax.jdo.annotations.Join(column = "puntointeres_id")
 	@javax.jdo.annotations.Element(column = "rutapersonal_id")
 	@CollectionLayout(render = RenderType.EAGERLY)
-	public SortedSet<RutaPersonal_PuntoInteres> getRutasPersonales() {
-		return this.rutasPersonales;
+	public SortedSet<RutaPersonal_PuntoInteres> getPuntosInteresRutaPersonal() {
+		return this.puntosInteresRutaPersonal;
 	}
 
 	/**
@@ -183,8 +190,8 @@ public abstract class PuntoInteres extends ClaseSociable {
 	 * @param listaRutaPersonal valor que se le quiere dar a la propiedad
 	 *            'listaRutaPersonal'
 	 */
-	public void setRutasPersonales(final SortedSet<RutaPersonal_PuntoInteres> rutasPersonales) {
-		this.rutasPersonales = rutasPersonales;
+	public void setPuntosInteresRutaPersonal(final SortedSet<RutaPersonal_PuntoInteres> puntosInteresRutaPersonal) {
+		this.puntosInteresRutaPersonal = puntosInteresRutaPersonal;
 	}
 
 	/**
@@ -229,6 +236,25 @@ public abstract class PuntoInteres extends ClaseSociable {
 	 */
 	public void setPuntosInteresVisitados(final SortedSet<PuntoInteresVisitado> puntosInteresVisitados) {
 		this.puntosInteresVisitados = puntosInteresVisitados;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'location'
+	 * @return Propiedad location
+	 */
+	@Override
+	@MemberOrder(name = "Detail", sequence = "10")
+	@Property(optionality = Optionality.OPTIONAL)
+	public Location getLocation() {
+		return this.location;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'location'
+	 * @param location valor que se le quiere dar a la propiedad 'location'
+	 */
+	public void setLocation(final Location location) {
+		this.location = location;
 	}
 
 }

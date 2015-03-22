@@ -106,6 +106,13 @@
             <artifactId>isis-core-unittestsupport</artifactId>
             <scope>test</scope>
         </dependency>
+        
+		<!-- gmap3 -->
+		<dependency>
+		    <groupId>org.isisaddons.wicket.gmap3</groupId>
+		    <artifactId>isis-wicket-gmap3-cpt</artifactId>
+		    <version>1.8.0</version>
+		</dependency>
 
         <!-- Bytecode libraries (for mocking) -->
         <dependency>

@@ -134,6 +134,7 @@ public class Acciones {
 		obj.setOrden(orden);
 		obj.setRuta(ruta);
 		obj.setPuntoInteres(poi);
+		obj.setLocation(poi.getLocation());
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
