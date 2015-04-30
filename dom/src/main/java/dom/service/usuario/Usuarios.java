@@ -51,10 +51,12 @@ public class Usuarios {
 	@MemberOrder(sequence = "2")
 	@ActionLayout(named = "Nuevo Usuario")
 	public Usuario newUsuario(final @ParameterLayout(named = "Nombre") String nombre,
-			final @ParameterLayout(named = "Apellido") String apellido) {
+			final @ParameterLayout(named = "Apellido") String apellido,
+			@ParameterLayout(named = "Contraseña") final String password) {
 		final Usuario obj = this.container.newTransientInstance(Usuario.class);
 		obj.setNombre(nombre);
 		obj.setApellido(apellido);
+		obj.setPassword(password);
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}

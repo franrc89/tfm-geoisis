@@ -33,7 +33,7 @@ public class Rutas {
 	@MemberOrder(sequence = "2")
 	@ActionLayout(named = "Nueva Ruta")
 	public Ruta newRuta(final @ParameterLayout(named = "Nombre") String nombre,
-			final @ParameterLayout(named = "Duración") String duracion) {
+			final @ParameterLayout(named = "Duración Estimada") String duracion) {
 		final Ruta obj = this.container.newTransientInstance(Ruta.class);
 		obj.setNombre(nombre);
 		obj.setDuracion(duracion);

@@ -17,7 +17,7 @@ import org.apache.isis.applib.util.ObjectContracts;
 public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 
 	private MimeType tipo;
-	private boolean interno;
+	private Boolean interno;
 	private String uri;
 
 	/**
@@ -50,7 +50,7 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	@Title(sequence = "2")
 	@MemberOrder(sequence = "2")
-	public boolean isInterno() {
+	public Boolean isInterno() {
 		return this.interno;
 	}
 
@@ -60,7 +60,7 @@ public class ElementoMultimedia implements Comparable<ElementoMultimedia> {
 	 * @param interno
 	 *            valor que se le quiere dar a la propiedad 'interno'
 	 */
-	public void setInterno(final boolean interno) {
+	public void setInterno(final Boolean interno) {
 		this.interno = interno;
 	}
 

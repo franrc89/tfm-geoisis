@@ -33,27 +33,27 @@ import org.apache.isis.applib.annotation.Title;
 @DomainObjectLayout
 public class Alojamiento extends PuntoInteresNegocio {
 
-	private String clasificacion;
+	private Integer clasificacion;
 
 	/**
 	 * Devuelve el valor de la propiedad 'clasificacion'
-	 * 
+	 *
 	 * @return Propiedad clasificacion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	@Title(sequence = "1")
 	@MemberOrder(sequence = "1")
-	public String getClasificacion() {
+	public Integer getClasificacion() {
 		return this.clasificacion;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'clasificacion'
-	 * 
-	 * @param clasificacion
-	 *            valor que se le quiere dar a la propiedad 'clasificacion'
+	 *
+	 * @param clasificacion valor que se le quiere dar a la propiedad
+	 *            'clasificacion'
 	 */
-	public void setClasificacion(final String clasificacion) {
+	public void setClasificacion(final Integer clasificacion) {
 		this.clasificacion = clasificacion;
 	}
 

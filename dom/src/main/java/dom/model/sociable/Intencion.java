@@ -1,15 +1,15 @@
 /**
- * 
+ *
  */
 package dom.model.sociable;
 
 /**
  * @author fran
- * 
+ *
  */
 public enum Intencion {
 
-	SI("Si, asistiré"), NOSE("Todavia no lo he decidido"), NO("No asistiré");
+	Si("Si, asistiré"), Indeciso("Todavia no lo he decidido"), No("No asistiré");
 
 	private String frase;
 

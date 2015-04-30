@@ -50,6 +50,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	private String nombre;
 	private String apellido;
+	private String password;
 	private SortedSet<RutaPersonal> rutasPersonales = new TreeSet<RutaPersonal>();
 	private SortedSet<Asistencia> asistencias = new TreeSet<Asistencia>();
 	private SortedSet<Comentario> comentarios = new TreeSet<Comentario>();
@@ -83,7 +84,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
-	 * 
+	 *
 	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
@@ -92,7 +93,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'apellido'
-	 * 
+	 *
 	 * @param apellido valor que se le quiere dar a la propiedad 'apellido'
 	 */
 	public void setApellido(final String apellido) {
@@ -101,7 +102,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'RutaPersonal'
-	 * 
+	 *
 	 * @return Propiedad RutaPersonal
 	 */
 	// @javax.jdo.annotations.Column(name = "usuario_id", allowsNull = "false")
@@ -115,7 +116,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'RutaPersonal'
-	 * 
+	 *
 	 * @param RutaPersonal valor que se le quiere dar a la propiedad
 	 *            'RutaPersonal'
 	 */
@@ -125,7 +126,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/***
 	 * Añade la ruta a la de rutas personales del usuario
-	 * 
+	 *
 	 * @param ruta
 	 */
 	public void addToRutasPersonales(final RutaPersonal ruta) {
@@ -138,7 +139,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Elimina la ruta a la de rutas personales del usuario
-	 * 
+	 *
 	 * @param ruta
 	 */
 	public void removeFromRutasPersonales(final RutaPersonal ruta) {
@@ -151,7 +152,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'asistencias'
-	 * 
+	 *
 	 * @return Propiedad asistencias
 	 */
 	@MemberOrder(sequence = "4")
@@ -163,7 +164,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'asistencias'
-	 * 
+	 *
 	 * @param asistencias valor que se le quiere dar a la propiedad
 	 *            'asistencias'
 	 */
@@ -173,7 +174,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'Comentarios'
-	 * 
+	 *
 	 * @return Propiedad Comentarios
 	 */
 	@MemberOrder(sequence = "4")
@@ -185,7 +186,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'Comentarios'
-	 * 
+	 *
 	 * @param Comentarios valor que se le quiere dar a la propiedad
 	 *            'Comentarios'
 	 */
@@ -195,7 +196,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'Valoraciones'
-	 * 
+	 *
 	 * @return Propiedad Valoraciones
 	 */
 	@MemberOrder(sequence = "5")
@@ -207,7 +208,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'Valoraciones'
-	 * 
+	 *
 	 * @param Valoraciones valor que se le quiere dar a la propiedad
 	 *            'Valoraciones'
 	 */
@@ -217,7 +218,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'Favoritos'
-	 * 
+	 *
 	 * @return Propiedad Favoritos
 	 */
 	@MemberOrder(sequence = "6")
@@ -229,7 +230,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'Favoritos'
-	 * 
+	 *
 	 * @param Favoritos valor que se le quiere dar a la propiedad 'Favoritos'
 	 */
 	public void setFavoritos(final SortedSet<Favorito> favoritos) {
@@ -238,7 +239,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'RutasRealizadas'
-	 * 
+	 *
 	 * @return Propiedad RutasRealizadas
 	 */
 	@MemberOrder(sequence = "7")
@@ -250,7 +251,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'RutasRealizadas'
-	 * 
+	 *
 	 * @param RutasRealizadas valor que se le quiere dar a la propiedad
 	 *            'RutasRealizadas'
 	 */
@@ -260,7 +261,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'RutasPersonalesRealizadas'
-	 * 
+	 *
 	 * @return Propiedad RutasPersonalesRealizadas
 	 */
 	@MemberOrder(sequence = "8")
@@ -272,7 +273,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'RutasPersonalesRealizadas'
-	 * 
+	 *
 	 * @param RutasPersonalesRealizadas valor que se le quiere dar a la
 	 *            propiedad 'RutasPersonalesRealizadas'
 	 */
@@ -282,7 +283,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Devuelve el valor de la propiedad 'PuntosInteresVisitados'
-	 * 
+	 *
 	 * @return Propiedad PuntosInteresVisitados
 	 */
 	@MemberOrder(sequence = "9")
@@ -294,7 +295,7 @@ public class Usuario implements Comparable<Usuario> {
 
 	/**
 	 * Asigna el valor de la propiedad 'PuntosInteresVisitados'
-	 * 
+	 *
 	 * @param PuntosInteresVisitados valor que se le quiere dar a la propiedad
 	 *            'PuntosInteresVisitados'
 	 */
@@ -311,6 +312,25 @@ public class Usuario implements Comparable<Usuario> {
 	public int compareTo(final Usuario o) {
 		// TODO Auto-generated method stub
 		return ObjectContracts.compare(this, o, "nombre");
+	}
+
+	@javax.jdo.annotations.Column(allowsNull = "false")
+	@Title(sequence = "10")
+	@MemberOrder(sequence = "10")
+	/**
+	 * Devuelve el valor de la propiedad 'password'
+	 * @return Propiedad password
+	 */
+	public String getPassword() {
+		return this.password;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'password'
+	 * @param password valor que se le quiere dar a la propiedad 'password'
+	 */
+	public void setPassword(final String password) {
+		this.password = password;
 	}
 
 }

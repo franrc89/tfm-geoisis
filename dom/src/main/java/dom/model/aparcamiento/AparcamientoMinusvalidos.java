@@ -11,7 +11,7 @@ import org.apache.isis.applib.annotation.Title;
 
 /**
  * @author fran
- * 
+ *
  */
 
 @PersistenceCapable
@@ -20,27 +20,26 @@ import org.apache.isis.applib.annotation.Title;
 @DomainObjectLayout
 public class AparcamientoMinusvalidos extends AbstractAparcamiento {
 
-	private boolean gratis;
+	private Boolean gratis;
 
 	/**
 	 * Devuelve el valor de la propiedad 'gratis'
-	 * 
+	 *
 	 * @return Propiedad gratis
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	@Title(sequence = "3")
 	@MemberOrder(sequence = "3")
-	public boolean isGratis() {
+	public Boolean isGratis() {
 		return this.gratis;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'gratis'
-	 * 
-	 * @param gratis
-	 *            valor que se le quiere dar a la propiedad 'gratis'
+	 *
+	 * @param gratis valor que se le quiere dar a la propiedad 'gratis'
 	 */
-	public void setGratis(final boolean gratis) {
+	public void setGratis(final Boolean gratis) {
 		this.gratis = gratis;
 	}
 

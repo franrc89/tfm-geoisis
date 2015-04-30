@@ -10,6 +10,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.cultural.Natural;
 
@@ -33,20 +34,24 @@ public class Naturales {
 	@ActionLayout(named = "Nuevo Natural")
 	public Natural newNatural(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Descripción") String descripcion,
-			final @ParameterLayout(named = "Cuidad") String ciudad,
 			final @ParameterLayout(named = "Dirección") String direccion,
 			final @ParameterLayout(named = "Accesibilidad") String accesibilidad,
 			final @ParameterLayout(named = "Tipo") String tipo, final @ParameterLayout(named = "Epoca") String epoca,
-			final @ParameterLayout(named = "Protegido") String protegido) {
+			final @ParameterLayout(named = "Visitable") Boolean visitable,
+			final @ParameterLayout(named = "Conservación") String estado,
+			final @ParameterLayout(named = "Protegido") String protegido,
+			final @ParameterLayout(named = "Localización") String location) {
 		final Natural obj = this.container.newTransientInstance(Natural.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
-		obj.setCiudad(ciudad);
 		obj.setDireccion(direccion);
 		obj.setAccesibilidad(accesibilidad);
 		obj.setTipo(tipo);
 		obj.setEpoca(epoca);
+		obj.setVisitable(visitable);
+		obj.setEstado(estado);
 		obj.setProtegido(protegido);
+		obj.setLocation(this.locationLookupService.lookup(location));
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
@@ -63,6 +68,8 @@ public class Naturales {
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

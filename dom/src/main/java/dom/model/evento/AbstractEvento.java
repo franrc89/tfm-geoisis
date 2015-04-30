@@ -1,9 +1,12 @@
 package dom.model.evento;
 
+import javax.jdo.annotations.Discriminator;
+import javax.jdo.annotations.DiscriminatorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
+import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Title;
@@ -12,11 +15,13 @@ import dom.model.sociable.ClaseSociable;
 
 /**
  * @author fran
- * 
+ *
  */
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
+@Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
+@DomainObject(bounded = true, objectType = "Evento")
 @DomainObjectLayout
 public abstract class AbstractEvento extends ClaseSociable {
 
@@ -25,7 +30,7 @@ public abstract class AbstractEvento extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
-	 * 
+	 *
 	 * @return Propiedad nombre
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -37,9 +42,8 @@ public abstract class AbstractEvento extends ClaseSociable {
 
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
-	 * 
-	 * @param nombre
-	 *            valor que se le quiere dar a la propiedad 'nombre'
+	 *
+	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
@@ -47,7 +51,7 @@ public abstract class AbstractEvento extends ClaseSociable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'descripcion'
-	 * 
+	 *
 	 * @return Propiedad descripcion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -59,9 +63,9 @@ public abstract class AbstractEvento extends ClaseSociable {
 
 	/**
 	 * Asigna el valor de la propiedad 'descripcion'
-	 * 
-	 * @param descripcion
-	 *            valor que se le quiere dar a la propiedad 'descripcion'
+	 *
+	 * @param descripcion valor que se le quiere dar a la propiedad
+	 *            'descripcion'
 	 */
 	public void setDescripcion(final String descripcion) {
 		this.descripcion = descripcion;

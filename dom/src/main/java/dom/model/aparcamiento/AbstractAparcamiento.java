@@ -8,22 +8,29 @@ import javax.jdo.annotations.PersistenceCapable;
 
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
+import org.isisaddons.wicket.gmap3.cpt.applib.Locatable;
+import org.isisaddons.wicket.gmap3.cpt.applib.Location;
 
 /**
  * @author fran
- * 
+ *
  */
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 @Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
 @DomainObjectLayout
-public abstract class AbstractAparcamiento implements Comparable<AbstractAparcamiento> {
+public abstract class AbstractAparcamiento implements Comparable<AbstractAparcamiento>, Locatable {
 
 	private String nombre;
 	private String direccion;
+
+	@javax.jdo.annotations.Persistent
+	private Location location;
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -61,6 +68,25 @@ public abstract class AbstractAparcamiento implements Comparable<AbstractAparcam
 	 */
 	public void setDireccion(final String direccion) {
 		this.direccion = direccion;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'location'
+	 * @return Propiedad location
+	 */
+	@Override
+	@MemberOrder(name = "Detail", sequence = "10")
+	@Property(optionality = Optionality.OPTIONAL)
+	public Location getLocation() {
+		return this.location;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'location'
+	 * @param location valor que se le quiere dar a la propiedad 'location'
+	 */
+	public void setLocation(final Location location) {
+		this.location = location;
 	}
 
 	/*

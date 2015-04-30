@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package dom.service.aparcamiento;
 
@@ -13,12 +13,13 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.aparcamiento.AparcamientoGaraje;
 
 /**
  * @author fran
- * 
+ *
  */
 @DomainServiceLayout(named = "Aparcamientos", menuOrder = "10")
 @DomainService(repositoryFor = AparcamientoGaraje.class)
@@ -40,12 +41,12 @@ public class AparcamientosGaraje {
 	@ActionLayout(named = "Nuevo Aparcamiento Garaje")
 	public AparcamientoGaraje newAparcamientoGaraje(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Dirección") String direccion,
-			final @ParameterLayout(named = "Cuota") float cuota,
-			final @ParameterLayout(named = "Horas abierto") float horasAbierto,
+			final @ParameterLayout(named = "Cuota") String cuota,
+			final @ParameterLayout(named = "Horas abierto") String horasAbierto,
 			final @ParameterLayout(named = "Plazas totales") Integer plazasTotales,
 			final @ParameterLayout(named = "Plazas disponibles") Integer plazasDisponibles,
 			final @ParameterLayout(named = "Plazas NO disponibles") Integer plazasNoDisponibles,
-			final @ParameterLayout(named = "Vigilancia") boolean vigilancia) {
+			final @ParameterLayout(named = "Vigilancia") Boolean vigilancia) {
 		final AparcamientoGaraje obj = this.container.newTransientInstance(AparcamientoGaraje.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
@@ -72,6 +73,8 @@ public class AparcamientosGaraje {
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

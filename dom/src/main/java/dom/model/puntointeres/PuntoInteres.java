@@ -35,7 +35,6 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	private String nombre;
 	private String descripcion;
-	private String ciudad;
 	private String direccion;
 	private String accesibilidad;
 	private SortedSet<Ruta_PuntoInteres> puntosInteresRuta = new TreeSet<Ruta_PuntoInteres>();
@@ -48,7 +47,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
-	 * 
+	 *
 	 * @return Propiedad nombre
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -60,7 +59,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'nombre'
-	 * 
+	 *
 	 * @param nombre valor que se le quiere dar a la propiedad 'nombre'
 	 */
 	public void setNombre(final String nombre) {
@@ -69,7 +68,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'descripcion'
-	 * 
+	 *
 	 * @return Propiedad descripcion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -80,7 +79,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'descripcion'
-	 * 
+	 *
 	 * @param descripcion valor que se le quiere dar a la propiedad
 	 *            'descripcion'
 	 */
@@ -89,29 +88,8 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 	}
 
 	/**
-	 * Devuelve el valor de la propiedad 'ciudad'
-	 * 
-	 * @return Propiedad ciudad
-	 */
-	@javax.jdo.annotations.Column(allowsNull = "false")
-	@Title(sequence = "3")
-	@MemberOrder(sequence = "3")
-	public String getCiudad() {
-		return this.ciudad;
-	}
-
-	/**
-	 * Asigna el valor de la propiedad 'ciudad'
-	 * 
-	 * @param ciudad valor que se le quiere dar a la propiedad 'ciudad'
-	 */
-	public void setCiudad(final String ciudad) {
-		this.ciudad = ciudad;
-	}
-
-	/**
 	 * Devuelve el valor de la propiedad 'direccion'
-	 * 
+	 *
 	 * @return Propiedad direccion
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -122,7 +100,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'direccion'
-	 * 
+	 *
 	 * @param direccion valor que se le quiere dar a la propiedad 'direccion'
 	 */
 	public void setDireccion(final String direccion) {
@@ -131,7 +109,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'accesibilidad'
-	 * 
+	 *
 	 * @return Propiedad accesibilidad
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -142,7 +120,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'accesibilidad'
-	 * 
+	 *
 	 * @param accesibilidad valor que se le quiere dar a la propiedad
 	 *            'accesibilidad'
 	 */
@@ -152,7 +130,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaRuta'
-	 * 
+	 *
 	 * @return Propiedad listaRuta
 	 */
 	@MemberOrder(sequence = "3")
@@ -164,7 +142,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'listaRuta'
-	 * 
+	 *
 	 * @param listaRuta valor que se le quiere dar a la propiedad 'listaRuta'
 	 */
 	public void setPuntosInteresRuta(final SortedSet<Ruta_PuntoInteres> puntosInteresRuta) {
@@ -173,7 +151,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaRutaPersonal'
-	 * 
+	 *
 	 * @return Propiedad listaRutaPersonal
 	 */
 	@javax.jdo.annotations.Persistent(table = "rutapersonal_puntointeres")
@@ -186,7 +164,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'listaRutaPersonal'
-	 * 
+	 *
 	 * @param listaRutaPersonal valor que se le quiere dar a la propiedad
 	 *            'listaRutaPersonal'
 	 */
@@ -196,7 +174,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaEvento'
-	 * 
+	 *
 	 * @return Propiedad listaEvento
 	 */
 	@MemberOrder(sequence = "7")
@@ -208,7 +186,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'listaEvento'
-	 * 
+	 *
 	 * @param listaEvento valor que se le quiere dar a la propiedad
 	 *            'listaEvento'
 	 */
@@ -218,7 +196,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Devuelve el valor de la propiedad 'listaVisitas'
-	 * 
+	 *
 	 * @return Propiedad listaVisitas
 	 */
 	@MemberOrder(sequence = "8")
@@ -230,7 +208,7 @@ public abstract class PuntoInteres extends ClaseSociable implements Locatable {
 
 	/**
 	 * Asigna el valor de la propiedad 'listaVisitas'
-	 * 
+	 *
 	 * @param listaVisitas valor que se le quiere dar a la propiedad
 	 *            'listaVisitas'
 	 */

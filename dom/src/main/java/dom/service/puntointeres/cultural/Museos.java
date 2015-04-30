@@ -10,6 +10,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.cultural.Museo;
 
@@ -33,17 +34,24 @@ public class Museos {
 	@ActionLayout(named = "Nuevo Museo")
 	public Museo newMuseo(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Descripción") String descripcion,
-			final @ParameterLayout(named = "Cuidad") String ciudad,
 			final @ParameterLayout(named = "Dirección") String direccion,
 			final @ParameterLayout(named = "Accesibilidad") String accesibilidad,
-			final @ParameterLayout(named = "Estilo") String contenido) {
+			final @ParameterLayout(named = "Tipo") String tipo, final @ParameterLayout(named = "Epoca") String epoca,
+			final @ParameterLayout(named = "Visitable") Boolean visitable,
+			final @ParameterLayout(named = "Conservación") String estado,
+			final @ParameterLayout(named = "Estilo") String contenido,
+			final @ParameterLayout(named = "Localización") String location) {
 		final Museo obj = this.container.newTransientInstance(Museo.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
-		obj.setCiudad(ciudad);
 		obj.setDireccion(direccion);
 		obj.setAccesibilidad(accesibilidad);
+		obj.setTipo(tipo);
+		obj.setEpoca(epoca);
+		obj.setVisitable(visitable);
+		obj.setEstado(estado);
 		obj.setContenido(contenido);
+		obj.setLocation(this.locationLookupService.lookup(location));
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
@@ -60,6 +68,8 @@ public class Museos {
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

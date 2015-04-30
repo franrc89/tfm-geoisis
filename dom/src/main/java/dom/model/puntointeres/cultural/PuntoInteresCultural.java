@@ -36,12 +36,12 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	private String tipo;
 	private String epoca;
-	private String visitable;
+	private Boolean visitable;
 	private String estado;
 
 	/**
 	 * Devuelve el valor de la propiedad 'tipo'
-	 * 
+	 *
 	 * @return Propiedad tipo
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -52,9 +52,8 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'tipo'
-	 * 
-	 * @param tipo
-	 *            valor que se le quiere dar a la propiedad 'tipo'
+	 *
+	 * @param tipo valor que se le quiere dar a la propiedad 'tipo'
 	 */
 	public void setTipo(final String tipo) {
 		this.tipo = tipo;
@@ -62,7 +61,7 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'epoca'
-	 * 
+	 *
 	 * @return Propiedad epoca
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -73,9 +72,8 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'epoca'
-	 * 
-	 * @param epoca
-	 *            valor que se le quiere dar a la propiedad 'epoca'
+	 *
+	 * @param epoca valor que se le quiere dar a la propiedad 'epoca'
 	 */
 	public void setEpoca(final String epoca) {
 		this.epoca = epoca;
@@ -83,28 +81,27 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Devuelve el valor de la propiedad 'visitable'
-	 * 
+	 *
 	 * @return Propiedad visitable
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
 	@MemberOrder(sequence = "3")
-	public String getVisitable() {
+	public Boolean isVisitable() {
 		return this.visitable;
 	}
 
 	/**
 	 * Asigna el valor de la propiedad 'visitable'
-	 * 
-	 * @param visitable
-	 *            valor que se le quiere dar a la propiedad 'visitable'
+	 *
+	 * @param visitable valor que se le quiere dar a la propiedad 'visitable'
 	 */
-	public void setVisitable(final String visitable) {
+	public void setVisitable(final Boolean visitable) {
 		this.visitable = visitable;
 	}
 
 	/**
 	 * Devuelve el valor de la propiedad 'estado'
-	 * 
+	 *
 	 * @return Propiedad estado
 	 */
 	@javax.jdo.annotations.Column(allowsNull = "false")
@@ -115,9 +112,8 @@ public abstract class PuntoInteresCultural extends PuntoInteres {
 
 	/**
 	 * Asigna el valor de la propiedad 'estado'
-	 * 
-	 * @param estado
-	 *            valor que se le quiere dar a la propiedad 'estado'
+	 *
+	 * @param estado valor que se le quiere dar a la propiedad 'estado'
 	 */
 	public void setEstado(final String estado) {
 		this.estado = estado;

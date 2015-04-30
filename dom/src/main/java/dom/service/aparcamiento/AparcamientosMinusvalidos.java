@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package dom.service.aparcamiento;
 
@@ -13,12 +13,13 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.aparcamiento.AparcamientoMinusvalidos;
 
 /**
  * @author fran
- * 
+ *
  */
 @DomainServiceLayout(named = "Aparcamientos", menuOrder = "10")
 @DomainService(repositoryFor = AparcamientoMinusvalidos.class)
@@ -40,7 +41,7 @@ public class AparcamientosMinusvalidos {
 	@ActionLayout(named = "Nuevo Aparcamiento Minusválidos")
 	public AparcamientoMinusvalidos newAparcamientoMinusvalidos(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Dirección") String direccion,
-			final @ParameterLayout(named = "Gratuito") boolean gratuito) {
+			final @ParameterLayout(named = "Gratuito") Boolean gratuito) {
 		final AparcamientoMinusvalidos obj = this.container.newTransientInstance(AparcamientoMinusvalidos.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
@@ -62,6 +63,8 @@ public class AparcamientosMinusvalidos {
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

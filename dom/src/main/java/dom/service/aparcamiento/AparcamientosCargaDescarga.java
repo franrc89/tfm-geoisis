@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package dom.service.aparcamiento;
 
@@ -13,12 +13,13 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.aparcamiento.AparcamientoCargaDescarga;
 
 /**
  * @author fran
- * 
+ *
  */
 
 @DomainServiceLayout(named = "Aparcamientos", menuOrder = "10")
@@ -42,11 +43,13 @@ public class AparcamientosCargaDescarga {
 	public AparcamientoCargaDescarga newAparcamientoCargaDescarga(
 			final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Dirección") String direccion,
-			final @ParameterLayout(named = "Gratuito") boolean gratuito) {
+			final @ParameterLayout(named = "Gratuito") Boolean gratuito,
+			final @ParameterLayout(named = "Localización") String location) {
 		final AparcamientoCargaDescarga obj = this.container.newTransientInstance(AparcamientoCargaDescarga.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
 		obj.setGratis(gratuito);
+		obj.setLocation(this.locationLookupService.lookup(location));
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
@@ -64,6 +67,8 @@ public class AparcamientosCargaDescarga {
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

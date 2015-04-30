@@ -10,6 +10,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.negocio.Compra;
 
@@ -33,17 +34,24 @@ public class Compras {
 	@ActionLayout(named = "Nuevo Establecimiento")
 	public Compra newCompra(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Descripción") String descripcion,
-			final @ParameterLayout(named = "Cuidad") String ciudad,
 			final @ParameterLayout(named = "Dirección") String direccion,
 			final @ParameterLayout(named = "Accesibilidad") String accesibilidad,
-			final @ParameterLayout(named = "Precio") String precio) {
+			final @ParameterLayout(named = "Correo Electrónico") String mail,
+			final @ParameterLayout(named = "Página web") String web,
+			final @ParameterLayout(named = "Teléfono") String telefono,
+			final @ParameterLayout(named = "Tipo") String tipo, final @ParameterLayout(named = "Precio") String precio,
+			final @ParameterLayout(named = "Localización") String location) {
 		final Compra obj = this.container.newTransientInstance(Compra.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
-		obj.setCiudad(ciudad);
 		obj.setDireccion(direccion);
 		obj.setAccesibilidad(accesibilidad);
+		obj.setMail(mail);
+		obj.setWeb(web);
+		obj.setTelefono(telefono);
+		obj.setTipo(tipo);
 		obj.setPrecio(precio);
+		obj.setLocation(this.locationLookupService.lookup(location));
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
@@ -60,6 +68,8 @@ public class Compras {
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

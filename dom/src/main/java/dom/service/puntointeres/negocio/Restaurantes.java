@@ -34,10 +34,13 @@ public class Restaurantes {
 	@ActionLayout(named = "Nuevo Restaurante")
 	public Restaurante newRestaurante(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Descripción") String descripcion,
-			final @ParameterLayout(named = "Ciudad") String ciudad,
 			final @ParameterLayout(named = "Dirección") String direccion,
 			final @ParameterLayout(named = "Accesibilidad") String accesibilidad,
-			final @ParameterLayout(named = "Clasificación") String clasificacion,
+			final @ParameterLayout(named = "Correo Electrónico") String mail,
+			final @ParameterLayout(named = "Página web") String web,
+			final @ParameterLayout(named = "Teléfono") String telefono,
+			final @ParameterLayout(named = "Tipo") String tipo,
+			final @ParameterLayout(named = "Clasificación") Integer clasificacion,
 			final @ParameterLayout(named = "Location") String location
 	// final @ParameterLayout(named = "Latitud") Double latitud,
 	// final @ParameterLayout(named = "Longitud") Double longitud
@@ -45,9 +48,12 @@ public class Restaurantes {
 		final Restaurante obj = this.container.newTransientInstance(Restaurante.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
-		obj.setCiudad(ciudad);
 		obj.setDireccion(direccion);
 		obj.setAccesibilidad(accesibilidad);
+		obj.setMail(mail);
+		obj.setWeb(web);
+		obj.setTelefono(telefono);
+		obj.setTipo(tipo);
 		obj.setClasificacion(clasificacion);
 		// obj.setLocation(new Location(latitud, longitud));
 		obj.setLocation(this.locationLookupService.lookup(location));

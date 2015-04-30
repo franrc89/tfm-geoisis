@@ -10,6 +10,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.cultural.Playa;
 
@@ -33,28 +34,32 @@ public class Playas {
 	@ActionLayout(named = "Nueva Playa")
 	public Playa newPlaya(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Descripción") String descripcion,
-			final @ParameterLayout(named = "Cuidad") String ciudad,
 			final @ParameterLayout(named = "Dirección") String direccion,
 			final @ParameterLayout(named = "Accesibilidad") String accesibilidad,
 			final @ParameterLayout(named = "Tipo") String tipo, final @ParameterLayout(named = "Epoca") String epoca,
-			final @ParameterLayout(named = "Protegido") String protegido,
+			final @ParameterLayout(named = "Visitable") Boolean visitable,
+			final @ParameterLayout(named = "Conservación") String estado,
 			final @ParameterLayout(named = "Longitud") Float longitud,
 			final @ParameterLayout(named = "Ocupación") String ocupacion,
-			final @ParameterLayout(named = "Bandera Azul") String bazul,
-			final @ParameterLayout(named = "Parking") String parking,
-			final @ParameterLayout(named = "Socorrismo") String socorrismo) {
+			final @ParameterLayout(named = "Bandera Azul") Boolean bazul,
+			final @ParameterLayout(named = "Parking") Boolean parking,
+			final @ParameterLayout(named = "Socorrismo") Boolean socorrismo,
+			final @ParameterLayout(named = "Localización") String location) {
 		final Playa obj = this.container.newTransientInstance(Playa.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
-		obj.setCiudad(ciudad);
 		obj.setDireccion(direccion);
 		obj.setAccesibilidad(accesibilidad);
 		obj.setTipo(tipo);
+		obj.setEpoca(epoca);
+		obj.setVisitable(visitable);
+		obj.setEstado(estado);
 		obj.setLongitud(longitud);
 		obj.setOcupacion(ocupacion);
 		obj.setBazul(bazul);
 		obj.setParking(parking);
 		obj.setSocorrismo(socorrismo);
+		obj.setLocation(this.locationLookupService.lookup(location));
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
@@ -71,6 +76,8 @@ public class Playas {
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 
