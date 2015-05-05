@@ -31,6 +31,8 @@ import org.apache.isis.applib.annotation.Title;
 @Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
 @DomainObject(bounded = true, objectType = "Restaurante")
 @DomainObjectLayout
+@javax.jdo.annotations.Queries({ @javax.jdo.annotations.Query(name = "buscarRestaurantes", language = "JDOQL", value = "SELECT "
+		+ "FROM Restaurante " + "WHERE nombre.startsWith(:nombre)") })
 public class Restaurante extends PuntoInteresNegocio {
 
 	private Integer clasificacion;

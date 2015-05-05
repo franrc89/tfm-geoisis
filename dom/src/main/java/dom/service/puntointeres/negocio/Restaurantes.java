@@ -10,6 +10,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.query.QueryDefault;
 import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.negocio.Restaurante;
@@ -19,6 +20,8 @@ import dom.model.puntointeres.negocio.Restaurante;
 public class Restaurantes {
 
 	// region > listAll (action)
+	// @javax.inject.Inject
+	// private IsisJdoSupport isisJdoSupport;
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
@@ -26,6 +29,25 @@ public class Restaurantes {
 	public List<Restaurante> listar() {
 		return this.container.allInstances(Restaurante.class);
 	}
+
+	@Action(semantics = SemanticsOf.SAFE)
+	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Buscar Restaurantes")
+	public List<Restaurante> buscarBAK(final @ParameterLayout(named = "Nombre") String nombre) {
+
+		final QueryDefault<Restaurante> query = QueryDefault.create(Restaurante.class, "buscarRestaurantes", "nombre",
+				nombre);
+
+		return this.container.allMatches(query);
+	}
+
+	// @Action(semantics = SemanticsOf.SAFE)
+	// @MemberOrder(sequence = "1")
+	// @ActionLayout(named = "Buscar Restaurantes")
+	// public List<Restaurante> buscar(final @ParameterLayout(named = "Texto")
+	// String texto) {
+	// return this.container.allMatches(Restaurante.class, texto);
+	// }
 
 	// endregion
 
@@ -42,9 +64,9 @@ public class Restaurantes {
 			final @ParameterLayout(named = "Tipo") String tipo,
 			final @ParameterLayout(named = "Clasificación") Integer clasificacion,
 			final @ParameterLayout(named = "Location") String location
-	// final @ParameterLayout(named = "Latitud") Double latitud,
-	// final @ParameterLayout(named = "Longitud") Double longitud
-	) {
+			// final @ParameterLayout(named = "Latitud") Double latitud,
+			// final @ParameterLayout(named = "Longitud") Double longitud
+			) {
 		final Restaurante obj = this.container.newTransientInstance(Restaurante.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
