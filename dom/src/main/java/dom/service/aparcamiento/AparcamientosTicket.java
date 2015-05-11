@@ -43,13 +43,15 @@ public class AparcamientosTicket {
 			final @ParameterLayout(named = "Dirección") String direccion,
 			final @ParameterLayout(named = "Precio hora") String precioHora,
 			final @ParameterLayout(named = "Cuota") String cuota,
-			final @ParameterLayout(named = "Gratuito") Boolean gratuito) {
+			final @ParameterLayout(named = "Gratuito") Boolean gratuito,
+			final @ParameterLayout(named = "Localización") String location) {
 		final AparcamientoTicket obj = this.container.newTransientInstance(AparcamientoTicket.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
 		obj.setPrecioHora(precioHora);
 		obj.setCuota(cuota);
 		obj.setGratis(gratuito);
+		obj.setLocation(this.locationLookupService.lookup(location));
 
 		this.container.persistIfNotAlready(obj);
 		return obj;

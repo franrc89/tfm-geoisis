@@ -50,6 +50,7 @@ public class AparcamientosCargaDescarga {
 		obj.setDireccion(direccion);
 		obj.setGratis(gratuito);
 		obj.setLocation(this.locationLookupService.lookup(location));
+
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}

@@ -46,7 +46,8 @@ public class AparcamientosGaraje {
 			final @ParameterLayout(named = "Plazas totales") Integer plazasTotales,
 			final @ParameterLayout(named = "Plazas disponibles") Integer plazasDisponibles,
 			final @ParameterLayout(named = "Plazas NO disponibles") Integer plazasNoDisponibles,
-			final @ParameterLayout(named = "Vigilancia") Boolean vigilancia) {
+			final @ParameterLayout(named = "Vigilancia") Boolean vigilancia,
+			final @ParameterLayout(named = "Localización") String location) {
 		final AparcamientoGaraje obj = this.container.newTransientInstance(AparcamientoGaraje.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
@@ -56,6 +57,7 @@ public class AparcamientosGaraje {
 		obj.setPlazasDisponibles(plazasDisponibles);
 		obj.setPlazasNoDisponibles(plazasNoDisponibles);
 		obj.setVigilancia(vigilancia);
+		obj.setLocation(this.locationLookupService.lookup(location));
 
 		this.container.persistIfNotAlready(obj);
 		return obj;

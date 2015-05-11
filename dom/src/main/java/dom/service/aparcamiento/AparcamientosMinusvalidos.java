@@ -41,11 +41,13 @@ public class AparcamientosMinusvalidos {
 	@ActionLayout(named = "Nuevo Aparcamiento Minusválidos")
 	public AparcamientoMinusvalidos newAparcamientoMinusvalidos(final @ParameterLayout(named = "Nombre") String nombre,
 			final @ParameterLayout(named = "Dirección") String direccion,
-			final @ParameterLayout(named = "Gratuito") Boolean gratuito) {
+			final @ParameterLayout(named = "Gratuito") Boolean gratuito,
+			final @ParameterLayout(named = "Localización") String location) {
 		final AparcamientoMinusvalidos obj = this.container.newTransientInstance(AparcamientoMinusvalidos.class);
 		obj.setNombre(nombre);
 		obj.setDireccion(direccion);
 		obj.setGratis(gratuito);
+		obj.setLocation(this.locationLookupService.lookup(location));
 
 		this.container.persistIfNotAlready(obj);
 		return obj;

@@ -64,9 +64,9 @@ public class Restaurantes {
 			final @ParameterLayout(named = "Tipo") String tipo,
 			final @ParameterLayout(named = "Clasificación") Integer clasificacion,
 			final @ParameterLayout(named = "Location") String location
-			// final @ParameterLayout(named = "Latitud") Double latitud,
-			// final @ParameterLayout(named = "Longitud") Double longitud
-			) {
+	// final @ParameterLayout(named = "Latitud") Double latitud,
+	// final @ParameterLayout(named = "Longitud") Double longitud
+	) {
 		final Restaurante obj = this.container.newTransientInstance(Restaurante.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);

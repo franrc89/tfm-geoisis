@@ -9,7 +9,11 @@ import javax.jdo.annotations.PersistenceCapable;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Title;
+import org.isisaddons.wicket.gmap3.cpt.applib.Locatable;
+import org.isisaddons.wicket.gmap3.cpt.applib.Location;
 
 import dom.model.sociable.ClaseSociable;
 
@@ -23,10 +27,13 @@ import dom.model.sociable.ClaseSociable;
 @Discriminator(strategy = DiscriminatorStrategy.CLASS_NAME)
 @DomainObject(bounded = true, objectType = "Evento")
 @DomainObjectLayout
-public abstract class AbstractEvento extends ClaseSociable {
+public abstract class AbstractEvento extends ClaseSociable implements Locatable {
 
 	private String nombre;
 	private String descripcion;
+
+	@javax.jdo.annotations.Persistent
+	private Location location;
 
 	/**
 	 * Devuelve el valor de la propiedad 'nombre'
@@ -69,6 +76,25 @@ public abstract class AbstractEvento extends ClaseSociable {
 	 */
 	public void setDescripcion(final String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	/**
+	 * Devuelve el valor de la propiedad 'location'
+	 * @return Propiedad location
+	 */
+	@Override
+	@MemberOrder(name = "Detail", sequence = "10")
+	@Property(optionality = Optionality.OPTIONAL)
+	public Location getLocation() {
+		return this.location;
+	}
+
+	/**
+	 * Asigna el valor de la propiedad 'location'
+	 * @param location valor que se le quiere dar a la propiedad 'location'
+	 */
+	public void setLocation(final Location location) {
+		this.location = location;
 	}
 
 }

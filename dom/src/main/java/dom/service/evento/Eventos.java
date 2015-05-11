@@ -45,6 +45,7 @@ public class Eventos {
 		obj.setFechaInicio(fechaInicio);
 		obj.setFechaFin(fechaFin);
 		obj.setPuntoInteres(poi);
+		obj.setLocation(poi.getLocation());
 		this.container.persistIfNotAlready(obj);
 		return obj;
 	}
