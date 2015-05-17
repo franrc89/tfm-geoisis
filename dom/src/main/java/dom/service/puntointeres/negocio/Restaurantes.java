@@ -2,15 +2,19 @@ package dom.service.puntointeres.negocio;
 
 import java.util.List;
 
+import javax.jdo.Query;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.query.QueryDefault;
+import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.negocio.Restaurante;
@@ -20,8 +24,8 @@ import dom.model.puntointeres.negocio.Restaurante;
 public class Restaurantes {
 
 	// region > listAll (action)
-	// @javax.inject.Inject
-	// private IsisJdoSupport isisJdoSupport;
+	@javax.inject.Inject
+	private IsisJdoSupport isisJdoSupport;
 
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
@@ -33,21 +37,63 @@ public class Restaurantes {
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	@ActionLayout(named = "Buscar Restaurantes")
-	public List<Restaurante> buscarBAK(final @ParameterLayout(named = "Nombre") String nombre) {
+	public List<Restaurante> findRestaurante(
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Nombre") String nombre,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Descripcion") String descripcion,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Direccion") String direccion,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Accesibilidad") String accesibilidad,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Mail") String mail,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Web") String web,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Telefono") String telefono,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Tipo") String tipo,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Clasificacion") String clasificacion,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Location") String location) {
 
-		final QueryDefault<Restaurante> query = QueryDefault.create(Restaurante.class, "buscarRestaurantes", "nombre",
-				nombre);
+		final javax.jdo.PersistenceManager pm = this.isisJdoSupport.getJdoPersistenceManager();
+		final Query q = pm.newQuery(Restaurante.class);
 
-		return this.container.allMatches(query);
+		final StringBuilder sb = new StringBuilder();
+
+		if (nombre != null && nombre != "") {
+			sb.append("nombre.matches(\".*" + nombre + ".*\") &&");
+		}
+		if (descripcion != null && descripcion != "") {
+			sb.append("descripcion.matches(\".*" + descripcion + ".*\") &&");
+		}
+		if (direccion != null && direccion != "") {
+			sb.append("direccion.matches(\".*" + direccion + ".*\") &&");
+		}
+		if (accesibilidad != null && accesibilidad != "") {
+			sb.append("accesibilidad.matches(\".*" + accesibilidad + ".*\") &&");
+		}
+		if (mail != null && mail != "") {
+			sb.append("mail.matches(\".*" + mail + ".*\") &&");
+		}
+		if (web != null && web != "") {
+			sb.append("web.matches(\".*" + web + ".*\") &&");
+		}
+		if (telefono != null && telefono != "") {
+			sb.append("telefono.matches(\".*" + telefono + ".*\") &&");
+		}
+		if (tipo != null && tipo != "") {
+			sb.append("tipo.matches(\".*" + tipo + ".*\") &&");
+		}
+		if (clasificacion != null && clasificacion != "") {
+			sb.append("clasificacion < " + clasificacion);
+		}
+
+		String filtro = sb.toString();
+		if (filtro.endsWith("&&")) {
+			filtro = filtro.substring(0, filtro.length() - 3);
+		}
+
+		q.setFilter(filtro);
+
+		@SuppressWarnings("unchecked")
+		final List<Restaurante> results = (List<Restaurante>) q.execute();
+
+		return results;
 	}
-
-	// @Action(semantics = SemanticsOf.SAFE)
-	// @MemberOrder(sequence = "1")
-	// @ActionLayout(named = "Buscar Restaurantes")
-	// public List<Restaurante> buscar(final @ParameterLayout(named = "Texto")
-	// String texto) {
-	// return this.container.allMatches(Restaurante.class, texto);
-	// }
 
 	// endregion
 
@@ -64,9 +110,9 @@ public class Restaurantes {
 			final @ParameterLayout(named = "Tipo") String tipo,
 			final @ParameterLayout(named = "Clasificación") Integer clasificacion,
 			final @ParameterLayout(named = "Location") String location
-	// final @ParameterLayout(named = "Latitud") Double latitud,
-	// final @ParameterLayout(named = "Longitud") Double longitud
-	) {
+			// final @ParameterLayout(named = "Latitud") Double latitud,
+			// final @ParameterLayout(named = "Longitud") Double longitud
+			) {
 		final Restaurante obj = this.container.newTransientInstance(Restaurante.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
