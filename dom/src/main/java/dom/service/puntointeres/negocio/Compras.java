@@ -2,14 +2,19 @@ package dom.service.puntointeres.negocio;
 
 import java.util.List;
 
+import javax.jdo.Query;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.negocio.Compra;
@@ -18,6 +23,18 @@ import dom.model.puntointeres.negocio.Compra;
 @DomainService(repositoryFor = Compra.class)
 public class Compras {
 
+	// region > injected services
+
+	@javax.inject.Inject
+	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
+
+	@javax.inject.Inject
+	private IsisJdoSupport isisJdoSupport;
+
+	// endregion
+
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
@@ -25,6 +42,70 @@ public class Compras {
 	@ActionLayout(named = "Listar Establecimientos")
 	public List<Compra> listar() {
 		return this.container.allInstances(Compra.class);
+	}
+
+	// endregion
+
+	// region > find (action)
+	@Action(semantics = SemanticsOf.SAFE)
+	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Buscar Establecimientos")
+	public List<Compra> find(
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Nombre") String nombre,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Descripcion") String descripcion,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Direccion") String direccion,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Accesibilidad") String accesibilidad,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Mail") String mail,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Web") String web,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Telefono") String telefono,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Tipo") String tipo,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Precio") String precio,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Location") String location) {
+
+		final javax.jdo.PersistenceManager pm = this.isisJdoSupport.getJdoPersistenceManager();
+		final Query q = pm.newQuery(Compra.class);
+
+		final StringBuilder sb = new StringBuilder();
+
+		if (nombre != null && nombre != "") {
+			sb.append("nombre.matches(\".*" + nombre + ".*\") &&");
+		}
+		if (descripcion != null && descripcion != "") {
+			sb.append("descripcion.matches(\".*" + descripcion + ".*\") &&");
+		}
+		if (direccion != null && direccion != "") {
+			sb.append("direccion.matches(\".*" + direccion + ".*\") &&");
+		}
+		if (accesibilidad != null && accesibilidad != "") {
+			sb.append("accesibilidad.matches(\".*" + accesibilidad + ".*\") &&");
+		}
+		if (mail != null && mail != "") {
+			sb.append("mail.matches(\".*" + mail + ".*\") &&");
+		}
+		if (web != null && web != "") {
+			sb.append("web.matches(\".*" + web + ".*\") &&");
+		}
+		if (telefono != null && telefono != "") {
+			sb.append("telefono.matches(\".*" + telefono + ".*\") &&");
+		}
+		if (tipo != null && tipo != "") {
+			sb.append("tipo.matches(\".*" + tipo + ".*\")");
+		}
+		if (precio != null && precio != "") {
+			sb.append("precio.matches(\".*" + precio + ".*\")");
+		}
+
+		String filtro = sb.toString();
+		if (filtro.endsWith("&&")) {
+			filtro = filtro.substring(0, filtro.length() - 3);
+		}
+
+		q.setFilter(filtro);
+
+		@SuppressWarnings("unchecked")
+		final List<Compra> results = (List<Compra>) q.execute();
+
+		return results;
 	}
 
 	// endregion
@@ -61,15 +142,6 @@ public class Compras {
 	public void removeCompra(final @ParameterLayout(named = "Objeto") Compra objeto) {
 		this.container.remove(objeto);
 	}
-
-	// endregion
-
-	// region > injected services
-
-	@javax.inject.Inject
-	DomainObjectContainer container;
-
-	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

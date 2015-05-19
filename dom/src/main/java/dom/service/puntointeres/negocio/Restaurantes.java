@@ -23,10 +23,19 @@ import dom.model.puntointeres.negocio.Restaurante;
 @DomainService(repositoryFor = Restaurante.class)
 public class Restaurantes {
 
-	// region > listAll (action)
+	// region > injected services
+
+	@javax.inject.Inject
+	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
+
 	@javax.inject.Inject
 	private IsisJdoSupport isisJdoSupport;
 
+	// endregion
+
+	// region > listAll (action)
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	@ActionLayout(named = "Listar Restaurantes")
@@ -34,10 +43,13 @@ public class Restaurantes {
 		return this.container.allInstances(Restaurante.class);
 	}
 
+	// endregion
+
+	// region > find (action)
 	@Action(semantics = SemanticsOf.SAFE)
 	@MemberOrder(sequence = "1")
 	@ActionLayout(named = "Buscar Restaurantes")
-	public List<Restaurante> findRestaurante(
+	public List<Restaurante> find(
 			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Nombre") String nombre,
 			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Descripcion") String descripcion,
 			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Direccion") String direccion,
@@ -110,9 +122,9 @@ public class Restaurantes {
 			final @ParameterLayout(named = "Tipo") String tipo,
 			final @ParameterLayout(named = "Clasificación") Integer clasificacion,
 			final @ParameterLayout(named = "Location") String location
-			// final @ParameterLayout(named = "Latitud") Double latitud,
-			// final @ParameterLayout(named = "Longitud") Double longitud
-			) {
+	// final @ParameterLayout(named = "Latitud") Double latitud,
+	// final @ParameterLayout(named = "Longitud") Double longitud
+	) {
 		final Restaurante obj = this.container.newTransientInstance(Restaurante.class);
 		obj.setNombre(nombre);
 		obj.setDescripcion(descripcion);
@@ -129,20 +141,12 @@ public class Restaurantes {
 		return obj;
 	}
 
+	// region > remove (action)
 	@MemberOrder(sequence = "3")
 	@ActionLayout(named = "Borrar Restaurante")
 	public void removeRestaurante(final @ParameterLayout(named = "Objeto") Restaurante objeto) {
 		this.container.remove(objeto);
 	}
-
-	// endregion
-
-	// region > injected services
-
-	@javax.inject.Inject
-	DomainObjectContainer container;
-
-	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 

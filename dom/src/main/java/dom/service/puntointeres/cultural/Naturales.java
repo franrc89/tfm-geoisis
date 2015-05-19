@@ -2,14 +2,19 @@ package dom.service.puntointeres.cultural;
 
 import java.util.List;
 
+import javax.jdo.Query;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 import org.isisaddons.wicket.gmap3.cpt.service.LocationLookupService;
 
 import dom.model.puntointeres.cultural.Natural;
@@ -18,6 +23,18 @@ import dom.model.puntointeres.cultural.Natural;
 @DomainService(repositoryFor = Natural.class)
 public class Naturales {
 
+	// region > injected services
+
+	@javax.inject.Inject
+	DomainObjectContainer container;
+
+	LocationLookupService locationLookupService = new LocationLookupService();
+
+	@javax.inject.Inject
+	private IsisJdoSupport isisJdoSupport;
+
+	// endregion
+
 	// region > listAll (action)
 
 	@Action(semantics = SemanticsOf.SAFE)
@@ -25,6 +42,74 @@ public class Naturales {
 	@ActionLayout(named = "Listar Naturales")
 	public List<Natural> listar() {
 		return this.container.allInstances(Natural.class);
+	}
+
+	// endregion
+
+	// region > find (action)
+	@Action(semantics = SemanticsOf.SAFE)
+	@MemberOrder(sequence = "1")
+	@ActionLayout(named = "Buscar Naturales")
+	public List<Natural> find(
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Nombre") String nombre,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Descripcion") String descripcion,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Direccion") String direccion,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Accesibilidad") String accesibilidad,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Tipo") String tipo,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Epoca") String epoca,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Visitable") Boolean visitable,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Estado") String estado,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Protegido") String protegido,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Estilo") String estilo,
+			final @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout(named = "Location") String location) {
+
+		final javax.jdo.PersistenceManager pm = this.isisJdoSupport.getJdoPersistenceManager();
+		final Query q = pm.newQuery(Natural.class);
+
+		final StringBuilder sb = new StringBuilder();
+
+		if (nombre != null && nombre != "") {
+			sb.append("nombre.matches(\".*" + nombre + ".*\") &&");
+		}
+		if (descripcion != null && descripcion != "") {
+			sb.append("descripcion.matches(\".*" + descripcion + ".*\") &&");
+		}
+		if (direccion != null && direccion != "") {
+			sb.append("direccion.matches(\".*" + direccion + ".*\") &&");
+		}
+		if (accesibilidad != null && accesibilidad != "") {
+			sb.append("accesibilidad.matches(\".*" + accesibilidad + ".*\") &&");
+		}
+		if (tipo != null && tipo != "") {
+			sb.append("tipo.matches(\".*" + tipo + ".*\") &&");
+		}
+		if (epoca != null && epoca != "") {
+			sb.append("epoca.matches(\".*" + epoca + ".*\") &&");
+		}
+		if (visitable != null) {
+			sb.append("visitable == " + visitable + " &&");
+		}
+		if (estado != null && estado != "") {
+			sb.append("estado.matches(\".*" + estado + ".*\") &&");
+		}
+		if (protegido != null && protegido != "") {
+			sb.append("protegido.matches(\".*" + protegido + ".*\") &&");
+		}
+		if (estilo != null && estilo != "") {
+			sb.append("estilo.matches(\".*" + estilo + ".*\")");
+		}
+
+		String filtro = sb.toString();
+		if (filtro.endsWith("&&")) {
+			filtro = filtro.substring(0, filtro.length() - 3);
+		}
+
+		q.setFilter(filtro);
+
+		@SuppressWarnings("unchecked")
+		final List<Natural> results = (List<Natural>) q.execute();
+
+		return results;
 	}
 
 	// endregion
@@ -61,15 +146,6 @@ public class Naturales {
 	public void removeNatural(final @ParameterLayout(named = "Objeto") Natural objeto) {
 		this.container.remove(objeto);
 	}
-
-	// endregion
-
-	// region > injected services
-
-	@javax.inject.Inject
-	DomainObjectContainer container;
-
-	LocationLookupService locationLookupService = new LocationLookupService();
 
 	// endregion
 
